@@ -21,6 +21,15 @@ sunstead-hack-submission/
 
 ## Quick start
 
+### Backend job
+
+```bash
+cd backedn
+uv run services/fetch_profiles/featch.py
+uv run /services/create_feature_profiles/create_profiles.py
+```
+
+
 ### Backend
 
 ```bash
