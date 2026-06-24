@@ -1,79 +1,38 @@
-# GET /recommend/{identifier} — generates personalised repo and people recommendations for a Tangled user and stores results to ATP.
-import logging
-from datetime import datetime, timezone
-
+# GET /recommend/{identifier} — ranks the profiles in profile_output/profiles.json
+# by similarity to the requesting user and returns the top matches.
 from fastapi import APIRouter, HTTPException, Request
 
-from api.onboard import _to_candidate
-from models.profile import UserProfile
-from models.recommendation import RecommendationRecord
-from services.atproto.agent import Agent
+from models.recommendation import RecommendationResponse
 from services.atproto.resolver import resolve_handle_or_did
-from services.profile.builder import build_raw_profile
-from services.profile.features import build_feature_vector
-from services.recommendation.engine import build_and_store_recommendations
+from services.create_feature_profiles.create_profiles import load_profiles, onboard_did
+from services.recommender.recommend import recommend as rank_profiles
 
-logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-async def _get_or_onboard_candidate(did: str, request: Request):
-    """Return a CandidateProfile, onboarding from ATP if needed."""
-    agent: Agent = request.app.state.agent
-    client       = request.app.state.http_client
-
-    # Check session cache first
-    cache: dict = request.app.state.profiles
-    if did in cache:
-        return _to_candidate(cache[did])
-
-    # Check ATP
-    stored = await agent.get_user_vector(did, client)
-    if stored:
-        return stored
-
-    # Fetch fresh from user's PDS
-    try:
-        raw    = await build_raw_profile(did, client)
-        vector = build_feature_vector(raw)
-    except Exception as exc:
-        raise HTTPException(status_code=502, detail=f"Failed to fetch profile for {did}: {exc}")
-
-    profile = UserProfile(
-        did=did, raw=raw, vector=vector,
-        built_at=datetime.now(timezone.utc),
-    )
-    cache[did] = profile
-
-    candidate = _to_candidate(profile)
-
-    try:
-        await agent.put_user_vector(candidate, client)
-    except Exception as exc:
-        logger.warning("ATP write failed for %s: %s", did, exc)
-
-    return candidate
-
-
-@router.get("/recommend/{identifier:path}", response_model=RecommendationRecord)
-async def recommend(identifier: str, request: Request) -> RecommendationRecord:
-    """
-    Personalised repo and people recommendations for a Tangled DID or handle.
-    Candidate pool is read from AT Protocol. Results are written back to ATP.
-    """
+@router.get("/recommend/{identifier:path}", response_model=RecommendationResponse)
+async def recommend(identifier: str, request: Request, limit: int = 5) -> RecommendationResponse:
     client = request.app.state.http_client
+    identifier = identifier.strip()
+
     try:
-        did = await resolve_handle_or_did(identifier.strip(), client)
+        did = await resolve_handle_or_did(identifier, client)
     except Exception as exc:
         raise HTTPException(status_code=422, detail=f"Could not resolve '{identifier}': {exc}")
 
-    target = await _get_or_onboard_candidate(did, request)
+    profiles = load_profiles()
 
-    agent: Agent = request.app.state.agent
-    client       = request.app.state.http_client
+    # Onboard on the fly if the user isn't in the pool yet.
+    if did not in profiles:
+        handle = None if identifier.startswith("did:") else identifier
+        try:
+            await onboard_did(did, handle, client)
+        except Exception as exc:
+            raise HTTPException(status_code=502, detail=f"Failed to fetch profile for {did}: {exc}")
+        profiles = load_profiles()
 
-    try:
-        return await build_and_store_recommendations(target, agent, client)
-    except Exception as exc:
-        logger.exception("Recommendation engine failed for %s", did)
-        raise HTTPException(status_code=500, detail=str(exc))
+    if did not in profiles:
+        raise HTTPException(status_code=422, detail=f"No profileable content found for {did}")
+
+    matches = rank_profiles(did, profiles, limit)
+    return RecommendationResponse(for_did=did, matches=matches)

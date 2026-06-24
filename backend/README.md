@@ -7,13 +7,15 @@ A DID-based OSS recommendation feed for [Tangled](https://tangled.sh), built on 
 ```
 sunstead-hack-submission/
 ├── backend/                # Python / FastAPI service
-│   ├── api/                # HTTP route handlers
-│   ├── models/             # Pydantic data models
+│   ├── api/                # HTTP routes (onboard, recommend)
+│   ├── models/             # Pydantic models (Profile, recommendation)
 │   ├── services/
-│   │   ├── atproto/        # AT Protocol client layer
-│   │   ├── profile/        # Profile-building pipeline
-│   │   └── recommendation/ # Scoring / ranking logic
-│   └── lexicons/           # AT Protocol lexicon definitions
+│   │   ├── fetch_profiles/          # Stage 1 — discover active DIDs from the firehose
+│   │   ├── create_feature_profiles/ # Stage 2 — DIDs → feature profiles.json
+│   │   ├── recommender/             # Similarity scoring / ranking
+│   │   └── atproto/                 # AT Protocol client (next step: native profile storage)
+│   ├── profile_output/     # Generated DIDs + feature profiles (profiles.json)
+│   └── lexicons/           # AT Protocol lexicon definitions (next step)
 │
 └── frontend/               # TypeScript / Vite UI (in progress)
     └── src/
@@ -21,12 +23,12 @@ sunstead-hack-submission/
 
 ## Quick start
 
-### Backend job
+### Data pipeline (build the candidate pool)
 
 ```bash
-cd backedn
-uv run services/fetch_profiles/featch.py
-uv run /services/create_feature_profiles/create_profiles.py
+cd backend
+uv run services/fetch_profiles/fetch.py                       # stage 1: discover active DIDs
+uv run services/create_feature_profiles/create_profiles.py    # stage 2: build profiles.json
 ```
 
 
@@ -59,6 +61,6 @@ npm run dev
 
 ## Data flow
 
-1. `POST /onboard` — resolves a DID/handle, fetches repos and social graph from the user's PDS, computes a `FeatureVector` (language weights, topic weights, follows), and writes a `sh.tangled.fyp.userVector` record back to ATP.
-2. `GET /recommend` — loads the requesting user's vector and scores candidate profiles stored on ATP, returning a ranked `sh.tangled.fyp.recommendation` feed.
-3. Vectors are cached in-memory per session and durably in ATP across restarts.
+1. `POST /onboard` — resolves a Tangled handle/DID to a DID, fetches its repos + posts from the PDS, derives a keyword-based feature profile (`languages`, `topics`, `level`), and appends it to `profile_output/profiles.json`.
+2. `GET /recommend/{identifier}?limit=5` — ranks the profiles in `profiles.json` by Jaccard similarity over shared languages + topics and returns the top matches. Onboards the user first if not yet in the pool.
+3. Next step: persist profiles as native AT Protocol records (`sh.tangled.fyp.*` lexicons via `services/atproto`) instead of a local JSON file.

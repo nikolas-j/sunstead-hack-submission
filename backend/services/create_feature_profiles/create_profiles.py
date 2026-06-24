@@ -168,6 +168,37 @@ def build_profiles(raw_map: dict[str, dict]) -> dict[str, dict]:
 
 
 # --------------------------------------------------------------------------- #
+# Single-DID onboarding (used by the /onboard API endpoint)
+# --------------------------------------------------------------------------- #
+def load_profiles(path: Path = DEFAULT_OUT) -> dict[str, dict]:
+    if path.exists():
+        return json.loads(path.read_text(encoding="utf-8"))
+    return {}
+
+
+def save_profiles(profiles: dict[str, dict], path: Path = DEFAULT_OUT) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(profiles, indent=2), encoding="utf-8")
+
+
+async def onboard_did(
+    did: str,
+    handle: str | None,
+    client: httpx.AsyncClient,
+    path: Path = DEFAULT_OUT,
+) -> dict | None:
+    """Fetch one DID, build its profile, upsert into profiles.json. None if no content."""
+    raw = await fetch_raw(did, handle, client)
+    profile = build_profile(did, raw)
+    if profile is None:
+        return None
+    profiles = load_profiles(path)
+    profiles[did] = profile
+    save_profiles(profiles, path)
+    return profile
+
+
+# --------------------------------------------------------------------------- #
 # CLI
 # --------------------------------------------------------------------------- #
 async def run(in_path: Path, out_path: Path) -> dict[str, dict]:
