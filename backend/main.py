@@ -35,3 +35,8 @@ app.add_middleware(
 
 app.include_router(onboard_router)
 app.include_router(recommend_router)
+
+
+@app.get("/")
+async def root():
+    return {"service": "Sunstead FYP API", "docs": "/docs"}

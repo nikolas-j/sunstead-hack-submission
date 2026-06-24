@@ -13,8 +13,22 @@ def _similarity(a: set[str], b: set[str]) -> float:
     return len(a & b) / len(a | b)
 
 
+def _to_match(other_did: str, profile: dict, score: float, shared: list[str]) -> ProfileMatch:
+    return ProfileMatch(
+        did=other_did,
+        handle=profile.get("handle"),
+        languages=profile.get("languages", []),
+        topics=profile.get("topics", []),
+        level=profile.get("level", "intermediate"),
+        score=score,
+        shared=shared,
+    )
+
+
 def recommend(did: str, profiles: dict[str, dict], top_n: int = 5) -> list[ProfileMatch]:
-    """Top-N profiles most similar to `did`. Empty if `did` is absent or has no features."""
+    """Top-N profiles most similar to `did`, by Jaccard over shared languages + topics.
+    Cold-start fallback: if there's no overlap with anyone, return the most
+    feature-rich (most active) profiles so the feed is never empty."""
     target = profiles.get(did)
     if target is None:
         return []
@@ -28,15 +42,15 @@ def recommend(did: str, profiles: dict[str, dict], top_n: int = 5) -> list[Profi
         score = _similarity(target_set, other_set)
         if score <= 0:
             continue
-        matches.append(ProfileMatch(
-            did=other_did,
-            handle=profile.get("handle"),
-            languages=profile.get("languages", []),
-            topics=profile.get("topics", []),
-            level=profile.get("level", "intermediate"),
-            score=round(score, 4),
-            shared=sorted(target_set & other_set),
-        ))
+        matches.append(_to_match(other_did, profile, round(score, 4), sorted(target_set & other_set)))
 
-    matches.sort(key=lambda m: m.score, reverse=True)
-    return matches[:top_n]
+    if matches:
+        matches.sort(key=lambda m: m.score, reverse=True)
+        return matches[:top_n]
+
+    # Fallback: rank by feature count (did as a stable tie-breaker), score 0.
+    others = sorted(
+        ((d, p) for d, p in profiles.items() if d != did),
+        key=lambda kv: (-len(_feature_set(kv[1])), kv[0]),
+    )
+    return [_to_match(d, p, 0.0, []) for d, p in others[:top_n]]
