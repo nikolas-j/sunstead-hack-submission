@@ -1,13 +1,4 @@
-"""
-Converts a RawProfile into a normalized FeatureVector.
-
-Language vector:  byte counts across all repos (owned + inferred from stars)
-                  normalized to sum = 1.0
-Topic vector:     topic occurrence counts across owned repos,
-                  normalized to sum = 1.0
-Follows:          list of followed DIDs (social graph signal)
-Last active:      most recent createdAt across stars and repos
-"""
+# Converts a RawProfile into a normalized FeatureVector (language distribution, topic weights, follows list, last active timestamp).
 
 from datetime import datetime, timezone
 

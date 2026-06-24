@@ -1,0 +1,59 @@
+{
+  "lexicon": 1,
+  "id": "sh.tangled.fyp.recommendation",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "A set of personalised OSS repo and person recommendations generated for a given Tangled user DID.",
+      "key": "any",
+      "record": {
+        "type": "object",
+        "required": ["forDid", "repos", "people", "generatedAt"],
+        "properties": {
+          "forDid": {
+            "type": "string",
+            "description": "The DID of the user these recommendations are for."
+          },
+          "repos": {
+            "type": "array",
+            "description": "Ranked list of recommended repositories.",
+            "items": { "type": "ref", "ref": "#repoRecommendation" }
+          },
+          "people": {
+            "type": "array",
+            "description": "Ranked list of recommended people to follow.",
+            "items": { "type": "ref", "ref": "#personRecommendation" }
+          },
+          "generatedAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "ISO 8601 timestamp of when this record was generated."
+          }
+        }
+      }
+    },
+    "repoRecommendation": {
+      "type": "object",
+      "required": ["ownerDid", "name", "knot", "score"],
+      "properties": {
+        "ownerDid":    { "type": "string" },
+        "name":        { "type": "string" },
+        "knot":        { "type": "string" },
+        "description": { "type": "string" },
+        "topics":      { "type": "array", "items": { "type": "string" } },
+        "topLanguages":{ "type": "array", "items": { "type": "string" } },
+        "score":       { "type": "number" }
+      }
+    },
+    "personRecommendation": {
+      "type": "object",
+      "required": ["did", "score"],
+      "properties": {
+        "did":             { "type": "string" },
+        "score":           { "type": "number" },
+        "sharedLanguages": { "type": "array", "items": { "type": "string" } },
+        "sharedTopics":    { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

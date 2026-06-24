@@ -1,10 +1,4 @@
-"""
-Low-level AT Protocol PDS client.
-
-All reads go through com.atproto.repo.listRecords (paginated) or
-com.atproto.repo.getRecord. Language data is fetched from the knot
-via sh.tangled.repo.languages XRPC.
-"""
+# Low-level AT Protocol PDS client — paginates listRecords/getRecord calls and fetches per-repo language byte counts from knot servers.
 
 from typing import AsyncIterator
 import httpx

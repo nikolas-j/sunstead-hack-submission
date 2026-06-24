@@ -1,11 +1,4 @@
-"""
-Orchestrates all PDS queries for a given DID and returns a RawProfile.
-
-Flow:
-  1. Resolve DID -> PDS URL
-  2. Fetch actor profile, repos, stars, follows in parallel
-  3. Best-effort language fetch from each repo's knot server
-"""
+# Fetches actor profile, repos, stars, follows, and language data from a user's PDS in parallel and assembles a RawProfile.
 
 import asyncio
 from datetime import datetime

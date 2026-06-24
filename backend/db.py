@@ -1,3 +1,4 @@
+# SQLite helpers for persisting and retrieving UserProfile records keyed by DID.
 import sqlite3
 from pathlib import Path
 
@@ -36,3 +37,9 @@ def save_profile(conn: sqlite3.Connection, profile: UserProfile) -> None:
         (profile.did, profile.model_dump_json(), profile.built_at.isoformat()),
     )
     conn.commit()
+
+
+def get_all_profiles(conn: sqlite3.Connection) -> list[UserProfile]:
+    """Return all stored profiles — used as the candidate pool for recommendations."""
+    rows = conn.execute("SELECT profile FROM profiles").fetchall()
+    return [UserProfile.model_validate_json(row[0]) for row in rows]

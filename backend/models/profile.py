@@ -1,3 +1,4 @@
+# Core profile models: RawProfile holds raw PDS records; UserProfile combines raw data with a computed FeatureVector.
 from datetime import datetime
 from pydantic import BaseModel
 

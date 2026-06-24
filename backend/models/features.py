@@ -1,3 +1,4 @@
+# Pydantic model for a user's normalized feature vector: language distribution, topic weights, followed DIDs, and last active timestamp.
 from datetime import datetime
 from pydantic import BaseModel
 

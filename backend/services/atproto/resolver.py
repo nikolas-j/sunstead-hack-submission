@@ -1,14 +1,28 @@
-"""
-Resolves a DID to its PDS base URL.
-
-did:plc  -> GET https://plc.directory/{did}, find #atproto_pds service
-did:web  -> GET https://{domain}/.well-known/did.json, find #atproto_pds service
-"""
+# Resolves a Tangled handle to a DID, or a DID (plc/web) to its PDS base URL; falls back to bsky.social on failure.
 
 import httpx
 
 PLC_DIRECTORY = "https://plc.directory"
-FALLBACK_PDS = "https://bsky.social"
+TANGLED_PDS   = "https://tngl.sh"
+FALLBACK_PDS  = "https://bsky.social"
+
+
+async def resolve_handle(handle: str, client: httpx.AsyncClient) -> str:
+    """Resolve a Tangled handle (e.g. attlaa.tngl.sh) to a DID."""
+    resp = await client.get(
+        f"{TANGLED_PDS}/xrpc/com.atproto.identity.resolveHandle",
+        params={"handle": handle},
+        timeout=10.0,
+    )
+    resp.raise_for_status()
+    return resp.json()["did"]
+
+
+async def resolve_handle_or_did(identifier: str, client: httpx.AsyncClient) -> str:
+    """Accept either a DID or a handle and always return a DID."""
+    if identifier.startswith("did:"):
+        return identifier
+    return await resolve_handle(identifier, client)
 
 
 async def resolve_pds(did: str, client: httpx.AsyncClient) -> str:
