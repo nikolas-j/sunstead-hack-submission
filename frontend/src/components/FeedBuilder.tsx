@@ -1,18 +1,23 @@
 import { useState } from "react"
-import { X, Sparkles } from "lucide-react"
+import { X, Sparkles, Eye, Check } from "lucide-react"
 import {
+  previewRepos,
+  previewIssues,
   createFeed,
   type BaseAlgorithm,
   type FeedKind,
-  type FeedSummary,
+  type FeedFilters,
+  type FeedRef,
+  type FeedDefinitionInput,
+  type RepoCard,
+  type IssueCard,
 } from "../api"
 
-/* Modal feed builder: compose a custom feed = base algorithm + declarative
-   filters, then POST /feeds. On success the parent (FeedSelector) adds the new
-   feed as a tab. Uses the existing CSS tokens (.panel, .toggle, .tag, .btn). */
+/* "Custom topics" builder: check what you want to see, PREVIEW it live (nothing
+   saved), then Save → name it → it's written to your PDS and added to Your feeds.
+   Uses the existing CSS tokens (.fb*, .toggle, .tag, .btn). */
 
-// Canonical taxonomy labels — must match the backend lowercase canonical labels
-// in services/create_feature_profiles/taxonomy.py.
+// Canonical taxonomy labels — must match backend taxonomy.py lowercase labels.
 const LANGUAGES = [
   "python", "rust", "go", "javascript", "typescript", "c", "cpp", "java",
   "ruby", "php", "swift", "kotlin", "haskell", "elixir", "zig",
@@ -22,14 +27,19 @@ const TOPICS = [
   "networking", "security", "graphics", "games",
 ]
 const LEVELS = ["beginner", "intermediate", "advanced"] as const
-// Issues-only label filters (matches the backend GOOD_FIRST_LABELS).
 const LABELS = ["good-first-issue", "help-wanted"]
 
-const ALGORITHMS: { value: BaseAlgorithm; label: string; hint: string }[] = [
-  { value: "for-you", label: "For you", hint: "Ranked by how well it matches you" },
-  { value: "hot", label: "Trending", hint: "Most active / popular first" },
-  { value: "new", label: "New", hint: "Most recent first" },
+const ALGORITHMS: { value: BaseAlgorithm; label: string }[] = [
+  { value: "for-you", label: "For you" },
+  { value: "hot", label: "Trending" },
+  { value: "new", label: "New" },
 ]
+
+type PreviewCard = RepoCard | IssueCard
+
+function cardTitle(c: PreviewCard): string {
+  return "title" in c ? c.title : c.name
+}
 
 function toggle(set: string[], value: string): string[] {
   return set.includes(value) ? set.filter((v) => v !== value) : [...set, value]
@@ -48,12 +58,9 @@ export function FeedBuilder({
   seedLanguages?: string[]
   seedTopics?: string[]
   onClose: () => void
-  onCreated: (feed: FeedSummary) => void
+  onCreated: (feed: FeedRef) => void
 }) {
-  const [name, setName] = useState("")
-  const [description, setDescription] = useState("")
   const [algo, setAlgo] = useState<BaseAlgorithm>("for-you")
-  // Seed selections from the viewer's own profile so the common case is one click.
   const [languages, setLanguages] = useState<string[]>(
     seedLanguages.filter((l) => LANGUAGES.includes(l)),
   )
@@ -63,37 +70,71 @@ export function FeedBuilder({
   const [level, setLevel] = useState<string>("")
   const [labels, setLabels] = useState<string[]>([])
   const [state, setState] = useState<string>("")
+
+  const [cards, setCards] = useState<PreviewCard[] | null>(null)
+  const [previewing, setPreviewing] = useState(false)
+  const [name, setName] = useState("")
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  async function submit(e: React.FormEvent) {
-    e.preventDefault()
+  function buildFilters(): FeedFilters {
+    return {
+      languages,
+      topics,
+      level: level ? (level as FeedFilters["level"]) : null,
+      ...(kind === "issues"
+        ? { labels, state: state ? (state as "open" | "closed") : null }
+        : {}),
+    }
+  }
+
+  // Any filter change invalidates the current preview.
+  function dirty() {
+    if (cards !== null) setCards(null)
+    if (error) setError(null)
+  }
+
+  async function showFeed() {
+    if (previewing) return
+    setPreviewing(true)
+    setError(null)
+    const def: FeedDefinitionInput = {
+      name: name || "Preview",
+      kind,
+      baseAlgorithm: algo,
+      filters: buildFilters(),
+    }
+    try {
+      const res =
+        kind === "issues"
+          ? await previewIssues(def, identifier, { limit: 6 })
+          : await previewRepos(def, identifier, { limit: 6 })
+      setCards(res.cards)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Couldn't preview the feed.")
+    } finally {
+      setPreviewing(false)
+    }
+  }
+
+  async function save() {
     if (saving) return
     if (!name.trim()) {
-      setError("Give your feed a name.")
+      setError("Name your feed to save it.")
       return
     }
     setSaving(true)
     setError(null)
     try {
       const feed = await createFeed({
-        identifier,
         name: name.trim(),
-        description: description.trim() || undefined,
         kind,
         baseAlgorithm: algo,
-        filters: {
-          languages,
-          topics,
-          level: level ? (level as FeedSummary["filters"]["level"]) : null,
-          ...(kind === "issues"
-            ? { labels, state: state ? (state as "open" | "closed") : null }
-            : {}),
-        },
+        filters: buildFilters(),
       })
       onCreated(feed)
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Couldn't create the feed.")
+      setError(err instanceof Error ? err.message : "Couldn't save the feed.")
       setSaving(false)
     }
   }
@@ -104,43 +145,19 @@ export function FeedBuilder({
         className="fb panel"
         role="dialog"
         aria-modal="true"
-        aria-label="Create a custom feed"
+        aria-label="Build a custom feed"
         onMouseDown={(e) => e.stopPropagation()}
       >
         <div className="fb__head">
           <div className="fb__title">
-            <Sparkles size={16} /> New {kind === "issues" ? "issue" : "repo"} feed
+            <Sparkles size={16} /> Custom topics
           </div>
           <button className="btn btn--icon" onClick={onClose} aria-label="Close">
             <X size={18} />
           </button>
         </div>
 
-        <form className="fb__body" onSubmit={submit}>
-          <label className="fb__field">
-            <span className="fb__label">Name</span>
-            <input
-              className="fb__input"
-              value={name}
-              autoFocus
-              placeholder="e.g. Rust good first issues"
-              onChange={(e) => {
-                setName(e.target.value)
-                if (error) setError(null)
-              }}
-            />
-          </label>
-
-          <label className="fb__field">
-            <span className="fb__label">Description (optional)</span>
-            <input
-              className="fb__input"
-              value={description}
-              placeholder="What this feed surfaces"
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </label>
-
+        <div className="fb__body">
           <div className="fb__field">
             <span className="fb__label">Ranking</span>
             <div className="toggle">
@@ -148,11 +165,11 @@ export function FeedBuilder({
                 <button
                   type="button"
                   key={a.value}
-                  className={
-                    "toggle__btn" + (algo === a.value ? " toggle__btn--active" : "")
-                  }
-                  title={a.hint}
-                  onClick={() => setAlgo(a.value)}
+                  className={"toggle__btn" + (algo === a.value ? " toggle__btn--active" : "")}
+                  onClick={() => {
+                    setAlgo(a.value)
+                    dirty()
+                  }}
                 >
                   {a.label}
                 </button>
@@ -168,7 +185,10 @@ export function FeedBuilder({
                   type="button"
                   key={l}
                   className={"tag fb__chip" + (languages.includes(l) ? " is-on" : "")}
-                  onClick={() => setLanguages((s) => toggle(s, l))}
+                  onClick={() => {
+                    setLanguages((s) => toggle(s, l))
+                    dirty()
+                  }}
                 >
                   {l}
                 </button>
@@ -184,7 +204,10 @@ export function FeedBuilder({
                   type="button"
                   key={t}
                   className={"tag fb__chip" + (topics.includes(t) ? " is-on" : "")}
-                  onClick={() => setTopics((s) => toggle(s, t))}
+                  onClick={() => {
+                    setTopics((s) => toggle(s, t))
+                    dirty()
+                  }}
                 >
                   {t}
                 </button>
@@ -197,7 +220,10 @@ export function FeedBuilder({
             <select
               className="fb__input"
               value={level}
-              onChange={(e) => setLevel(e.target.value)}
+              onChange={(e) => {
+                setLevel(e.target.value)
+                dirty()
+              }}
             >
               <option value="">Any level</option>
               {LEVELS.map((l) => (
@@ -218,7 +244,10 @@ export function FeedBuilder({
                       type="button"
                       key={l}
                       className={"tag fb__chip" + (labels.includes(l) ? " is-on" : "")}
-                      onClick={() => setLabels((s) => toggle(s, l))}
+                      onClick={() => {
+                        setLabels((s) => toggle(s, l))
+                        dirty()
+                      }}
                     >
                       {l}
                     </button>
@@ -232,10 +261,11 @@ export function FeedBuilder({
                     <button
                       type="button"
                       key={s || "any"}
-                      className={
-                        "toggle__btn" + (state === s ? " toggle__btn--active" : "")
-                      }
-                      onClick={() => setState(s)}
+                      className={"toggle__btn" + (state === s ? " toggle__btn--active" : "")}
+                      onClick={() => {
+                        setState(s)
+                        dirty()
+                      }}
                     >
                       {s || "Any"}
                     </button>
@@ -245,25 +275,68 @@ export function FeedBuilder({
             </>
           ) : null}
 
+          {/* Preview */}
+          {cards !== null ? (
+            <div className="fb__field">
+              <span className="fb__label">
+                Preview · {cards.length} {kind === "issues" ? "issues" : "repos"}
+              </span>
+              <div className="fb__preview">
+                {cards.length === 0 ? (
+                  <div className="fb__preview-empty">Nothing matches these filters yet.</div>
+                ) : (
+                  cards.map((c, i) => (
+                    <div className="fb__preview-card" key={i}>
+                      <span className="fb__preview-title">{cardTitle(c)}</span>
+                      {c.shared.length ? (
+                        <span className="fb__preview-reason">{c.shared.slice(0, 3).join(", ")}</span>
+                      ) : null}
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          ) : null}
+
           {error ? (
             <p className="fb__error" role="alert">
               {error}
             </p>
           ) : null}
 
-          <div className="fb__actions">
-            <button type="button" className="btn btn--secondary" onClick={onClose}>
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="btn btn--primary"
-              disabled={saving || !name.trim()}
-            >
-              {saving ? "Creating…" : "Create feed"}
-            </button>
-          </div>
-        </form>
+          {/* Actions: preview first, then name + save */}
+          {cards === null ? (
+            <div className="fb__actions">
+              <button type="button" className="btn btn--secondary" onClick={onClose}>
+                Cancel
+              </button>
+              <button type="button" className="btn btn--primary" onClick={showFeed} disabled={previewing}>
+                {previewing ? "Loading…" : (<><Eye size={15} /> Show feed</>)}
+              </button>
+            </div>
+          ) : (
+            <div className="fb__save">
+              <input
+                className="fb__input"
+                value={name}
+                autoFocus
+                placeholder="Name this feed — e.g. Rust web"
+                onChange={(e) => {
+                  setName(e.target.value)
+                  if (error) setError(null)
+                }}
+              />
+              <div className="fb__actions">
+                <button type="button" className="btn btn--secondary" onClick={showFeed} disabled={previewing}>
+                  Re-run
+                </button>
+                <button type="button" className="btn btn--primary" onClick={save} disabled={saving || !name.trim()}>
+                  {saving ? "Saving…" : (<><Check size={15} /> Save feed</>)}
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

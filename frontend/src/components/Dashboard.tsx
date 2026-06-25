@@ -16,11 +16,13 @@ export function Dashboard({
   did,
   profile,
   onOpenFeed,
+  onLogout,
 }: {
   handle: string
   did: string
   profile: Profile
   onOpenFeed: () => void
+  onLogout?: () => void
 }) {
   useEffect(() => {
     // Respect users who ask for less motion — keep native scrolling for them.
@@ -52,7 +54,7 @@ export function Dashboard({
     <>
       <CursorGlow />
       <Globe />
-      <TopNav handle={handle} onOpenFeed={onOpenFeed} />
+      <TopNav handle={handle} onOpenFeed={onOpenFeed} onLogout={onLogout} />
       <main className="layout">
         <CenterColumn
           did={did}

@@ -8,8 +8,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
+from api.auth import router as auth_router
 from api.feed import router as feed_router
 from api.feed_gen import router as feed_gen_router
+from api.graph import router as graph_router
 from api.onboard import router as onboard_router
 from api.recommend import router as recommend_router
 
@@ -35,10 +37,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(auth_router)
 app.include_router(onboard_router)
 app.include_router(recommend_router)
 app.include_router(feed_router)
 app.include_router(feed_gen_router)
+app.include_router(graph_router)
 
 
 @app.get("/")

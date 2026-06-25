@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import { Users, UserPlus, ShieldCheck, ArrowRight, Plus } from "lucide-react"
-import { recommend, type ProfileMatch } from "../api"
+import {
+  recommend,
+  follow as followApi,
+  unfollow as unfollowApi,
+  listFollowing,
+  type ProfileMatch,
+} from "../api"
 import { Avatar } from "./Avatar"
 import { formatCount, gradientFor } from "../lib"
 
@@ -16,8 +22,17 @@ function reasonFor(p: ProfileMatch): string {
   return "Active across open source"
 }
 
-function ProfileRow({ p }: { p: ProfileMatch }) {
-  const [following, setFollowing] = useState(false)
+function ProfileRow({
+  p,
+  following,
+  busy,
+  onToggle,
+}: {
+  p: ProfileMatch
+  following: boolean
+  busy: boolean
+  onToggle: () => void
+}) {
   const name = p.handle ?? shortDid(p.did)
   const sub = [p.level, p.location].filter(Boolean).join(" · ")
   return (
@@ -30,9 +45,11 @@ function ProfileRow({ p }: { p: ProfileMatch }) {
         </div>
         <button
           className={"btn btn--sm " + (following ? "btn--secondary" : "btn--primary")}
-          onClick={() => setFollowing((f) => !f)}
+          onClick={onToggle}
+          disabled={busy}
+          aria-busy={busy}
         >
-          {following ? "Following" : "Follow"}
+          {busy ? "…" : following ? "Following" : "Follow"}
         </button>
       </div>
       {p.description ? <p className="profile__bio">{p.description}</p> : null}
@@ -73,6 +90,12 @@ export function RightColumn({ did }: { did: string }) {
   const [loadingMore, setLoadingMore] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [exhausted, setExhausted] = useState(false)
+
+  // Real follow state, keyed by target DID. Seeded from who `did` already follows
+  // on Tangled, then kept in sync as the user follows/unfollows from here.
+  const [followed, setFollowed] = useState<Record<string, boolean>>({})
+  const [followBusy, setFollowBusy] = useState<Record<string, boolean>>({})
+  const [followErr, setFollowErr] = useState<string | null>(null)
 
   // Every DID shown so far, sent as `exclude` so each page is fresh. In-memory
   // only — a refresh or sign-out drops it and the feed starts over.
@@ -118,6 +141,44 @@ export function RightColumn({ did }: { did: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [did])
 
+  // Seed follow state from who the viewer already follows on Tangled, so people
+  // they already follow show "Following" instead of "Follow". Best-effort.
+  useEffect(() => {
+    let live = true
+    setFollowed({})
+    setFollowErr(null)
+    listFollowing(did)
+      .then((people) => {
+        if (!live) return
+        setFollowed(Object.fromEntries(people.map((p) => [p.did, true])))
+      })
+      .catch(() => {
+        /* non-fatal — Follow is idempotent, so we just start from "not following" */
+      })
+    return () => {
+      live = false
+    }
+  }, [did])
+
+  // Write a real follow/unfollow record to the viewer's repo. Optimistic, with a
+  // revert if the call fails.
+  async function toggleFollow(targetDid: string) {
+    if (followBusy[targetDid]) return
+    const wasFollowing = !!followed[targetDid]
+    setFollowErr(null)
+    setFollowBusy((b) => ({ ...b, [targetDid]: true }))
+    setFollowed((f) => ({ ...f, [targetDid]: !wasFollowing }))
+    try {
+      if (wasFollowing) await unfollowApi(targetDid)
+      else await followApi(targetDid)
+    } catch (err) {
+      setFollowed((f) => ({ ...f, [targetDid]: wasFollowing })) // revert
+      setFollowErr(err instanceof Error ? err.message : "Couldn't update follow.")
+    } finally {
+      setFollowBusy((b) => ({ ...b, [targetDid]: false }))
+    }
+  }
+
   return (
     <aside className="col col--right" data-lenis-prevent>
       <section className="panel">
@@ -127,6 +188,7 @@ export function RightColumn({ did }: { did: string }) {
           </div>
         </div>
         <div className="panel__body">
+          {followErr ? <div className="panel__msg">{followErr}</div> : null}
           {loading ? (
             Array.from({ length: PAGE }).map((_, i) => <SkeletonRow key={i} />)
           ) : error ? (
@@ -141,7 +203,13 @@ export function RightColumn({ did }: { did: string }) {
           ) : (
             <>
               {matches.map((p) => (
-                <ProfileRow key={p.did} p={p} />
+                <ProfileRow
+                  key={p.did}
+                  p={p}
+                  following={!!followed[p.did]}
+                  busy={!!followBusy[p.did]}
+                  onToggle={() => toggleFollow(p.did)}
+                />
               ))}
               {loadingMore ? <SkeletonRow /> : null}
               {!exhausted ? (

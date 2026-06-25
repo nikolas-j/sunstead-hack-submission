@@ -6,7 +6,7 @@ import httpx
 
 from models.feed import BaseAlgorithm, FeedDefinition, FeedFilters, FeedKind
 
-from services.feed_gen import store
+from services.feed_gen import user_feeds
 
 BUILTIN_SLUGS = {"for-you", "hot", "new"}
 
@@ -43,7 +43,8 @@ def _builtin(kind: FeedKind, slug: str) -> FeedDefinition | None:
 async def resolve_feed(
     kind: FeedKind, slug: str, owner_did: str, client: httpx.AsyncClient
 ) -> FeedDefinition | None:
-    """A built-in (if slug is reserved) or a stored custom feed for this owner."""
+    """A built-in (if slug is reserved) or a custom feed read from the owner's
+    own PDS. Public read — no session needed (like a Bluesky feed skeleton)."""
     if slug in BUILTIN_SLUGS:
         return _builtin(kind, slug)
-    return await store.get_user_feed(owner_did, slug, client)
+    return await user_feeds.get_feed_by_did(owner_did, slug, client)

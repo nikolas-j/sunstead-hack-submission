@@ -4,7 +4,7 @@
   "defs": {
     "main": {
       "type": "record",
-      "description": "A user-defined custom feed: a base ranking algorithm plus declarative filters applied to either the repos pool or the issues pool. Stored by the FYP agent under its own DID; the owning user's DID is carried in `ownerDid` and encoded into the record key.",
+      "description": "A user-defined custom feed: a base ranking algorithm plus declarative filters applied to either the repos pool or the issues pool. Stored in the owner's own repo (rkey = slug); `ownerDid` is also carried in the record body so public reads are self-describing.",
       "key": "any",
       "record": {
         "type": "object",

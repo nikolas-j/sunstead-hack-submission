@@ -1,4 +1,4 @@
-import { Search, MessageSquare, Bell, Play } from "lucide-react"
+import { Search, MessageSquare, Bell, Play, LogOut } from "lucide-react"
 import { Avatar } from "./Avatar"
 import { TangledLogo } from "./TangledLogo"
 import { gradientFor } from "../lib"
@@ -6,9 +6,11 @@ import { gradientFor } from "../lib"
 export function TopNav({
   handle,
   onOpenFeed,
+  onLogout,
 }: {
   handle: string
   onOpenFeed?: () => void
+  onLogout?: () => void
 }) {
   return (
     <header className="topnav">
@@ -39,10 +41,15 @@ export function TopNav({
           <button className="btn btn--icon" aria-label="Notifications">
             <Bell size={18} />
           </button>
-          <a className="user" href="#">
+          <span className="user">
             <Avatar name={handle} gradient={gradientFor(handle)} size="sm" />
             <span className="user__handle">{handle}</span>
-          </a>
+          </span>
+          {onLogout ? (
+            <button className="btn btn--icon" aria-label="Sign out" title="Sign out" onClick={onLogout}>
+              <LogOut size={18} />
+            </button>
+          ) : null}
         </div>
       </div>
     </header>

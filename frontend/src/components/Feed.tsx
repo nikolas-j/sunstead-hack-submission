@@ -12,10 +12,27 @@ import {
   Trash2,
   GitFork,
 } from "lucide-react"
-import { generateIssues, type IssueCard } from "../api"
+import {
+  generateIssues,
+  generateIssuesByUri,
+  type FeedRef,
+  type IssueCard,
+} from "../api"
 import { Avatar } from "./Avatar"
 import { FeedSelector } from "./FeedSelector"
 import { formatCount, gradientFor } from "../lib"
+
+/* Subscribed/external feeds run via their AT-URI; built-ins/own via slug. */
+function runIssues(
+  feed: FeedRef,
+  identifier: string,
+  opts: { limit: number; exclude: string[] },
+): Promise<{ cards: IssueCard[] }> {
+  if (feed.source === "subscribed" || feed.source === "external") {
+    return generateIssuesByUri(feed.uri ?? "", identifier, opts)
+  }
+  return generateIssues(feed.slug, identifier, opts)
+}
 
 /* GitTok — a TikTok/Reels-style vertical feed of open-source ISSUES to pick up,
    ranked for the signed-in user by the backend issues ranker (POST /feed).
@@ -308,10 +325,10 @@ export function Feed({
   const scrollRef = useRef<HTMLDivElement>(null)
   const sentinelRef = useRef<HTMLDivElement>(null)
 
-  // Which feed (built-in or custom) is active. The seen-cache is namespaced per
-  // slug so switching feeds paginates independently.
-  const [slug, setSlug] = useState("for-you")
-  const cacheKey = `${identifier}:${slug}`
+  // Which feed (built-in / own / subscribed) is active. The seen-cache is
+  // namespaced per feed so switching feeds paginates independently.
+  const [active, setActive] = useState<FeedRef | null>(null)
+  const cacheKey = active ? `${identifier}:${active.uri ?? active.slug}` : null
 
   const [cards, setCards] = useState<IssueCard[]>([])
   const [loading, setLoading] = useState(true)
@@ -321,18 +338,19 @@ export function Feed({
 
   // Issues already served, sent as `exclude` so each batch is fresh. Seeded from
   // localStorage so the feed picks up where the user left off, persisted as it grows.
-  const seen = useRef<Set<string>>(loadSeen(`${identifier}:for-you`))
+  const seen = useRef<Set<string>>(new Set())
   // Guards against stale responses (StrictMode double-mount, fast reloads).
   const reqId = useRef(0)
 
   const load = useCallback(
     async (initial: boolean) => {
+      if (!active || !cacheKey) return
       const myReq = initial ? ++reqId.current : reqId.current
       if (initial) setLoading(true)
       else setLoadingMore(true)
       setError(null)
       try {
-        const res = await generateIssues(slug, identifier, {
+        const res = await runIssues(active, identifier, {
           limit: PAGE,
           exclude: [...seen.current],
         })
@@ -352,16 +370,17 @@ export function Feed({
         else setLoadingMore(false)
       }
     },
-    [identifier, slug, cacheKey],
+    [identifier, active, cacheKey],
   )
 
   // Initial load (and reset) whenever the viewer or the selected feed changes.
   useEffect(() => {
+    if (!active || !cacheKey) return
     seen.current = loadSeen(cacheKey)
     setCards([])
     setExhausted(false)
     load(true)
-  }, [identifier, slug, cacheKey, load])
+  }, [identifier, active, cacheKey, load])
 
   // Infinite scroll: when the sentinel below the last card comes into view,
   // fetch the next batch. rootMargin prefetches a screen early so it feels seamless.
@@ -389,7 +408,7 @@ export function Feed({
   }, [load, loading, loadingMore, exhausted, error, cards.length])
 
   function clearHistory() {
-    clearSeenStorage(cacheKey)
+    if (cacheKey) clearSeenStorage(cacheKey)
     seen.current = new Set()
     setCards([])
     setExhausted(false)
@@ -433,8 +452,8 @@ export function Feed({
         <FeedSelector
           kind="issues"
           identifier={identifier}
-          value={slug}
-          onChange={setSlug}
+          value={active}
+          onChange={setActive}
         />
         <div className="feed__actions">
           <span className="feed__hint">↑ ↓ to scroll</span>

@@ -6,16 +6,35 @@ PLC_DIRECTORY = "https://plc.directory"
 TANGLED_PDS   = "https://tngl.sh"
 FALLBACK_PDS  = "https://bsky.social"
 
+# Hosts we try (in order) to resolve a handle -> DID. Tangled first so a handle
+# that exists on our network wins; Bluesky hosts let bsky.social users sign in too.
+HANDLE_RESOLVE_HOSTS = [
+    "https://tngl.sh",
+    "https://bsky.social",
+    "https://public.api.bsky.app",
+]
+
 
 async def resolve_handle(handle: str, client: httpx.AsyncClient) -> str:
-    """Resolve a Tangled handle (e.g. attlaa.tngl.sh) to a DID."""
-    resp = await client.get(
-        f"{TANGLED_PDS}/xrpc/com.atproto.identity.resolveHandle",
-        params={"handle": handle},
-        timeout=10.0,
-    )
-    resp.raise_for_status()
-    return resp.json()["did"]
+    """Resolve a handle (e.g. alice.tngl.sh or bob.bsky.social) to a DID, trying
+    each known host in order. Raises if none resolve it."""
+    handle = handle.lstrip("@").strip()
+    last_exc: Exception | None = None
+    for host in HANDLE_RESOLVE_HOSTS:
+        try:
+            resp = await client.get(
+                f"{host}/xrpc/com.atproto.identity.resolveHandle",
+                params={"handle": handle},
+                timeout=10.0,
+            )
+            if resp.status_code == 200:
+                did = resp.json().get("did")
+                if did:
+                    return did
+        except httpx.HTTPError as exc:
+            last_exc = exc
+            continue
+    raise ValueError(f"Could not resolve handle '{handle}'" + (f": {last_exc}" if last_exc else ""))
 
 
 async def resolve_handle_or_did(identifier: str, client: httpx.AsyncClient) -> str:
@@ -28,29 +47,39 @@ async def resolve_handle_or_did(identifier: str, client: httpx.AsyncClient) -> s
 async def resolve_pds(did: str, client: httpx.AsyncClient) -> str:
     """Returns the PDS base URL for a DID. Falls back to bsky.social on failure."""
     try:
-        if did.startswith("did:plc:"):
-            return await _resolve_plc(did, client)
-        elif did.startswith("did:web:"):
-            return await _resolve_web(did, client)
-        else:
-            raise ValueError(f"Unsupported DID method: {did}")
+        return _extract_pds(await _fetch_did_doc(did, client))
     except Exception:
         return FALLBACK_PDS
 
 
-async def _resolve_plc(did: str, client: httpx.AsyncClient) -> str:
-    resp = await client.get(f"{PLC_DIRECTORY}/{did}", timeout=10.0)
-    resp.raise_for_status()
-    return _extract_pds(resp.json())
+async def resolve_did_to_handle(did: str, client: httpx.AsyncClient) -> str | None:
+    """Reverse of resolve_handle: a DID -> its primary handle (read from the DID
+    document's `alsoKnownAs`), e.g. did:plc:… -> "alice.tngl.sh". Returns None if
+    the DID can't be resolved or claims no handle. Never raises.
+
+    NOTE: this is the handle the DID *claims*; for display that's all we need. It
+    is NOT re-verified against the handle's own resolution, so don't trust it for
+    auth decisions."""
+    if not did.startswith("did:"):
+        return None
+    try:
+        return _extract_handle(await _fetch_did_doc(did, client))
+    except Exception:
+        return None
 
 
-async def _resolve_web(did: str, client: httpx.AsyncClient) -> str:
-    domain = did.removeprefix("did:web:")
-    resp = await client.get(
-        f"https://{domain}/.well-known/did.json", timeout=10.0
-    )
+async def _fetch_did_doc(did: str, client: httpx.AsyncClient) -> dict:
+    """Fetch a DID document: plc.directory for did:plc, the domain's own
+    /.well-known/did.json for did:web."""
+    if did.startswith("did:plc:"):
+        resp = await client.get(f"{PLC_DIRECTORY}/{did}", timeout=10.0)
+    elif did.startswith("did:web:"):
+        domain = did.removeprefix("did:web:")
+        resp = await client.get(f"https://{domain}/.well-known/did.json", timeout=10.0)
+    else:
+        raise ValueError(f"Unsupported DID method: {did}")
     resp.raise_for_status()
-    return _extract_pds(resp.json())
+    return resp.json()
 
 
 def _extract_pds(doc: dict) -> str:
@@ -62,3 +91,14 @@ def _extract_pds(doc: dict) -> str:
             if endpoint:
                 return endpoint.rstrip("/")
     return FALLBACK_PDS
+
+
+def _extract_handle(doc: dict) -> str | None:
+    """The primary handle from a DID doc's `alsoKnownAs` (first `at://<handle>`
+    entry), without the `at://` scheme."""
+    for aka in doc.get("alsoKnownAs", []):
+        if isinstance(aka, str) and aka.startswith("at://"):
+            handle = aka[len("at://"):].strip()
+            if handle:
+                return handle
+    return None

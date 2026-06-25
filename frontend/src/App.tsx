@@ -1,35 +1,53 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Login } from "./components/Login"
 import { Dashboard } from "./components/Dashboard"
 import { Feed } from "./components/Feed"
-import type { Profile } from "./api"
-
-type Session = { profile: Profile; handle: string }
+import { logout, me, type SessionInfo } from "./api"
 
 export default function App() {
-  // The onboarded user. null => show the login page. We keep the handle the
-  // user signed in with (the backend resolves it to a DID) so the main page
-  // can show it; the profile is held ready for the /recommend wiring next.
-  const [session, setSession] = useState<Session | null>(null)
+  // The signed-in session (opaque id + did/handle/pds + feature profile).
+  // null => show login. We restore from a stored session id on boot.
+  const [session, setSession] = useState<SessionInfo | null>(null)
+  const [restoring, setRestoring] = useState(true)
   const [page, setPage] = useState<"home" | "feed">("home")
 
-  if (!session) {
+  useEffect(() => {
+    me()
+      .then((s) => setSession(s))
+      .finally(() => setRestoring(false))
+  }, [])
+
+  async function handleLogout() {
+    await logout()
+    setSession(null)
+    setPage("home")
+  }
+
+  if (restoring) {
     return (
-      <Login onSuccess={(profile, handle) => setSession({ profile, handle })} />
+      <main className="hero">
+        <div className="hero__inner">
+          <span className="auth__spinner" aria-hidden="true" />
+        </div>
+      </main>
     )
   }
 
+  if (!session) {
+    return <Login onSuccess={(s) => setSession(s)} />
+  }
+
   if (page === "feed") {
-    // Pass the already-resolved DID — /feed accepts it directly, no re-resolve.
-    return <Feed identifier={session.profile.did} onClose={() => setPage("home")} />
+    return <Feed identifier={session.did} onClose={() => setPage("home")} />
   }
 
   return (
     <Dashboard
       handle={session.handle}
-      did={session.profile.did}
+      did={session.did}
       profile={session.profile}
       onOpenFeed={() => setPage("feed")}
+      onLogout={handleLogout}
     />
   )
 }

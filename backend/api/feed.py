@@ -5,6 +5,7 @@ from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 
 from models.issue_card import IssueCard
+from services.atproto.handles import fill_handles
 from services.atproto.resolver import resolve_handle_or_did
 from services.create_feature_profiles.create_profiles import load_profiles, onboard_did
 from services.feed.rank import rank
@@ -48,4 +49,6 @@ async def feed(body: FeedRequest, request: Request) -> FeedResponse:
 
     issues_pool = load_issues()
     cards = rank(viewer, issues_pool, body.limit, exclude=set(body.exclude))
+    # Backfill real handles (e.g. alice.tngl.sh) so authors aren't shown as DIDs.
+    await fill_handles(cards, "author_did", "author_handle", client)
     return FeedResponse(cards=cards)

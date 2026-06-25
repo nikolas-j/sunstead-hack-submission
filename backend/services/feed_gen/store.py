@@ -1,12 +1,10 @@
-# Feed-definition store with graceful degradation.
+# LEGACY agent-repo feed store — superseded by services/feed_gen/user_feeds.py.
 #
-# Mirrors how profiles.json / issues.json work offline: feed definitions ALWAYS
-# persist to profile_output/feeds.json, and are ALSO written to AT Protocol as
-# sh.tangled.fyp.feed records on a best-effort basis. With no agent credentials
-# (or any ATP error) the local store still works, so the demo runs fully offline.
-#
-# feeds.json is keyed by the full rkey ({ownerDidEncoded}--{slug}) so two users'
-# same-named feeds never collide.
+# Custom feeds now live in each user's OWN repo (rkey = slug) via an authenticated
+# session; the API no longer imports this module. It is kept only for the offline
+# CLI/demo path: feed definitions persist to profile_output/feeds.json and are
+# best-effort written to the AGENT's repo. feeds.json is keyed by the full agent
+# rkey ({ownerDidEncoded}--{slug}). Do not wire this into request handlers.
 
 import json
 import logging

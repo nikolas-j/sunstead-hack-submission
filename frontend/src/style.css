@@ -1892,3 +1892,299 @@ select.fb__input {
   gap: var(--s-sm);
   margin-top: var(--s-xs);
 }
+
+/* ============================================================================
+   Feed menu (headsel) — section labels, deletable rows, action items
+   ========================================================================== */
+.headsel__menu {
+  min-width: 248px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.headsel__label {
+  padding: 8px 12px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--ink-tertiary);
+}
+.headsel__sep {
+  height: 1px;
+  margin: 6px 8px;
+  background: var(--hairline);
+}
+/* A row with a pick button + a delete/unsubscribe affordance. */
+.headsel__item--row {
+  padding: 0;
+  gap: 0;
+}
+.headsel__item--row.is-active .headsel__pick {
+  color: var(--accent);
+}
+.headsel__item--row.is-active .headsel__pick svg {
+  color: var(--accent);
+}
+.headsel__pick {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-sm);
+  padding: 9px 8px 9px 12px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: var(--ink-muted);
+  border-radius: var(--r-md);
+}
+.headsel__pick svg {
+  color: var(--ink-subtle);
+}
+.headsel__item--row:hover .headsel__pick {
+  color: var(--ink);
+}
+.headsel__row-act {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  align-self: stretch;
+  color: var(--ink-tertiary);
+  border-radius: var(--r-md);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.headsel__row-act:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+.headsel__item--action {
+  color: var(--accent);
+}
+.headsel__item--action svg {
+  color: var(--accent);
+}
+
+/* ============================================================================
+   Login — stacked handle + app-password fields, full-width submit
+   ========================================================================== */
+.hero__submit--full {
+  width: 100%;
+  justify-content: center;
+  margin-top: var(--s-xxs);
+}
+
+/* ============================================================================
+   Feed bar — built-in topic tabs + "More topics" dropdown + Generator button
+   ========================================================================== */
+.feedbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--s-xs);
+}
+.feedbar__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-pill);
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.feedbar__btn:hover {
+  color: var(--ink);
+  border-color: var(--hairline-strong);
+}
+.feedbar__btn--accent {
+  color: var(--accent);
+  background: var(--accent-tint);
+  border-color: var(--accent-tint-border);
+}
+.feedbar__btn--accent:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent);
+}
+.feedbar__chev {
+  color: var(--ink-subtle);
+  transition: transform 0.2s ease;
+}
+.feedbar__chev.is-open {
+  transform: rotate(180deg);
+}
+.feedbar__more {
+  position: relative;
+}
+/* Anchor the shared dropdown to the right edge of the "More topics" button. */
+.feedbar__menu {
+  left: auto;
+  right: 0;
+}
+.feedbar__empty {
+  max-width: 240px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-subtle);
+}
+/* Top bar: "For you ▾" dropdown on the left, feed controls on the right. */
+.center-head--bar {
+  align-items: center;
+  gap: var(--s-md);
+}
+
+/* ============================================================================
+   Inline generator panel — between the topic controls and the feed list
+   ========================================================================== */
+.genpanel {
+  margin-top: var(--s-md);
+  padding: var(--s-md) var(--s-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-sm);
+  background: var(--surface-1);
+  border: 1px solid var(--accent-tint-border);
+  border-radius: var(--r-lg);
+}
+.genpanel__head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-sm);
+  flex-wrap: wrap;
+}
+.genpanel__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.genpanel__hint {
+  font-size: 12px;
+  color: var(--ink-subtle);
+}
+.genpanel__head-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-xs);
+  margin-left: auto;
+}
+.genpanel__row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.genpanel__label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: var(--ink-subtle);
+}
+.genpanel__select {
+  max-width: 200px;
+}
+
+/* Name popup — the only modal in the generator flow (just the name field). */
+.namepop {
+  width: 100%;
+  max-width: 380px;
+  padding: var(--s-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-sm);
+}
+.namepop__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ============================================================================
+   Feed builder / add-feed dialog extras
+   ========================================================================== */
+.fb__inline {
+  display: flex;
+  gap: var(--s-sm);
+}
+.fb__inline .fb__input {
+  flex: 1;
+}
+.fb__hint {
+  font-size: 13px;
+  color: var(--ink-subtle);
+}
+.fb__results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-xs);
+  max-height: 220px;
+  overflow-y: auto;
+}
+.fb__result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-sm);
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+}
+.fb__result-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.fb__result-sub {
+  font-size: 12px;
+  color: var(--ink-subtle);
+  margin-top: 2px;
+}
+.fb__preview {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 240px;
+  overflow-y: auto;
+  padding: var(--s-xs);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+}
+.fb__preview-empty {
+  font-size: 13px;
+  color: var(--ink-subtle);
+  padding: var(--s-sm);
+}
+.fb__preview-card {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-sm);
+  padding: 7px 10px;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline-tertiary);
+  border-radius: var(--r-sm);
+}
+.fb__preview-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fb__preview-reason {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--accent);
+}
+.fb__save {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-sm);
+}

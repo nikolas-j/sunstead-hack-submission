@@ -1,16 +1,17 @@
 import { useState } from "react"
 import { ArrowRight } from "lucide-react"
 import { TangledLogo } from "./TangledLogo"
-import { onboard, type Profile } from "../api"
+import { login, type SessionInfo } from "../api"
 
-/* Hero landing / login page. Not real auth — it onboards the entered Tangled
-   handle via POST /onboard (which resolves it to a DID and builds a feature
-   profile), then hands the profile + handle up to App. */
+/* Hero landing / login. Real app-password auth: the backend resolves the handle
+   to its PDS, calls com.atproto.server.createSession, and returns an opaque
+   session id (+ the user's feature profile). Use an APP PASSWORD from
+   Tangled/Bluesky settings — never the main account password. */
 
-/** Light client-side guard: we only accept a Tangled handle, never a DID. */
+/** Light client-side guard: accept a handle (tngl.sh or bsky.social), not a DID. */
 function validateHandle(value: string): string | null {
   if (value.startsWith("did:")) {
-    return "Enter your Tangled handle (e.g. alice.tngl.sh), not a DID."
+    return "Enter your handle (e.g. alice.tngl.sh), not a DID."
   }
   if (/\s/.test(value)) return "Handles can't contain spaces."
   if (!value.includes(".")) {
@@ -19,12 +20,9 @@ function validateHandle(value: string): string | null {
   return null
 }
 
-export function Login({
-  onSuccess,
-}: {
-  onSuccess: (profile: Profile, handle: string) => void
-}) {
+export function Login({ onSuccess }: { onSuccess: (session: SessionInfo) => void }) {
   const [identifier, setIdentifier] = useState("")
+  const [appPassword, setAppPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -38,12 +36,16 @@ export function Login({
       setError(invalid)
       return
     }
+    if (!appPassword.trim()) {
+      setError("Enter an app password.")
+      return
+    }
 
     setLoading(true)
     setError(null)
     try {
-      const profile = await onboard(handle)
-      onSuccess(profile, handle)
+      const session = await login(handle, appPassword.trim())
+      onSuccess(session)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.")
       setLoading(false)
@@ -58,11 +60,12 @@ export function Login({
         </span>
 
         <h1 className="hero__headline">
-          GitTok — your For-You feed for open source.
+          GitTok — For-You feed for open source.
         </h1>
         <p className="hero__sub">
-          Connect your Tangled account and we'll match you with the repositories
-          and builders that fit how you actually work.
+          Sign in with your Tangled or Bluesky handle and an app password. We'll
+          match you with the repositories and builders that fit how you work — and
+          let you build and publish your own feeds to your PDS.
         </p>
 
         <form className="hero__form" onSubmit={handleSubmit}>
@@ -72,39 +75,60 @@ export function Login({
               type="text"
               autoComplete="username"
               autoFocus
-              placeholder="Enter your Tangled handle — alice.tngl.sh"
+              placeholder="Your handle — alice.tngl.sh"
               value={identifier}
               onChange={(e) => {
                 setIdentifier(e.target.value)
                 if (error) setError(null)
               }}
               disabled={loading}
-              aria-label="Enter your Tangled handle"
+              aria-label="Your handle"
               aria-invalid={!!error}
             />
-            <button
-              type="submit"
-              className="btn btn--primary hero__submit"
-              disabled={loading || !identifier.trim()}
-            >
-              {loading ? (
-                <>
-                  <span className="auth__spinner" aria-hidden="true" /> Connecting…
-                </>
-              ) : (
-                <>
-                  Enter <ArrowRight size={16} />
-                </>
-              )}
-            </button>
           </div>
+
+          <div className="hero__field" data-error={!!error}>
+            <input
+              className="hero__input"
+              type="password"
+              autoComplete="current-password"
+              placeholder="App password"
+              value={appPassword}
+              onChange={(e) => {
+                setAppPassword(e.target.value)
+                if (error) setError(null)
+              }}
+              disabled={loading}
+              aria-label="App password"
+              aria-invalid={!!error}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="btn btn--primary hero__submit hero__submit--full"
+            disabled={loading || !identifier.trim() || !appPassword.trim()}
+          >
+            {loading ? (
+              <>
+                <span className="auth__spinner" aria-hidden="true" /> Signing in…
+              </>
+            ) : (
+              <>
+                Enter <ArrowRight size={16} />
+              </>
+            )}
+          </button>
 
           {error ? (
             <p className="hero__error" role="alert">
               {error}
             </p>
           ) : (
-            <p className="hero__hint">No password — just your Tangled handle.</p>
+            <p className="hero__hint">
+              Use an <strong>app password</strong> (Settings → App Passwords), never
+              your main password.
+            </p>
           )}
         </form>
       </div>

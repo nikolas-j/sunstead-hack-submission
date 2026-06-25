@@ -3,6 +3,7 @@
 from fastapi import APIRouter, HTTPException, Query, Request
 
 from models.recommendation import RecommendationResponse
+from services.atproto.handles import fill_handles
 from services.atproto.resolver import resolve_handle_or_did
 from services.create_feature_profiles.create_profiles import load_profiles, onboard_did
 from services.recommender.recommend import recommend as rank_profiles
@@ -40,4 +41,6 @@ async def recommend(
         raise HTTPException(status_code=422, detail=f"No profileable content found for {did}")
 
     matches = rank_profiles(did, profiles, limit, exclude=exclude)
+    # Backfill real handles (e.g. alice.tngl.sh) so the UI isn't all bare DIDs.
+    await fill_handles(matches, "did", "handle", client)
     return RecommendationResponse(for_did=did, matches=matches)
