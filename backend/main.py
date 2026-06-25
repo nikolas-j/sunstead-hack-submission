@@ -1,4 +1,6 @@
 # FastAPI app entry point — wires up CORS, a shared HTTP client, and the onboard/recommend routers.
+import asyncio
+import os
 from contextlib import asynccontextmanager
 
 import httpx
@@ -26,8 +28,30 @@ async def lifespan(app: FastAPI):
     from services.atproto import agent_store
 
     await agent_store.warm(app.state.http_client)
-    yield
-    await app.state.http_client.aclose()
+
+    # Opt-in live firehose ingestion: a background task that subscribes to the
+    # Tangled firehose and folds new activity into the live pool (so the feed sees
+    # the newest issues/repos without a restart). Off unless LIVE_INGEST=1.
+    live_task: asyncio.Task | None = None
+    stop_event = asyncio.Event()
+    if os.getenv("LIVE_INGEST") == "1":
+        from services.fetch_profiles.live import run_live_ingest
+
+        live_task = asyncio.create_task(run_live_ingest(app.state.http_client, stop_event))
+
+    try:
+        yield
+    finally:
+        # Stop the ingester (cooperative break + cancel for the parked websocket
+        # await) before tearing down the HTTP client it uses.
+        stop_event.set()
+        if live_task is not None:
+            live_task.cancel()
+            try:
+                await live_task
+            except asyncio.CancelledError:
+                pass
+        await app.state.http_client.aclose()
 
 
 app = FastAPI(
