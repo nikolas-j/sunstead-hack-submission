@@ -1,15 +1,19 @@
 # Ranks the precomputed issue pool for a single viewer.
 #
-# Score = Jaccard over (languages ∪ topics) — the SAME explainable similarity the
-# creator recommender uses — plus two small nudges:
-#   + a flat bonus if the issue is labelled "good first issue" / "help wanted"
-#   + a recency bonus that decays as the issue gets older
-# So a profile-overlap match always outranks a pure-recency one, but among equally
-# relevant issues the newer / more beginner-friendly ones float up.
+# Score is a weighted BLEND of two normalised [0,1] signals, plus a small label nudge:
 #
-# Cold start: a viewer with no profile, no features, or zero overlap with the whole
-# pool still gets the most-recent (then most-active-author) issues, so the feed is
-# NEVER empty.
+#   score = SKILL_WEIGHT * jaccard(languages ∪ topics)   # the SAME explainable
+#         + RECENCY_WEIGHT * recency(issue_age_days)      #   similarity the creator
+#         + label_bonus                                   #   recommender uses
+#
+# Skill is weighted a little higher than recency (0.6 / 0.4), so a clear stack match
+# still wins — but recency is a real term now, not a tiebreaker. A fresh issue with a
+# weak / no match can out-rank a stale issue with only a mediocre match, which is the
+# balance we want (the pool skews old, so pure-skill ranking buried newer issues).
+#
+# Cold start: a viewer with no profile / no features scores 0 on skill, so the blend
+# collapses to recency — they still get the newest (then most-active-author) issues,
+# so the feed is NEVER empty.
 
 from models.issue_card import IssueCard
 
@@ -26,9 +30,15 @@ GOOD_FIRST_LABELS = {
     "help-wanted",
 }
 
-LABEL_BONUS = 0.15  # well below a single shared feature, so overlap still dominates
-RECENCY_BONUS_MAX = 0.10  # brand-new issue; decays toward 0 with age
-RECENCY_HALFLIFE_DAYS = 30.0
+# Blend weights for the two normalised [0,1] signals. Skill edges out recency so a
+# strong stack match still wins, but recency carries real weight (not a tiebreaker).
+SKILL_WEIGHT = 0.6
+RECENCY_WEIGHT = 0.4
+
+# Flat nudge for approachable issues, on top of the blend. Small — it can reorder
+# near-ties but never overturns a clear skill/recency gap.
+LABEL_BONUS = 0.1
+RECENCY_HALFLIFE_DAYS = 30.0  # at this age recency = 0.5; halves again every halflife
 
 # Age used when an issue has no parseable created_at — sorts it to the very end.
 _UNKNOWN_AGE = 10**9
@@ -39,11 +49,12 @@ def _label_bonus(labels: list[str]) -> float:
     return LABEL_BONUS if norm & GOOD_FIRST_LABELS else 0.0
 
 
-def _recency_bonus(age_days: int | None) -> float:
-    """Smaller issue_age_days -> larger bonus. 1/(1+age/halflife) decay in [0, max]."""
+def _recency_score(age_days: int | None) -> float:
+    """Newer -> closer to 1.0, older -> toward 0. 1/(1+age/halflife) decay in [0,1].
+    Unknown age scores 0, so undated issues rank with the oldest."""
     if age_days is None:
         return 0.0
-    return RECENCY_BONUS_MAX / (1.0 + max(0, age_days) / RECENCY_HALFLIFE_DAYS)
+    return 1.0 / (1.0 + max(0, age_days) / RECENCY_HALFLIFE_DAYS)
 
 
 def _recency_key(issue: dict) -> int:
@@ -67,10 +78,10 @@ def rank(
     limit: int = 5,
     exclude: set[str] | None = None,
 ) -> list[IssueCard]:
-    """Top-`limit` issues for `viewer_profile`, by Jaccard over shared
-    languages + topics, nudged by label + recency. Reads only its arguments — no
-    network. Falls back to most-recent / most-active when there's no overlap so the
-    feed is never empty.
+    """Top-`limit` issues for `viewer_profile`, by a weighted blend of skill match
+    (Jaccard over shared languages + topics) and recency, plus a small label nudge.
+    Reads only its arguments — no network. A viewer with no profile / no overlap
+    scores 0 on skill, so the blend collapses to recency and the feed is never empty.
 
     `exclude` is a set of already-seen issue keys (AT-URIs) to skip — pass the
     client's seen set to paginate an infinite-scroll feed, exactly like the
@@ -82,29 +93,25 @@ def rank(
 
     viewer_set = _feature_set(viewer_profile) if viewer_profile else set()
 
-    # (jaccard, total_score, shared_features, issue) per candidate.
-    scored: list[tuple[float, float, list[str], dict]] = []
+    # (total_score, shared_features, issue) per candidate. `total` blends the skill
+    # match and recency (both normalised to [0,1]) plus the label nudge, so a single
+    # sort handles both the matched and the cold-start (skill==0) cases.
+    scored: list[tuple[float, list[str], dict]] = []
     for issue in issues:
         issue_set = _feature_set(issue)
         jaccard = _similarity(viewer_set, issue_set)
         shared = sorted(viewer_set & issue_set)
-        total = jaccard + _label_bonus(issue.get("labels", [])) + _recency_bonus(
-            issue.get("issue_age_days")
+        total = (
+            SKILL_WEIGHT * jaccard
+            + RECENCY_WEIGHT * _recency_score(issue.get("issue_age_days"))
+            + _label_bonus(issue.get("labels", []))
         )
-        scored.append((jaccard, total, shared, issue))
+        scored.append((total, shared, issue))
 
-    has_overlap = any(jaccard > 0 for jaccard, *_ in scored)
+    # Blended score first; newer then more-active author break exact ties; issue_key
+    # for a stable, deterministic order.
+    scored.sort(
+        key=lambda t: (-t[0], _recency_key(t[2]), -_activity(t[2]), t[2]["issue_key"])
+    )
 
-    if has_overlap:
-        # Relevance first; newer then more-active author break ties; key for stability.
-        scored.sort(
-            key=lambda t: (-t[1], _recency_key(t[3]), -_activity(t[3]), t[3]["issue_key"])
-        )
-    else:
-        # Cold start: most-recent, then most-active author. Scores carry the (small)
-        # recency/label nudge so the ordering is still explainable.
-        scored.sort(
-            key=lambda t: (_recency_key(t[3]), -_activity(t[3]), t[3]["issue_key"])
-        )
-
-    return [_to_card(issue, total, shared) for _, total, shared, issue in scored[:limit]]
+    return [_to_card(issue, total, shared) for total, shared, issue in scored[:limit]]

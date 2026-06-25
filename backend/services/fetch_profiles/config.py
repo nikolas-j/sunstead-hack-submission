@@ -42,6 +42,13 @@ COLLECTION_BSKY_POST = "app.bsky.feed.post"
 DEFAULT_MAX_DIDS = 200
 DEFAULT_WALL_CLOCK_CAP_SECONDS = 60  # stop discovery after this long regardless
 
+# Stage 1b graph-crawl (expand.py) bounds. We expand the firehose seed set by ONE
+# hop along each seed's follow / star / repo records, read straight from its PDS.
+# PDS history is NOT time-limited, so this is how we reach DIDs (and their issue
+# histories) older than the ~72h relay window — see MAX_BACKFILL_DAYS above.
+EXPANSION_FANOUT_PER_DID = 50   # max new DIDs harvested from any single seed
+EXPANSION_MAX_DIDS = 1000       # hard ceiling on the total DID map after expansion
+
 # Resume buffer: on reconnect we rewind the cursor by this many microseconds so
 # we don't miss events straddling the disconnect. Dedupe is safe (idempotent).
 RECONNECT_REWIND_US = 2_000_000  # 2 seconds

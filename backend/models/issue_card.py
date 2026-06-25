@@ -7,9 +7,16 @@ from pydantic import BaseModel
 class IssueCard(BaseModel):
     issue_key: str  # AT-URI: at://<did>/sh.tangled.repo.issue/<rkey> — the card id
     repo_ref: str | None = None  # raw repo reference off the record (AT-URI or owner DID)
-    repo_name: str | None = None  # not on the issue record; filled by a later enrichment phase
+    repo_name: str | None = None  # resolved from the repo record at build time (phase 2)
+    # --- repo identity, enriched at build time (phase 2) ---
+    repo_owner_did: str | None = None  # the sh.tangled.repo record owner (for the @handle URL)
+    repo_owner_handle: str | None = None  # resolved owner handle, e.g. "julien.rbrt.fr"
+    repo_did: str | None = None  # repoDid from the record — the knot-side key for the code peek
+    knot: str | None = None  # knot host serving the repo (may be localhost → peek unavailable)
+    repo_url: str | None = None  # https://tangled.sh/@{owner_handle}/{repo_name}
+    issue_url: str | None = None  # repo_url/issues/{issueId}, else /issues
     author_did: str
-    author_handle: str | None = None
+    author_handle: str | None = None  # resolved from the author DID (the card "username")
     title: str
     body_excerpt: str = ""
     labels: list[str] = []

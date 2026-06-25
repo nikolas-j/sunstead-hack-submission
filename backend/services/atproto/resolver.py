@@ -28,29 +28,31 @@ async def resolve_handle_or_did(identifier: str, client: httpx.AsyncClient) -> s
 async def resolve_pds(did: str, client: httpx.AsyncClient) -> str:
     """Returns the PDS base URL for a DID. Falls back to bsky.social on failure."""
     try:
-        if did.startswith("did:plc:"):
-            return await _resolve_plc(did, client)
-        elif did.startswith("did:web:"):
-            return await _resolve_web(did, client)
-        else:
-            raise ValueError(f"Unsupported DID method: {did}")
+        return _extract_pds(await _fetch_did_doc(did, client))
     except Exception:
         return FALLBACK_PDS
 
 
-async def _resolve_plc(did: str, client: httpx.AsyncClient) -> str:
-    resp = await client.get(f"{PLC_DIRECTORY}/{did}", timeout=10.0)
-    resp.raise_for_status()
-    return _extract_pds(resp.json())
+async def resolve_handle_for_did(did: str, client: httpx.AsyncClient) -> str | None:
+    """Reverse of resolve_handle: a DID -> its handle, read from the DID document's
+    `alsoKnownAs` (e.g. `at://julien.rbrt.fr`). Best-effort: None on any failure."""
+    try:
+        return _extract_handle(await _fetch_did_doc(did, client))
+    except Exception:
+        return None
 
 
-async def _resolve_web(did: str, client: httpx.AsyncClient) -> str:
-    domain = did.removeprefix("did:web:")
-    resp = await client.get(
-        f"https://{domain}/.well-known/did.json", timeout=10.0
-    )
+async def _fetch_did_doc(did: str, client: httpx.AsyncClient) -> dict:
+    """Fetch the DID document (plc.directory for did:plc, /.well-known for did:web)."""
+    if did.startswith("did:plc:"):
+        resp = await client.get(f"{PLC_DIRECTORY}/{did}", timeout=10.0)
+    elif did.startswith("did:web:"):
+        domain = did.removeprefix("did:web:")
+        resp = await client.get(f"https://{domain}/.well-known/did.json", timeout=10.0)
+    else:
+        raise ValueError(f"Unsupported DID method: {did}")
     resp.raise_for_status()
-    return _extract_pds(resp.json())
+    return resp.json()
 
 
 def _extract_pds(doc: dict) -> str:
@@ -62,3 +64,13 @@ def _extract_pds(doc: dict) -> str:
             if endpoint:
                 return endpoint.rstrip("/")
     return FALLBACK_PDS
+
+
+def _extract_handle(doc: dict) -> str | None:
+    """First `at://`-prefixed handle in the DID doc's `alsoKnownAs`, sans scheme."""
+    for aka in doc.get("alsoKnownAs", []):
+        if isinstance(aka, str) and aka.startswith("at://"):
+            handle = aka.removeprefix("at://").strip("/")
+            if handle:
+                return handle
+    return None
