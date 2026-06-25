@@ -156,6 +156,7 @@ export function Saved({
       <Globe />
       <TopNav
         handle={handle}
+        did={identifier}
         onOpenFeed={onOpenFeed}
         onOpenSaved={() => {}}
         onHome={onHome}

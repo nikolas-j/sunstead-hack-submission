@@ -62,6 +62,13 @@ export function tangledProfileUrl(handleOrDid: string): string {
   return `${TANGLED_WEB}/@${encodeURIComponent(handleOrDid)}`
 }
 
+/** Tangled repo search URL: https://tangled.sh/search?q={query}. Mirrors the
+ *  query param Tangled's own search uses, so submitting our top-bar search just
+ *  hands off to the real search page. */
+export function tangledSearchUrl(query: string): string {
+  return `${TANGLED_WEB}/search?q=${encodeURIComponent(query)}`
+}
+
 /** Tangled repo URL: https://tangled.sh/@{owner}/{repo}. Mirrors the backend's
  *  repo_url (services/fetch_issues/build_issues.py). Needs the owner *handle* —
  *  Tangled routes repos by handle, not DID — so returns null without one. */
