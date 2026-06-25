@@ -65,12 +65,18 @@ def rank(
     viewer_profile: dict | None,
     issues_pool: dict[str, dict],
     limit: int = 5,
+    exclude: set[str] | None = None,
 ) -> list[IssueCard]:
     """Top-`limit` issues for `viewer_profile`, by Jaccard over shared
     languages + topics, nudged by label + recency. Reads only its arguments — no
     network. Falls back to most-recent / most-active when there's no overlap so the
-    feed is never empty."""
-    issues = list(issues_pool.values())
+    feed is never empty.
+
+    `exclude` is a set of already-seen issue keys (AT-URIs) to skip — pass the
+    client's seen set to paginate an infinite-scroll feed, exactly like the
+    creator recommender's `exclude`."""
+    skip = exclude or set()
+    issues = [i for i in issues_pool.values() if i["issue_key"] not in skip]
     if not issues:
         return []
 

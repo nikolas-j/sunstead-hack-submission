@@ -20,7 +20,8 @@ export default function App() {
   }
 
   if (page === "feed") {
-    return <Feed onClose={() => setPage("home")} />
+    // Pass the already-resolved DID — /feed accepts it directly, no re-resolve.
+    return <Feed identifier={session.profile.did} onClose={() => setPage("home")} />
   }
 
   return (

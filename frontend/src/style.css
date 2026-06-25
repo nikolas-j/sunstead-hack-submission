@@ -1468,6 +1468,197 @@ input {
   text-align: center;
 }
 
+.reel-action__btn.is-saved {
+  color: var(--accent);
+}
+
+/* ---- The placeholder "image": a faux GitHub repo code snippet ------------- */
+/* Same placeholder on every card until the backend attaches a real preview.
+   Sits full-bleed behind the .reel__inner text scrim. */
+.reel__snippet {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(
+      120% 70% at 50% 0%,
+      rgba(31, 184, 166, 0.1),
+      transparent 60%
+    ),
+    var(--surface-1);
+  overflow: hidden;
+}
+.reel__snippet-chrome {
+  display: flex;
+  align-items: center;
+  gap: var(--s-sm);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--hairline);
+  background: var(--surface-2);
+}
+.reel__snippet-dots {
+  display: inline-flex;
+  gap: 6px;
+}
+.reel__snippet-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--r-pill);
+  background: var(--surface-4);
+}
+.reel__snippet-file {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-subtle);
+}
+.reel__snippet-body {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: var(--s-md) var(--s-md) 0;
+}
+.snip-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.snip-ln {
+  width: 18px;
+  flex-shrink: 0;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-tertiary);
+  opacity: 0.6;
+}
+.snip-bar {
+  height: 8px;
+  border-radius: var(--r-xs);
+  background: var(--surface-3);
+}
+.snip-bar--kw {
+  background: color-mix(in srgb, var(--accent) 35%, var(--surface-3));
+}
+.snip-bar--fn {
+  background: color-mix(in srgb, var(--lang-ts) 38%, var(--surface-3));
+}
+.snip-bar--str {
+  background: color-mix(in srgb, var(--lang-zig) 30%, var(--surface-3));
+}
+.reel__snippet-note {
+  position: absolute;
+  top: 32%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  color: var(--ink-tertiary);
+  opacity: 0.7;
+}
+
+/* ---- Issue-specific text bits -------------------------------------------- */
+.issue-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--success);
+  text-transform: capitalize;
+}
+.issue-state svg {
+  color: var(--success);
+}
+.issue-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-tint-border);
+  border-radius: var(--r-pill);
+  padding: 2px 9px;
+}
+/* The shared lang/topic tags — the "why you're seeing this" overlap. */
+.tag--match {
+  color: var(--accent);
+  background: var(--accent-tint);
+  border-color: var(--accent-tint-border);
+}
+.reel__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-md);
+  margin-top: 2px;
+}
+
+/* ---- Feed bar: clear history + actions ----------------------------------- */
+.feed__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-sm);
+}
+.feed__clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  padding: 7px 12px;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.feed__clear:hover:not(:disabled) {
+  background: var(--surface-3);
+  color: var(--ink);
+  border-color: var(--hairline-strong);
+}
+.feed__clear:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---- Status reels: loading / error / end-of-feed ------------------------- */
+.reel__status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-md);
+  text-align: center;
+  padding: var(--s-lg);
+}
+.reel__status-text {
+  font-size: 15px;
+  color: var(--ink-muted);
+  max-width: 34ch;
+  line-height: 1.5;
+}
+.reel__spinner {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-pill);
+  border: 3px solid var(--surface-3);
+  border-top-color: var(--accent);
+  animation: reel-spin 0.8s linear infinite;
+}
+@keyframes reel-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reel__spinner {
+    animation: none;
+  }
+}
+
 @media (max-width: 560px) {
   .reel__stage {
     height: min(82dvh, 680px);
