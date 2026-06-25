@@ -16,6 +16,7 @@ router = APIRouter()
 class FeedRequest(BaseModel):
     identifier: str  # Tangled handle (e.g. alice.tngl.sh) or a DID
     limit: int = 5
+    exclude: list[str] = []  # already-seen issue keys (AT-URIs) to skip (pagination)
 
 
 class FeedResponse(BaseModel):
@@ -46,5 +47,5 @@ async def feed(body: FeedRequest, request: Request) -> FeedResponse:
             viewer = None
 
     issues_pool = load_issues()
-    cards = rank(viewer, issues_pool, body.limit)
+    cards = rank(viewer, issues_pool, body.limit, exclude=set(body.exclude))
     return FeedResponse(cards=cards)

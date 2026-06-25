@@ -46,6 +46,38 @@ export type RecommendationResponse = {
   matches: ProfileMatch[]
 }
 
+/** One ranked issue from /feed. Mirrors backend models/issue_card.py. */
+export type IssueCard = {
+  issue_key: string // AT-URI — the stable card id used for the "seen" cache
+  repo_ref: string | null
+  repo_name: string | null
+  author_did: string
+  author_handle: string | null
+  title: string
+  body_excerpt: string
+  labels: string[]
+  created_at: string | null
+  state: string
+  languages: string[]
+  topics: string[]
+  issue_age_days: number | null
+  stats: {
+    pool_local?: boolean
+    author_level?: string | null
+    author_total_stars?: number
+    author_total_follows?: number
+    author_total_repos?: number
+    label_count?: number
+    issue_age_days?: number | null
+  }
+  score: number // >0 = real overlap; 0 = cold-start recency fallback
+  shared: string[] // languages/topics in common — the "why you're seeing this"
+}
+
+export type FeedResponse = {
+  cards: IssueCard[]
+}
+
 /**
  * POST /onboard — resolve a Tangled handle/DID, build (or reuse) its feature
  * profile in the backend, and return it. An identifier that's already in the
@@ -94,6 +126,35 @@ export async function recommend(
     throw new Error(await extractDetail(resp, "Couldn't load recommendations"))
   }
   return (await resp.json()) as RecommendationResponse
+}
+
+/**
+ * POST /feed — the GitTok issue feed for an identifier (handle or DID). Pass
+ * `exclude` (issue keys already shown) to paginate: the backend ranks the issue
+ * pool minus those keys, so each call returns the next fresh batch. This is the
+ * "seen" cache the scroll feed grows as you scroll.
+ */
+export async function feed(
+  identifier: string,
+  opts: { limit?: number; exclude?: string[] } = {},
+): Promise<FeedResponse> {
+  const { limit = 5, exclude = [] } = opts
+
+  let resp: Response
+  try {
+    resp = await fetch(`${API_BASE}/feed`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ identifier, limit, exclude }),
+    })
+  } catch {
+    throw new Error(`Couldn't reach the API at ${API_BASE}. Is the backend running?`)
+  }
+
+  if (!resp.ok) {
+    throw new Error(await extractDetail(resp, "Couldn't load the feed"))
+  }
+  return (await resp.json()) as FeedResponse
 }
 
 /** Pull FastAPI's `{ detail }` error message, falling back to the status code. */
