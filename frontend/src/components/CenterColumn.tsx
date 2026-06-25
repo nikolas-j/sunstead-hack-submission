@@ -28,6 +28,28 @@ export function CenterColumn({
   const [error, setError] = useState<string | null>(null)
   const [exhausted, setExhausted] = useState(false)
   const [starred, setStarred] = useState<Record<string, boolean>>({})
+  const [view, setView] = useState<ViewKey>("for-you")
+  const [open, setOpen] = useState(false)
+  const selRef = useRef<HTMLDivElement>(null)
+
+  // Close the dropdown on outside click or Escape.
+  useEffect(() => {
+    if (!open) return
+    const onDown = (e: MouseEvent) => {
+      if (selRef.current && !selRef.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false)
+    }
+    document.addEventListener("mousedown", onDown)
+    document.addEventListener("keydown", onKey)
+    return () => {
+      document.removeEventListener("mousedown", onDown)
+      document.removeEventListener("keydown", onKey)
+    }
+  }, [open])
 
   // Repo keys shown so far, sent as `exclude` so each page is fresh (in-memory;
   // resets when the feed or viewer changes).
@@ -74,13 +96,43 @@ export function CenterColumn({
   return (
     <section className="col">
       <div className="center-head">
-        <div>
-          <div className="center-head__eyebrow">Tailored for you</div>
-          <h1>Recommended repositories</h1>
-          <p>
-            Surfaced from the AT Protocol firehose, ranked for you. Build your own
-            feed with the + tab — pick a ranking and filters.
-          </p>
+        <div className="headsel" ref={selRef}>
+          <button
+            className="headsel__btn"
+            onClick={() => setOpen((o) => !o)}
+            aria-haspopup="menu"
+            aria-expanded={open}
+          >
+            {current.label}
+            <ChevronDown
+              size={22}
+              className={"headsel__chev" + (open ? " is-open" : "")}
+            />
+          </button>
+
+          {open ? (
+            <div className="headsel__menu" role="menu">
+              {VIEWS.map((v) => {
+                const Icon = v.icon
+                return (
+                  <button
+                    key={v.key}
+                    role="menuitem"
+                    className={
+                      "headsel__item" + (v.key === view ? " is-active" : "")
+                    }
+                    onClick={() => {
+                      setView(v.key)
+                      setOpen(false)
+                    }}
+                  >
+                    <Icon size={16} />
+                    {v.label}
+                  </button>
+                )
+              })}
+            </div>
+          ) : null}
         </div>
 
         <FeedSelector

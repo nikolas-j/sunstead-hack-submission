@@ -1,4 +1,4 @@
-import { Search, Plus, Bell, Play } from "lucide-react"
+import { Search, MessageSquare, Bell, Play } from "lucide-react"
 import { Avatar } from "./Avatar"
 import { TangledLogo } from "./TangledLogo"
 import { gradientFor } from "../lib"
@@ -34,7 +34,7 @@ export function TopNav({
             </button>
           ) : null}
           <button className="btn btn--secondary">
-            <Plus size={16} /> Create
+            <MessageSquare size={16} /> Messages
           </button>
           <button className="btn btn--icon" aria-label="Notifications">
             <Bell size={18} />
