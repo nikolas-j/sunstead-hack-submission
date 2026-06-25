@@ -657,6 +657,84 @@ input {
   color: var(--ink);
 }
 
+/* Heading dropdown — "For you ▾" view selector */
+.headsel {
+  position: relative;
+}
+.headsel__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  color: var(--ink);
+}
+.headsel__chev {
+  margin-top: 3px;
+  color: var(--ink-subtle);
+  transition: transform 0.2s ease, color 0.15s ease;
+}
+.headsel__btn:hover .headsel__chev {
+  color: var(--ink);
+}
+.headsel__chev.is-open {
+  transform: rotate(180deg);
+}
+.headsel__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 30;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px;
+  background: var(--surface-3);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  animation: headsel-in 0.14s ease;
+}
+@keyframes headsel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+.headsel__item {
+  display: flex;
+  align-items: center;
+  gap: var(--s-sm);
+  padding: 9px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: var(--ink-muted);
+  background: none;
+  border: none;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.headsel__item svg {
+  color: var(--ink-subtle);
+}
+.headsel__item:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+.headsel__item.is-active,
+.headsel__item.is-active svg {
+  color: var(--accent);
+}
+
 .rec-list {
   display: flex;
   flex-direction: column;

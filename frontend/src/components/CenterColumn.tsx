@@ -1,13 +1,44 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { ChevronDown, Compass, Users, Star, UserCheck } from "lucide-react"
 import { RECOMMENDATIONS } from "../data"
 import { RecCard } from "./RecCard"
 
 const TABS = ["For you", "Trending", "New"] as const
 type Tab = (typeof TABS)[number]
 
+const VIEWS = [
+  { key: "for-you", label: "For you", icon: Compass },
+  { key: "following", label: "Following", icon: Users },
+  { key: "starred", label: "Starred", icon: Star },
+  { key: "friends", label: "Friends", icon: UserCheck },
+] as const
+type ViewKey = (typeof VIEWS)[number]["key"]
+
 export function CenterColumn() {
   const [tab, setTab] = useState<Tab>("For you")
   const [starred, setStarred] = useState<Record<string, boolean>>({})
+  const [view, setView] = useState<ViewKey>("for-you")
+  const [open, setOpen] = useState(false)
+  const selRef = useRef<HTMLDivElement>(null)
+
+  // Close the dropdown on outside click or Escape.
+  useEffect(() => {
+    if (!open) return
+    const onDown = (e: MouseEvent) => {
+      if (selRef.current && !selRef.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false)
+    }
+    document.addEventListener("mousedown", onDown)
+    document.addEventListener("keydown", onKey)
+    return () => {
+      document.removeEventListener("mousedown", onDown)
+      document.removeEventListener("keydown", onKey)
+    }
+  }, [open])
 
   const repos = [...RECOMMENDATIONS]
   if (tab === "Trending") {
@@ -16,16 +47,48 @@ export function CenterColumn() {
     repos.reverse()
   }
 
+  const current = VIEWS.find((v) => v.key === view) ?? VIEWS[0]
+
   return (
     <section className="col">
       <div className="center-head">
-        <div>
-          <div className="center-head__eyebrow">Tailored for you</div>
-          <h1>Recommended repositories</h1>
-          <p>
-            Surfaced from the AT Protocol firehose, matched to your stars,
-            languages, and the people you follow.
-          </p>
+        <div className="headsel" ref={selRef}>
+          <button
+            className="headsel__btn"
+            onClick={() => setOpen((o) => !o)}
+            aria-haspopup="menu"
+            aria-expanded={open}
+          >
+            {current.label}
+            <ChevronDown
+              size={22}
+              className={"headsel__chev" + (open ? " is-open" : "")}
+            />
+          </button>
+
+          {open ? (
+            <div className="headsel__menu" role="menu">
+              {VIEWS.map((v) => {
+                const Icon = v.icon
+                return (
+                  <button
+                    key={v.key}
+                    role="menuitem"
+                    className={
+                      "headsel__item" + (v.key === view ? " is-active" : "")
+                    }
+                    onClick={() => {
+                      setView(v.key)
+                      setOpen(false)
+                    }}
+                  >
+                    <Icon size={16} />
+                    {v.label}
+                  </button>
+                )
+              })}
+            </div>
+          ) : null}
         </div>
 
         <div className="toggle" role="tablist">
