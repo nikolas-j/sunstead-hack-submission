@@ -1,9 +1,15 @@
-import { Search, Plus, Bell } from "lucide-react"
+import { Search, Plus, Bell, Play } from "lucide-react"
 import { Avatar } from "./Avatar"
 import { TangledLogo } from "./TangledLogo"
 import { gradientFor } from "../lib"
 
-export function TopNav({ handle }: { handle: string }) {
+export function TopNav({
+  handle,
+  onOpenFeed,
+}: {
+  handle: string
+  onOpenFeed?: () => void
+}) {
   return (
     <header className="topnav">
       <div className="topnav__inner">
@@ -21,8 +27,14 @@ export function TopNav({ handle }: { handle: string }) {
         </div>
 
         <div className="topnav__right">
+          {onOpenFeed ? (
+            <button className="btn btn--feed" onClick={onOpenFeed}>
+              <Play size={15} fill="currentColor" />
+              <span className="btn--feed__label">GitTok</span>
+            </button>
+          ) : null}
           <button className="btn btn--secondary">
-            <Plus size={16} /> New
+            <Plus size={16} /> Create
           </button>
           <button className="btn btn--icon" aria-label="Notifications">
             <Bell size={18} />
