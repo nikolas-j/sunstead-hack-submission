@@ -1672,3 +1672,145 @@ input {
     height: 42px;
   }
 }
+
+/* ============================================================================
+   Feed selector — tab bar with built-in + custom feeds + "+" builder
+   ========================================================================== */
+.feed-tabs {
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+/* Thin divider between built-in and custom feed tabs. */
+.feed-tabs__div {
+  width: 1px;
+  align-self: stretch;
+  margin: 4px 4px;
+  background: var(--hairline-strong);
+}
+/* A custom feed tab = pick button + delete affordance in one pill. */
+.feed-tabs__custom {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 4px 0 0;
+}
+.feed-tabs__pick {
+  font: inherit;
+  color: inherit;
+  padding: 6px 4px 6px 14px;
+}
+.feed-tabs__del {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--r-pill);
+  color: var(--ink-tertiary);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.feed-tabs__del:hover {
+  color: var(--ink);
+  background: var(--surface-4);
+}
+.feed-tabs__add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  color: var(--ink-subtle);
+}
+.feed-tabs__add:hover {
+  color: var(--accent);
+}
+
+/* ============================================================================
+   Feed builder modal
+   ========================================================================== */
+.fb-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 8vh var(--s-md) var(--s-md);
+  background: rgba(1, 1, 2, 0.66);
+  backdrop-filter: blur(3px);
+  overflow-y: auto;
+}
+.fb {
+  width: 100%;
+  max-width: 560px;
+  padding: 0;
+}
+.fb__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s-md) var(--s-lg);
+  border-bottom: 1px solid var(--hairline);
+}
+.fb__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.fb__title svg {
+  color: var(--accent);
+}
+.fb__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-md);
+  padding: var(--s-lg);
+}
+.fb__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.fb__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-subtle);
+}
+.fb__input {
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  padding: 9px 12px;
+  transition: border-color 0.15s ease;
+}
+.fb__input:focus-visible {
+  outline: none;
+  border-color: var(--accent-focus);
+}
+select.fb__input {
+  cursor: pointer;
+}
+/* Selectable filter chip — reuses .tag, lights up teal when on. */
+.fb__chip {
+  cursor: pointer;
+}
+.fb__chip.is-on {
+  color: var(--accent);
+  background: var(--accent-tint);
+  border-color: var(--accent-tint-border);
+}
+.fb__error {
+  font-size: 13px;
+  color: #ff6b6b;
+}
+.fb__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--s-sm);
+  margin-top: var(--s-xs);
+}

@@ -5,17 +5,21 @@ import { CenterColumn } from "./CenterColumn"
 import { RightColumn } from "./RightColumn"
 import { CursorGlow } from "./CursorGlow"
 import { Globe } from "./Globe"
+import type { Profile } from "../api"
 
-/* The main page. The center repo feed is still static; the right column is live,
-   driven by /recommend for the onboarded DID. Shown after login. */
+/* The main page. The center column is a live repo feed driven by the feed
+   generator (built-in + custom feeds); the right column is live, driven by
+   /recommend for the onboarded DID. Shown after login. */
 
 export function Dashboard({
   handle,
   did,
+  profile,
   onOpenFeed,
 }: {
   handle: string
   did: string
+  profile: Profile
   onOpenFeed: () => void
 }) {
   useEffect(() => {
@@ -50,7 +54,11 @@ export function Dashboard({
       <Globe />
       <TopNav handle={handle} onOpenFeed={onOpenFeed} />
       <main className="layout">
-        <CenterColumn />
+        <CenterColumn
+          did={did}
+          seedLanguages={profile.languages}
+          seedTopics={profile.topics}
+        />
         <RightColumn did={did} />
       </main>
     </>

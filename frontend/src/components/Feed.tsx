@@ -12,8 +12,9 @@ import {
   Trash2,
   GitFork,
 } from "lucide-react"
-import { feed, type IssueCard } from "../api"
+import { generateIssues, type IssueCard } from "../api"
 import { Avatar } from "./Avatar"
+import { FeedSelector } from "./FeedSelector"
 import { formatCount, gradientFor } from "../lib"
 
 /* GitTok — a TikTok/Reels-style vertical feed of open-source ISSUES to pick up,
@@ -307,6 +308,11 @@ export function Feed({
   const scrollRef = useRef<HTMLDivElement>(null)
   const sentinelRef = useRef<HTMLDivElement>(null)
 
+  // Which feed (built-in or custom) is active. The seen-cache is namespaced per
+  // slug so switching feeds paginates independently.
+  const [slug, setSlug] = useState("for-you")
+  const cacheKey = `${identifier}:${slug}`
+
   const [cards, setCards] = useState<IssueCard[]>([])
   const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
@@ -315,7 +321,7 @@ export function Feed({
 
   // Issues already served, sent as `exclude` so each batch is fresh. Seeded from
   // localStorage so the feed picks up where the user left off, persisted as it grows.
-  const seen = useRef<Set<string>>(loadSeen(identifier))
+  const seen = useRef<Set<string>>(loadSeen(`${identifier}:for-you`))
   // Guards against stale responses (StrictMode double-mount, fast reloads).
   const reqId = useRef(0)
 
@@ -326,14 +332,14 @@ export function Feed({
       else setLoadingMore(true)
       setError(null)
       try {
-        const res = await feed(identifier, {
+        const res = await generateIssues(slug, identifier, {
           limit: PAGE,
           exclude: [...seen.current],
         })
         if (myReq !== reqId.current) return // superseded by a newer load
         const fresh = res.cards.filter((c) => !seen.current.has(c.issue_key))
         fresh.forEach((c) => seen.current.add(c.issue_key))
-        persistSeen(identifier, seen.current)
+        persistSeen(cacheKey, seen.current)
         setCards((prev) => (initial ? fresh : [...prev, ...fresh]))
         // A short page means the pool (minus everything seen) is drained.
         if (res.cards.length < PAGE) setExhausted(true)
@@ -346,16 +352,16 @@ export function Feed({
         else setLoadingMore(false)
       }
     },
-    [identifier],
+    [identifier, slug, cacheKey],
   )
 
-  // Initial load (and reset) whenever the viewer changes.
+  // Initial load (and reset) whenever the viewer or the selected feed changes.
   useEffect(() => {
-    seen.current = loadSeen(identifier)
+    seen.current = loadSeen(cacheKey)
     setCards([])
     setExhausted(false)
     load(true)
-  }, [identifier, load])
+  }, [identifier, slug, cacheKey, load])
 
   // Infinite scroll: when the sentinel below the last card comes into view,
   // fetch the next batch. rootMargin prefetches a screen early so it feels seamless.
@@ -383,7 +389,7 @@ export function Feed({
   }, [load, loading, loadingMore, exhausted, error, cards.length])
 
   function clearHistory() {
-    clearSeenStorage(identifier)
+    clearSeenStorage(cacheKey)
     seen.current = new Set()
     setCards([])
     setExhausted(false)
@@ -424,6 +430,12 @@ export function Feed({
         >
           <ArrowLeft size={18} /> Back
         </button>
+        <FeedSelector
+          kind="issues"
+          identifier={identifier}
+          value={slug}
+          onChange={setSlug}
+        />
         <div className="feed__actions">
           <span className="feed__hint">↑ ↓ to scroll</span>
           <button

@@ -1,0 +1,72 @@
+{
+  "lexicon": 1,
+  "id": "sh.tangled.fyp.feed",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "A user-defined custom feed: a base ranking algorithm plus declarative filters applied to either the repos pool or the issues pool. Stored by the FYP agent under its own DID; the owning user's DID is carried in `ownerDid` and encoded into the record key.",
+      "key": "any",
+      "record": {
+        "type": "object",
+        "required": ["ownerDid", "slug", "name", "kind", "baseAlgorithm", "createdAt"],
+        "properties": {
+          "ownerDid": {
+            "type": "string",
+            "description": "The DID of the user who owns this feed."
+          },
+          "slug": {
+            "type": "string",
+            "description": "URL-safe id, unique per owner. Also stored here so reads never parse the rkey."
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "description": "Human-readable feed name shown as a tab label."
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 600
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["repos", "issues"],
+            "description": "Which content pool this feed ranks."
+          },
+          "baseAlgorithm": {
+            "type": "string",
+            "enum": ["for-you", "hot", "new"],
+            "description": "Base ranking applied after filtering."
+          },
+          "filters": {
+            "type": "ref",
+            "ref": "#filters"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "ISO 8601 timestamp of when this feed was created."
+          }
+        }
+      }
+    },
+    "filters": {
+      "type": "object",
+      "description": "AND-combined constraints; an empty/absent array means no constraint on that dimension.",
+      "properties": {
+        "languages": { "type": "array", "items": { "type": "string" } },
+        "topics": { "type": "array", "items": { "type": "string" } },
+        "level": { "type": "string", "enum": ["beginner", "intermediate", "advanced"] },
+        "labels": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Issues-only; ignored for repo feeds."
+        },
+        "state": {
+          "type": "string",
+          "enum": ["open", "closed"],
+          "description": "Issues-only; ignored for repo feeds."
+        }
+      }
+    }
+  }
+}

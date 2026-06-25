@@ -78,6 +78,163 @@ export type FeedResponse = {
   cards: IssueCard[]
 }
 
+/* ============================================================================
+   Custom feed generator — Bluesky-style feeds on top of the built-ins.
+   Mirrors backend models/feed.py + api/feed_gen.py.
+   ========================================================================== */
+
+export type FeedKind = "repos" | "issues"
+export type BaseAlgorithm = "for-you" | "hot" | "new"
+
+export type FeedFilters = {
+  languages?: string[]
+  topics?: string[]
+  level?: "beginner" | "intermediate" | "advanced" | null
+  labels?: string[] // issues-only
+  state?: "open" | "closed" | null // issues-only
+}
+
+/** One feed definition (built-in or custom). Mirrors the sh.tangled.fyp.feed record. */
+export type FeedSummary = {
+  slug: string
+  ownerDid: string
+  name: string
+  description: string | null
+  kind: FeedKind
+  baseAlgorithm: BaseAlgorithm
+  filters: FeedFilters
+  builtin: boolean
+  createdAt: string | null
+}
+
+export type ListFeedsResponse = {
+  builtins: FeedSummary[]
+  custom: FeedSummary[]
+}
+
+/** One ranked repo from a repos feed. Mirrors backend models/repo_card.py. */
+export type RepoCard = {
+  repo_key: string // AT-URI — the stable card id for the "seen" cache
+  owner_did: string
+  owner_handle: string | null
+  name: string
+  description: string | null
+  knot: string | null
+  created_at: string | null
+  repo_age_days: number | null
+  languages: string[]
+  topics: string[]
+  level: string
+  stats: {
+    pool_local?: boolean
+    owner_level?: string | null
+    owner_total_stars?: number
+    owner_total_follows?: number
+    owner_total_repos?: number
+    repo_age_days?: number | null
+  }
+  score: number // >0 = real overlap; small for cold-start / recency feeds
+  shared: string[] // languages/topics in common — the "why you're seeing this"
+}
+
+export type CreateFeedInput = {
+  identifier: string
+  name: string
+  description?: string
+  kind: FeedKind
+  baseAlgorithm: BaseAlgorithm
+  filters: FeedFilters
+}
+
+/** GET /feeds — built-in + this user's custom feeds for a content `kind`. */
+export async function listFeeds(
+  kind: FeedKind,
+  identifier: string,
+): Promise<ListFeedsResponse> {
+  const params = new URLSearchParams({ kind, identifier })
+  let resp: Response
+  try {
+    resp = await fetch(`${API_BASE}/feeds?${params}`)
+  } catch {
+    throw new Error(`Couldn't reach the API at ${API_BASE}. Is the backend running?`)
+  }
+  if (!resp.ok) throw new Error(await extractDetail(resp, "Couldn't load feeds"))
+  return (await resp.json()) as ListFeedsResponse
+}
+
+/** POST /feeds — create a custom feed; returns the created definition. */
+export async function createFeed(input: CreateFeedInput): Promise<FeedSummary> {
+  let resp: Response
+  try {
+    resp = await fetch(`${API_BASE}/feeds`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(input),
+    })
+  } catch {
+    throw new Error(`Couldn't reach the API at ${API_BASE}. Is the backend running?`)
+  }
+  if (!resp.ok) throw new Error(await extractDetail(resp, "Couldn't create the feed"))
+  return (await resp.json()) as FeedSummary
+}
+
+/** DELETE /feeds/{slug} — remove a custom feed (built-ins can't be deleted). */
+export async function deleteFeed(slug: string, identifier: string): Promise<void> {
+  const params = new URLSearchParams({ identifier })
+  let resp: Response
+  try {
+    resp = await fetch(`${API_BASE}/feeds/${encodeURIComponent(slug)}?${params}`, {
+      method: "DELETE",
+    })
+  } catch {
+    throw new Error(`Couldn't reach the API at ${API_BASE}. Is the backend running?`)
+  }
+  if (!resp.ok) throw new Error(await extractDetail(resp, "Couldn't delete the feed"))
+}
+
+async function generate<T>(
+  slug: string,
+  kind: FeedKind,
+  identifier: string,
+  opts: { limit?: number; exclude?: string[] },
+): Promise<{ cards: T[] }> {
+  const { limit = 5, exclude = [] } = opts
+  const params = new URLSearchParams({ kind })
+  let resp: Response
+  try {
+    resp = await fetch(
+      `${API_BASE}/feeds/${encodeURIComponent(slug)}/generate?${params}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ identifier, limit, exclude }),
+      },
+    )
+  } catch {
+    throw new Error(`Couldn't reach the API at ${API_BASE}. Is the backend running?`)
+  }
+  if (!resp.ok) throw new Error(await extractDetail(resp, "Couldn't load the feed"))
+  return (await resp.json()) as { cards: T[] }
+}
+
+/** POST /feeds/{slug}/generate?kind=repos — ranked repos for a viewer. */
+export function generateRepos(
+  slug: string,
+  identifier: string,
+  opts: { limit?: number; exclude?: string[] } = {},
+): Promise<{ cards: RepoCard[] }> {
+  return generate<RepoCard>(slug, "repos", identifier, opts)
+}
+
+/** POST /feeds/{slug}/generate?kind=issues — ranked issues for a viewer. */
+export function generateIssues(
+  slug: string,
+  identifier: string,
+  opts: { limit?: number; exclude?: string[] } = {},
+): Promise<{ cards: IssueCard[] }> {
+  return generate<IssueCard>(slug, "issues", identifier, opts)
+}
+
 /**
  * POST /onboard — resolve a Tangled handle/DID, build (or reuse) its feature
  * profile in the backend, and return it. An identifier that's already in the

@@ -28,6 +28,7 @@ export default function App() {
     <Dashboard
       handle={session.handle}
       did={session.profile.did}
+      profile={session.profile}
       onOpenFeed={() => setPage("feed")}
     />
   )
