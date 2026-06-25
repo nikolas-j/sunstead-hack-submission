@@ -24,7 +24,7 @@ import {
 } from "../api"
 import { Avatar } from "./Avatar"
 import { FeedSelector } from "./FeedSelector"
-import { formatCount, gradientFor } from "../lib"
+import { formatCount, gradientFor, tangledProfileUrl } from "../lib"
 import { useIsSaved, toggleSaved } from "../saved"
 
 /* Subscribed/external feeds run via their AT-URI; built-ins/own via slug. */
@@ -278,6 +278,9 @@ function IssueReel({ card, identifier }: { card: IssueCard; identifier: string }
   const likes = stars + (liked ? 1 : 0)
 
   const name = authorName(card)
+  // Tangled profile link for the issue's author — resolves with a handle or a
+  // bare DID, so the creator is always clickable (same as the right-bar suggestions).
+  const profileUrl = tangledProfileUrl(card.author_handle ?? card.author_did)
   const sub = [s.author_level, `${repos} repos`].filter(Boolean).join(" · ")
   const age = ageLabel(card.issue_age_days)
   const goodFirst = isGoodFirst(card.labels)
@@ -380,9 +383,24 @@ function IssueReel({ card, identifier }: { card: IssueCard; identifier: string }
             </div>
 
             <div className="reel__creator">
-              <Avatar name={name} gradient={gradientFor(card.author_did)} size="md" />
+              <a
+                className="reel__creator-avatar"
+                href={profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${name} on Tangled`}
+              >
+                <Avatar name={name} gradient={gradientFor(card.author_did)} size="md" />
+              </a>
               <div className="reel__creator-id">
-                <div className="reel__creator-handle">{name}</div>
+                <a
+                  className="reel__creator-handle"
+                  href={profileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {name}
+                </a>
                 <div className="reel__creator-sub">{sub || "Maintainer"}</div>
               </div>
               <button className="btn btn--sm btn--secondary">Follow</button>

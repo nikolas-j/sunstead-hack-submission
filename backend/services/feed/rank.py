@@ -16,6 +16,7 @@
 # so the feed is NEVER empty.
 
 from models.issue_card import IssueCard
+from services.fetch_issues.build_issues import has_repo_link
 
 # Reuse the recommender's scoring primitives verbatim — same Jaccard, same union of
 # languages + topics — so issue ranking and creator ranking stay consistent.
@@ -87,7 +88,13 @@ def rank(
     client's seen set to paginate an infinite-scroll feed, exactly like the
     creator recommender's `exclude`."""
     skip = exclude or set()
-    issues = [i for i in issues_pool.values() if i["issue_key"] not in skip]
+    # Only serve issues that resolved to a clickable tangled.sh repo URL, so every
+    # card's title links to its repo (see build_issues.has_repo_link).
+    issues = [
+        i
+        for i in issues_pool.values()
+        if i["issue_key"] not in skip and has_repo_link(i)
+    ]
     if not issues:
         return []
 

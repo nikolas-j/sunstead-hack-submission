@@ -1616,13 +1616,29 @@ input {
   flex: 1;
   min-width: 0;
 }
+.reel__creator-avatar {
+  flex-shrink: 0;
+  display: inline-flex;
+  line-height: 0;
+  border-radius: var(--r-pill);
+  transition: opacity 0.15s ease;
+}
+.reel__creator-avatar:hover {
+  opacity: 0.85;
+}
 .reel__creator-handle {
+  display: block;
   font-size: 14px;
   font-weight: 600;
   color: var(--ink);
+  text-decoration: none;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.reel__creator-handle:hover {
+  color: var(--accent);
+  text-decoration: underline;
 }
 .reel__creator-sub {
   font-size: 12px;
@@ -1713,6 +1729,27 @@ input {
     ),
     var(--surface-1);
   overflow: hidden;
+}
+/* Bottom-up black scrim over the README peek: the code stays fully visible
+   across the top, then fades to solid black toward the bottom so the issue text
+   overlaid by .reel__inner reads cleanly over it. Scoped to the snippet (not the
+   whole card) so the centered "Code preview unavailable" fallback — lifted above
+   this with its own z-index below — is never dimmed. pointer-events:none keeps
+   the fallback's "Open in Tangled" link clickable. */
+.reel__snippet::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(1, 1, 2, 0.98) 0%,
+    rgba(1, 1, 2, 0.97) 45%,
+    rgba(1, 1, 2, 0.85) 62%,
+    rgba(1, 1, 2, 0.45) 80%,
+    rgba(1, 1, 2, 0) 96%
+  );
 }
 .reel__snippet-chrome {
   display: flex;
@@ -1816,6 +1853,8 @@ input {
 .reel__snippet-fallback {
   position: absolute;
   inset: 0;
+  /* Above the snippet's bottom-up scrim (z 1) so the fallback stays crisp. */
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
