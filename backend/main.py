@@ -8,6 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
+from api.feed import router as feed_router
 from api.onboard import router as onboard_router
 from api.recommend import router as recommend_router
 
@@ -35,6 +36,7 @@ app.add_middleware(
 
 app.include_router(onboard_router)
 app.include_router(recommend_router)
+app.include_router(feed_router)
 
 
 @app.get("/")
