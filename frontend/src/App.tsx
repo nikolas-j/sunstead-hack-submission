@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Login } from "./components/Login"
 import { Dashboard } from "./components/Dashboard"
+import { Feed } from "./components/Feed"
 import type { Profile } from "./api"
 
 type Session = { profile: Profile; handle: string }
@@ -10,6 +11,7 @@ export default function App() {
   // user signed in with (the backend resolves it to a DID) so the main page
   // can show it; the profile is held ready for the /recommend wiring next.
   const [session, setSession] = useState<Session | null>(null)
+  const [page, setPage] = useState<"home" | "feed">("home")
 
   if (!session) {
     return (
@@ -17,5 +19,15 @@ export default function App() {
     )
   }
 
-  return <Dashboard handle={session.handle} did={session.profile.did} />
+  if (page === "feed") {
+    return <Feed onClose={() => setPage("home")} />
+  }
+
+  return (
+    <Dashboard
+      handle={session.handle}
+      did={session.profile.did}
+      onOpenFeed={() => setPage("feed")}
+    />
+  )
 }
