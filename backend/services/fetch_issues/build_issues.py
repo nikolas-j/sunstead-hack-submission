@@ -118,6 +118,15 @@ def _parse_repo_ref(repo_ref: str | None) -> tuple[str | None, str | None]:
     return None, None
 
 
+def has_repo_link(issue: dict) -> bool:
+    """True when build-time enrichment resolved a clickable tangled.sh repo URL
+    for the issue. Issues with a bare-DID repo ref (no rkey to fetch the repo
+    record) or a repo we couldn't enrich end up with repo_url=None — the issue
+    feeds drop those so every served reel's title links to its repo (see
+    services/feed_gen/generate.py and services/feed/rank.py)."""
+    return bool(issue.get("repo_url"))
+
+
 def _is_open(value: dict) -> bool:
     """Tangled issue records don't carry a state field; treat missing as open and
     only drop an issue if it explicitly says it's closed/resolved."""

@@ -21,6 +21,7 @@ from services.feed.rank import (
     _recency_score,
     _UNKNOWN_AGE,
 )
+from services.fetch_issues.build_issues import has_repo_link
 from services.recommender.recommend import _feature_set, _similarity
 
 # Per-kind field indirection so one ranker serves both pools.
@@ -50,6 +51,11 @@ def _matches(item: dict, f: FeedFilters, kind: str) -> bool:
         return False
     # Issues-only dimensions — silently ignored for repo pools.
     if kind == "issues":
+        # Every reel's title links to its repo on tangled.sh, so an issue we
+        # couldn't resolve a repo URL for (bare-DID ref / un-enriched repo) has
+        # nothing to link to — drop it from the feed entirely.
+        if not has_repo_link(item):
+            return False
         if f.state and str(item.get("state", "open")).lower() != f.state:
             return False
         if f.labels and not (_lower_set(f.labels) & _lower_set(item.get("labels", []))):
