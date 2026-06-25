@@ -61,6 +61,11 @@ npm run dev
 
 ## Data flow
 
-1. `POST /onboard` — resolves a Tangled handle/DID to a DID, fetches its repos + posts from the PDS, derives a keyword-based feature profile (`languages`, `topics`, `level`), and appends it to `profile_output/profiles.json`.
-2. `GET /recommend/{identifier}?limit=5` — ranks the profiles in `profiles.json` by Jaccard similarity over shared languages + topics and returns the top matches. Onboards the user first if not yet in the pool.
+`profile_output/profiles.json` (`{did: Profile}`) is the single source of truth; both endpoints read/write it. A `Profile` is `models/profile.py`.
+
+1. `POST /onboard` `{ "identifier": "<handle|did>" }` → resolves to a DID, then `services/create_feature_profiles.onboard_did` fetches the user's repos, posts, stars, follows, and actor profile from their PDS (one `asyncio.gather`), derives a keyword-based feature profile, and upserts it into `profiles.json`. Returns the `Profile`. Fields: `languages`, `topics`, `level` (matched via `taxonomy.py`); `total_repos/posts/stars/follows`; `last_active`; `description/location/links`; `tags`; `text_blob` (capped at `MAX_TEXT_BLOB_CHARS`). 422 if no profileable content.
+
+2. `GET /recommend/{identifier}?limit=5&exclude=<did>&exclude=<did>` → resolves to a DID (onboards on the fly if absent from the pool), then `services/recommender.recommend` ranks the pool by Jaccard similarity over the target's `languages ∪ topics`, skipping the target and any `exclude` DIDs. Returns top `limit` as `ProfileMatch` (`models/recommendation.py`), each with `score` and `shared`. `exclude` is the client's seen-DID set for pagination ("load more").
+   - Cold start: if the target has no features (or no overlap with anyone), `score` is 0 and the fallback returns the most feature-rich (most active) profiles, so the feed is never empty.
+
 3. Next step: persist profiles as native AT Protocol records (`sh.tangled.fyp.*` lexicons via `services/atproto`) instead of a local JSON file.
