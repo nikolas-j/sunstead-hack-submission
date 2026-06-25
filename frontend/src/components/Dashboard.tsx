@@ -9,7 +9,15 @@ import { Globe } from "./Globe"
 /* The main page. The center repo feed is still static; the right column is live,
    driven by /recommend for the onboarded DID. Shown after login. */
 
-export function Dashboard({ handle, did }: { handle: string; did: string }) {
+export function Dashboard({
+  handle,
+  did,
+  onOpenFeed,
+}: {
+  handle: string
+  did: string
+  onOpenFeed: () => void
+}) {
   useEffect(() => {
     // Respect users who ask for less motion — keep native scrolling for them.
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -40,7 +48,7 @@ export function Dashboard({ handle, did }: { handle: string; did: string }) {
     <>
       <CursorGlow />
       <Globe />
-      <TopNav handle={handle} />
+      <TopNav handle={handle} onOpenFeed={onOpenFeed} />
       <main className="layout">
         <CenterColumn />
         <RightColumn did={did} />
