@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { Users, ShieldCheck, ArrowRight, Plus } from "lucide-react"
+import { Users, ShieldCheck, ArrowRight, Plus, Clock } from "lucide-react"
 import {
   recommend,
   follow as followApi,
@@ -8,7 +8,7 @@ import {
   type ProfileMatch,
 } from "../api"
 import { Avatar } from "./Avatar"
-import { formatCount, gradientFor, tangledProfileUrl } from "../lib"
+import { formatCount, gradientFor, relativeTime, tangledProfileUrl } from "../lib"
 
 const PAGE = 5
 const MAX_STACK = 4 // languages + topics shown per row
@@ -32,6 +32,7 @@ function ProfileRow({
   // Link resolves with a handle or a bare DID, so every row is clickable.
   const href = tangledProfileUrl(p.handle ?? p.did)
   const stack = [...p.languages, ...p.topics].slice(0, MAX_STACK)
+  const active = relativeTime(p.last_active)
   return (
     <div className="profile">
       <div className="profile__top">
@@ -55,6 +56,11 @@ function ProfileRow({
           </a>
           {/* Only show the DID line when the handle is the display name above. */}
           {p.handle ? <div className="profile__did">{shortDid(p.did)}</div> : null}
+          {active ? (
+            <div className="profile__active" title={`Last active ${active}`}>
+              <Clock size={11} /> Active {active}
+            </div>
+          ) : null}
         </div>
         <button
           className={"btn btn--sm " + (following ? "btn--secondary" : "btn--primary")}
