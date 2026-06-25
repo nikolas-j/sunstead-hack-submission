@@ -6,6 +6,7 @@
 # logged-in user (their own repo) are thin configurations of this one client, so
 # the session/record dance lives in exactly one place.
 
+import asyncio
 import logging
 from datetime import datetime, timezone
 
@@ -13,7 +14,24 @@ import httpx
 
 PAGE_LIMIT = 100
 
+# 429 backoff for bulk writes: how many times to retry a throttled write and the
+# base for the exponential delay (honouring the server's Retry-After when given).
+_RATELIMIT_RETRIES = 6
+_RATELIMIT_BASE_DELAY = 1.0
+
 logger = logging.getLogger(__name__)
+
+
+def _retry_after_seconds(resp: httpx.Response, attempt: int) -> float:
+    """How long to wait before retrying a 429: the server's Retry-After header
+    when present, else exponential backoff (1s, 2s, 4s, …) capped at 30s."""
+    header = resp.headers.get("Retry-After")
+    if header:
+        try:
+            return min(float(header), 30.0)
+        except ValueError:
+            pass
+    return min(_RATELIMIT_BASE_DELAY * (2 ** attempt), 30.0)
 
 
 def _atp_dt(dt: datetime) -> str:
@@ -92,6 +110,13 @@ class SessionRecordClient:
         resp = await _do()
         if resp.status_code == 401:
             await self.refresh(client)
+            resp = await _do()
+        # Bulk syncs (sync_pools) can trip the PDS rate limiter; back off and
+        # retry on 429 so a large pool publishes fully instead of partially.
+        for attempt in range(_RATELIMIT_RETRIES):
+            if resp.status_code != 429:
+                break
+            await asyncio.sleep(_retry_after_seconds(resp, attempt))
             resp = await _do()
         resp.raise_for_status()
         return resp.json().get("uri", "")

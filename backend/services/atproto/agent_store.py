@@ -35,8 +35,9 @@ POOLS: dict[str, tuple[str, str]] = {
     "repos": (COLLECTION_REPO, "repo_key"),
 }
 
-# Concurrency cap for the bulk publish so we don't hammer the PDS.
-_WRITE_CONCURRENCY = 12
+# Concurrency cap for the bulk publish so we don't hammer the PDS. Kept modest
+# because the PDS rate-limits putRecord; put_record() also backs off on 429.
+_WRITE_CONCURRENCY = 5
 
 
 # --------------------------------------------------------------------------- #
@@ -167,6 +168,17 @@ class AgentStore:
         rc = await self.ensure_session(client)
         await rc.put_record(COLLECTION_PROFILE, _rkey(key), _to_record(COLLECTION_PROFILE, profile), client)
 
+    async def put_entry(self, pool_name: str, entry: dict, client: httpx.AsyncClient) -> None:
+        """Upsert a single pool entry (issues / repos / profiles) — the generic
+        sibling of put_profile, used by the live firehose ingester. Single-record
+        upsert only; never prunes (unlike publish_pool)."""
+        collection, key_field = POOLS[pool_name]
+        key = entry.get(key_field)
+        if not key:
+            return
+        rc = await self.ensure_session(client)
+        await rc.put_record(collection, _rkey(key), _to_record(collection, entry), client)
+
 
 # --------------------------------------------------------------------------- #
 # Process-wide singleton + in-memory pool cache
@@ -185,7 +197,17 @@ def get_store() -> AgentStore:
 async def warm(client: httpx.AsyncClient) -> None:
     """Load the agent-PDS pools into the in-memory cache. Best-effort: on any
     failure (or an unconfigured agent) the cache stays empty and the readers fall
-    back to the local JSON pools. Called once from the FastAPI lifespan."""
+    back to the local JSON pools. Called once from the FastAPI lifespan.
+
+    With SERVE_LOCAL_POOLS=1 the read cache is left empty on purpose, so the
+    runtime serves the complete, committed local JSON pools while the agent PDS
+    stays a write-only community store (the firehose ingester still upserts new
+    activity into it via put_entry). Use this when the agent PDS is partially
+    synced — e.g. a bulk sync hit the PDS rate limit — but the local pools are
+    current."""
+    if os.getenv("SERVE_LOCAL_POOLS") == "1":
+        logger.info("SERVE_LOCAL_POOLS=1 — serving local JSON pools; agent PDS is write-only (firehose).")
+        return
     store = get_store()
     if not store.configured:
         logger.info("AGENT_HANDLE/AGENT_PASSWORD not set — serving local JSON pools (backup mode).")
@@ -225,3 +247,16 @@ def cache_profile(profile: dict) -> None:
     did = profile.get("did")
     if did and "profiles" in _pools_cache:
         _pools_cache["profiles"][did] = profile
+
+
+def cache_entry(pool_name: str, entry: dict) -> None:
+    """Reflect a freshly-ingested pool entry (issues / repos / profiles) into the
+    in-memory cache so it's visible to the very next load_*() — the generic sibling
+    of cache_profile, used by the live firehose ingester. No-op if that pool isn't
+    populated (e.g. agent unconfigured / backup mode), where the JSON file serves.
+    A single dict-key assignment — atomic under the CPython GIL; readers get a
+    shallow copy via get_pool(), so no lock is needed."""
+    _, key_field = POOLS[pool_name]
+    key = entry.get(key_field)
+    if key and pool_name in _pools_cache:
+        _pools_cache[pool_name][key] = entry
