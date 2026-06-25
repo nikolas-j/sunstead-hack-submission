@@ -1,0 +1,29 @@
+{
+  "lexicon": 1,
+  "id": "sh.tangled.fyp.repoCard",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "One precomputed repo card in the FYP repo pool, published by the agent. Stores the runtime RepoCard/repos.json entry verbatim (snake_case keys) for a lossless round-trip. rkey = base32(sha256(repo_key)).",
+      "key": "any",
+      "record": {
+        "type": "object",
+        "required": ["repo_key", "owner_did", "name"],
+        "properties": {
+          "repo_key": { "type": "string", "description": "repo AT-URI; the stable card id" },
+          "owner_did": { "type": "string" },
+          "owner_handle": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "knot": { "type": "string" },
+          "created_at": { "type": "string" },
+          "repo_age_days": { "type": "integer" },
+          "languages": { "type": "array", "items": { "type": "string" } },
+          "topics": { "type": "array", "items": { "type": "string" } },
+          "level": { "type": "string" },
+          "stats": { "type": "unknown", "description": "pool-local owner stats (owner_level, owner_total_stars/_follows/_repos, repo_age_days, pool_local)" }
+        }
+      }
+    }
+  }
+}

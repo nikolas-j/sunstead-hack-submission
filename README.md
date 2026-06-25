@@ -50,6 +50,14 @@ npm run dev
 
 ## Data flow
 
-1. `POST /onboard` — resolves a DID/handle, fetches repos and social graph from the user's PDS, computes a `FeatureVector` (language weights, topic weights, follows), and writes a `sh.tangled.fyp.userVector` record back to ATP.
-2. `GET /recommend` — loads the requesting user's vector and scores candidate profiles stored on ATP, returning a ranked `sh.tangled.fyp.recommendation` feed.
-3. Vectors are cached in-memory per session and durably in ATP across restarts.
+The candidate pool (people, their open issues, their repos) is built offline and
+**published to the FYP agent's own PDS** as native AT Protocol records
+(`sh.tangled.fyp.profile` / `.issueCard` / `.repoCard`). At runtime the API warms
+those records into memory at startup and serves from them — the committed
+`backend/profile_output/*.json` files are the build source and a fallback for when
+the agent isn't configured/synced.
+
+1. **Build (offline):** the firehose + graph-crawl pipeline writes `profiles.json`, `issues.json`, and `repos.json` (see [backend/README.md](backend/README.md)).
+2. **Publish:** `uv run python -m services.atproto.sync_pools` upserts every pool entry into the agent's repo (and prunes records no longer in the pool). Re-runnable.
+3. `POST /onboard` — resolves a DID/handle, fetches repos + social graph from the user's PDS, computes a feature profile, and writes it to the agent PDS (and the JSON backup), so a new user is matchable immediately.
+4. `GET /recommend/{id}` and `POST /feed` — rank the agent-PDS pools (warmed into memory) for the viewer. Signed-in actions (follow, custom feeds, subscriptions) write native records to the **user's own** PDS.

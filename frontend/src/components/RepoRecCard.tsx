@@ -1,10 +1,9 @@
 import { Star, FolderGit2, Clock, Sparkles } from "lucide-react"
 import type { RepoCard } from "../api"
-import { formatCount } from "../lib"
+import { formatCount, tangledRepoUrl } from "../lib"
 
 /* Renders one live RepoCard (from /feeds/{slug}/generate?kind=repos) using the
-   same .rec card styling as the mock RecCard, so the center column keeps its look
-   while being driven by the real repos pool + feed generator. */
+   shared .rec card styling, driven by the real repos pool + feed generator. */
 
 // Canonical language -> the functional dot color token defined in style.css.
 const LANG_COLOR: Record<string, string> = {
@@ -51,6 +50,9 @@ export function RepoRecCard({
   const lang = card.languages[0]
   const stars = card.stats.owner_total_stars ?? 0
   const age = ageLabel(card.repo_age_days)
+  // Real Tangled repo link (built from the owner handle, like the backend does).
+  // Null when the handle is unknown — then the title is plain text, never a dead "#".
+  const repoUrl = tangledRepoUrl(card.owner_handle, card.name)
 
   // Match tags first (the highlighted "why"), then fill from topics.
   const matchTags = card.shared.slice(0, 3)
@@ -63,7 +65,12 @@ export function RepoRecCard({
       </div>
 
       <div className="rec__head">
-        <a className="rec__repo" href="#">
+        <a
+          className="rec__repo"
+          href={repoUrl ?? undefined}
+          target={repoUrl ? "_blank" : undefined}
+          rel={repoUrl ? "noreferrer" : undefined}
+        >
           <FolderGit2 size={16} />
           <span className="rec__name">
             <span className="owner">{ownerLabel(card)}/</span>

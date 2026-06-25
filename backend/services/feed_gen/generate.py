@@ -14,7 +14,13 @@ import httpx
 from models.feed import FeedDefinition, FeedFilters
 from services.atproto.resolver import resolve_handle_or_did
 from services.create_feature_profiles.create_profiles import load_profiles, onboard_did
-from services.feed.rank import _label_bonus, _recency_bonus, _UNKNOWN_AGE
+from services.feed.rank import (
+    RECENCY_WEIGHT,
+    SKILL_WEIGHT,
+    _label_bonus,
+    _recency_score,
+    _UNKNOWN_AGE,
+)
 from services.recommender.recommend import _feature_set, _similarity
 
 # Per-kind field indirection so one ranker serves both pools.
@@ -97,14 +103,18 @@ def generate(
 
     viewer_set = _feature_set(viewer_profile) if viewer_profile else set()
 
-    # (jaccard, total, shared, item) per candidate — total folds in the small
-    # label/recency nudges, exactly like services/feed/rank.py.
+    # (jaccard, total, shared, item) per candidate — total blends skill (Jaccard)
+    # and recency, plus the small label nudge, exactly like services/feed/rank.py.
     scored: list[tuple[float, float, list[str], dict]] = []
     for item in items:
         item_set = _feature_set(item)
         jaccard = _similarity(viewer_set, item_set)
         shared = sorted(viewer_set & item_set)
-        total = jaccard + _label_b(item, kind) + _recency_bonus(item.get(RECENCY_KEY[kind]))
+        total = (
+            SKILL_WEIGHT * jaccard
+            + RECENCY_WEIGHT * _recency_score(item.get(RECENCY_KEY[kind]))
+            + _label_b(item, kind)
+        )
         scored.append((jaccard, total, shared, item))
 
     algo = feed.base_algorithm

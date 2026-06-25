@@ -71,12 +71,12 @@ frontend/
     ├── App.tsx             # app shell: <CursorGlow/> <Globe/> <TopNav/> <main.layout>
     ├── style.css           # ALL tokens + component styles (single source of truth)
     ├── lib.ts              # presentation helpers: initials(), gradientFor(), formatCount()
-    ├── data.ts             # typed mock data; shapes mirror an ATProto/appview response
+    ├── api.ts              # typed client for the FastAPI backend (live data)
     └── components/
         ├── TopNav.tsx      # brand + search + actions
         ├── TangledLogo.tsx # inlined official "dolly" mark (currentColor)
         ├── CenterColumn.tsx# the "protagonist" content column
-        ├── RecCard.tsx     # primary content card
+        ├── RepoRecCard.tsx # live repo card (repos pool + feed generator)
         ├── RightColumn.tsx # secondary column (sticky, own scroll)
         ├── Avatar.tsx      # gradient + initials avatar
         ├── CursorGlow.tsx  # cursor-trailing radial glow (effect)
@@ -87,9 +87,9 @@ frontend/
 
 - **Tokens are the contract.** Components reference `var(--token)`, never raw
   hex. Re-skinning = editing `:root`.
-- **Data is typed and decoupled.** `data.ts` exports typed arrays whose shapes
-  mirror what an AT Protocol appview / firehose would return, so swapping mock
-  data for live data is a drop-in change. Keep this boundary in sibling sites.
+- **Data is typed and decoupled.** `api.ts` exports the typed client + response
+  types (mirroring the backend models), so components depend on shapes, not on
+  fetch wiring. Keep this boundary in sibling sites.
 - **Effects are self-contained components** (`CursorGlow`, `Globe`) with their
   own `useEffect` lifecycle + cleanup. Drop them into any `App` shell.
 - **Helpers in `lib.ts`** are pure and deterministic (no `Date.now`/`Math.random`
@@ -346,7 +346,7 @@ All components reference tokens and live in `style.css`.
 **Do**
 - Reserve teal for brand mark, primary CTA, focus, links, reason pills, active state.
 - Use the surface ladder + hairlines for depth; black edges on boxes.
-- Keep the data layer typed and shaped like an ATProto/appview response.
+- Keep API response types in sync with the backend models (see `src/api.ts`).
 - Gate motion effects behind `prefers-reduced-motion` and pointer/width checks.
 - Keep effect components self-contained with proper `useEffect` cleanup.
 
@@ -373,8 +373,8 @@ To spin up a sibling site that matches this one:
    the §6 stacking order.
 6. **Shell:** reuse the `.topnav`, `.layout`, `.panel`, `.btn` patterns. Swap the
    `TangledLogo` for the sibling's mark (keep `currentColor` + `--ink`).
-7. **Data boundary:** define typed `data.ts` arrays mirroring your AT Protocol
-   records; wire live data behind the same shapes later.
+7. **Data boundary:** define a typed `api.ts` client whose response types mirror
+   your backend models; components depend on those shapes, not on fetch wiring.
 8. **Stay in the contract:** new components reference tokens only; new box types
    follow the black-edge + outer-halo hover rule; keep teal scarce.
 
@@ -390,6 +390,6 @@ hover, type is Inter with the §5 scale, and motion respects reduced-motion.
   the source of truth (the Linear-derived values in
   [`DESIGN-linear-reference.md`](DESIGN-linear-reference.md) are the historical
   inspiration).
-- The data layer is currently mock; shapes are intentionally ATProto-compatible.
+- The data layer is live: components fetch from the FastAPI backend via `src/api.ts`.
 - Form error/validation styling isn't defined yet — add as a token-driven variant.
 - The globe is desktop-only (≥1280px) by design; it's ambient, not essential.

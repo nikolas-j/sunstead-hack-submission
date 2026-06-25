@@ -148,7 +148,16 @@ async def fetch_all_repos(
 # Load / save (mirrors build_issues.load_issues)
 # --------------------------------------------------------------------------- #
 def load_repos(path: Path = DEFAULT_OUT) -> dict[str, dict]:
-    """The precomputed repo pool, keyed by AT-URI. {} if not built yet."""
+    """The repo pool, keyed by AT-URI. At runtime this serves the agent-PDS pool
+    (warmed into memory at startup); the local JSON file is the backup, used when
+    the agent isn't configured/synced. An explicit non-default path always reads
+    the file (build pipeline / tests). {} if absent."""
+    if path == DEFAULT_OUT:
+        from services.atproto import agent_store
+
+        cached = agent_store.get_pool("repos")
+        if cached is not None:
+            return cached
     if path.exists():
         return json.loads(path.read_text(encoding="utf-8"))
     return {}

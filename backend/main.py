@@ -20,6 +20,12 @@ from api.recommend import router as recommend_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     app.state.http_client = httpx.AsyncClient(follow_redirects=True)
+    # Warm the in-memory pools from the agent PDS (the runtime source of truth).
+    # Best-effort: if the agent isn't configured or the read fails, the readers
+    # fall back to the local JSON pools under profile_output/.
+    from services.atproto import agent_store
+
+    await agent_store.warm(app.state.http_client)
     yield
     await app.state.http_client.aclose()
 

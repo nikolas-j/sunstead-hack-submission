@@ -1,4 +1,4 @@
-import { Search, Bookmark, Play } from "lucide-react"
+import { Search, Bookmark, Play, LogOut } from "lucide-react"
 import { Avatar } from "./Avatar"
 import { TangledLogo } from "./TangledLogo"
 import { gradientFor } from "../lib"
@@ -8,6 +8,7 @@ export function TopNav({
   onOpenFeed,
   onOpenSaved,
   onHome,
+  onLogout,
   savedCount = 0,
   active = "home",
 }: {
@@ -15,6 +16,7 @@ export function TopNav({
   onOpenFeed?: () => void
   onOpenSaved?: () => void
   onHome?: () => void
+  onLogout?: () => void
   savedCount?: number
   active?: "home" | "saved"
 }) {
@@ -70,7 +72,7 @@ export function TopNav({
           <a className="user" href="#">
             <Avatar name={handle} gradient={gradientFor(handle)} size="sm" />
             <span className="user__handle">{handle}</span>
-          </span>
+          </a>
           {onLogout ? (
             <button className="btn btn--icon" aria-label="Sign out" title="Sign out" onClick={onLogout}>
               <LogOut size={18} />

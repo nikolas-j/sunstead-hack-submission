@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Login } from "./components/Login"
 import { Dashboard } from "./components/Dashboard"
 import { Feed } from "./components/Feed"
+import { Saved } from "./components/Saved"
 import { logout, me, type SessionInfo } from "./api"
 
 export default function App() {
@@ -9,17 +10,6 @@ export default function App() {
   // null => show login. We restore from a stored session id on boot.
   const [session, setSession] = useState<SessionInfo | null>(null)
   const [restoring, setRestoring] = useState(true)
-  const [page, setPage] = useState<"home" | "feed">("home")
-import { Saved } from "./components/Saved"
-import type { Profile } from "./api"
-
-type Session = { profile: Profile; handle: string }
-
-export default function App() {
-  // The onboarded user. null => show the login page. We keep the handle the
-  // user signed in with (the backend resolves it to a DID) so the main page
-  // can show it; the profile is held ready for the /recommend wiring next.
-  const [session, setSession] = useState<Session | null>(null)
   const [page, setPage] = useState<"home" | "feed" | "saved">("home")
 
   useEffect(() => {

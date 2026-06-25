@@ -1,0 +1,31 @@
+{
+  "lexicon": 1,
+  "id": "sh.tangled.fyp.profile",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "A precomputed feature profile for one Tangled creator, published by the FYP agent into its own repo. Stores the runtime Profile/profiles.json entry verbatim (snake_case keys) for a lossless round-trip. rkey = base32(sha256(did)). text_blob is intentionally not stored.",
+      "key": "any",
+      "record": {
+        "type": "object",
+        "required": ["did"],
+        "properties": {
+          "did": { "type": "string" },
+          "handle": { "type": "string" },
+          "languages": { "type": "array", "items": { "type": "string" } },
+          "topics": { "type": "array", "items": { "type": "string" } },
+          "level": { "type": "string" },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "total_repos": { "type": "integer" },
+          "total_posts": { "type": "integer" },
+          "total_stars": { "type": "integer" },
+          "total_follows": { "type": "integer" },
+          "last_active": { "type": "string" },
+          "description": { "type": "string" },
+          "location": { "type": "string" },
+          "links": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

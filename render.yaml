@@ -1,0 +1,36 @@
+# Render Blueprint — deploys Sunstead as two services on one platform.
+#   1. sunstead-api : FastAPI backend (Docker Web Service, long-running uvicorn)
+#   2. sunstead-web : Vite/React SPA (Static Site, served on Render's CDN)
+#
+# After the first deploy: set sunstead-api's AGENT_HANDLE/AGENT_PASSWORD secrets and
+# sunstead-web's VITE_API_BASE (to the sunstead-api URL) in the Render dashboard.
+services:
+  - type: web
+    name: sunstead-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      # App-password creds for the agent account — set in dashboard, never in repo.
+      - key: AGENT_HANDLE
+        sync: false
+      - key: AGENT_PASSWORD
+        sync: false
+      - key: AGENT_PDS
+        value: https://tngl.sh
+
+  - type: web
+    name: sunstead-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    autoDeploy: true
+    envVars:
+      # Build-time API base. Set to the deployed sunstead-api URL (no trailing slash),
+      # e.g. https://sunstead-api.onrender.com
+      - key: VITE_API_BASE
+        sync: false

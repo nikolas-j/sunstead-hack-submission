@@ -389,7 +389,16 @@ async def build_firehose_issues(
 # Load / save (mirrors create_profiles.load_profiles)
 # --------------------------------------------------------------------------- #
 def load_issues(path: Path = DEFAULT_OUT) -> dict[str, dict]:
-    """The precomputed issue pool, keyed by AT-URI. {} if not built yet."""
+    """The issue pool, keyed by AT-URI. At runtime this serves the agent-PDS pool
+    (warmed into memory at startup); the local JSON file is the backup, used when
+    the agent isn't configured/synced. An explicit non-default path always reads
+    the file (build pipeline / tests). {} if absent."""
+    if path == DEFAULT_OUT:
+        from services.atproto import agent_store
+
+        cached = agent_store.get_pool("issues")
+        if cached is not None:
+            return cached
     if path.exists():
         return json.loads(path.read_text(encoding="utf-8"))
     return {}

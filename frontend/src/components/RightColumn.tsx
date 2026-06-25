@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import { Users, ShieldCheck, ArrowRight, Plus } from "lucide-react"
-import { recommend, type ProfileMatch } from "../api"
+import {
+  recommend,
+  follow as followApi,
+  unfollow as unfollowApi,
+  listFollowing,
+  type ProfileMatch,
+} from "../api"
 import { Avatar } from "./Avatar"
 import { formatCount, gradientFor, tangledProfileUrl } from "../lib"
 
@@ -11,8 +17,17 @@ function shortDid(did: string): string {
   return did.length > 24 ? did.slice(0, 22) + "…" : did
 }
 
-function ProfileRow({ p }: { p: ProfileMatch }) {
-  const [following, setFollowing] = useState(false)
+function ProfileRow({
+  p,
+  following,
+  busy,
+  onToggle,
+}: {
+  p: ProfileMatch
+  following: boolean
+  busy: boolean
+  onToggle: () => void
+}) {
   const name = p.handle ?? shortDid(p.did)
   // Link resolves with a handle or a bare DID, so every row is clickable.
   const href = tangledProfileUrl(p.handle ?? p.did)

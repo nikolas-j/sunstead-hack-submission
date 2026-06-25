@@ -26,6 +26,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import logging
 import re
 from pathlib import Path
 
@@ -49,6 +50,8 @@ COLLECTION_TANGLED_ACTOR = "sh.tangled.actor.profile"
 
 # Cap on stored text_blob length (chars) so a prolific poster can't bloat a profile.
 MAX_TEXT_BLOB_CHARS = 50_000
+
+logger = logging.getLogger(__name__)
 
 
 # --------------------------------------------------------------------------- #
@@ -244,10 +247,25 @@ def build_profiles(raw_map: dict[str, dict]) -> dict[str, dict]:
 # --------------------------------------------------------------------------- #
 # Single-DID onboarding (used by the /onboard API endpoint)
 # --------------------------------------------------------------------------- #
-def load_profiles(path: Path = DEFAULT_OUT) -> dict[str, dict]:
+def _read_profiles_file(path: Path = DEFAULT_OUT) -> dict[str, dict]:
+    """Read the local JSON pool straight from disk (the backup / build artifact)."""
     if path.exists():
         return json.loads(path.read_text(encoding="utf-8"))
     return {}
+
+
+def load_profiles(path: Path = DEFAULT_OUT) -> dict[str, dict]:
+    """The profile pool. At runtime this serves the agent-PDS pool (warmed into an
+    in-memory cache at startup); the local JSON file is the backup, used when the
+    agent isn't configured/synced. An explicit non-default path always reads the
+    file (build pipeline / tests)."""
+    if path == DEFAULT_OUT:
+        from services.atproto import agent_store
+
+        cached = agent_store.get_pool("profiles")
+        if cached is not None:
+            return cached
+    return _read_profiles_file(path)
 
 
 def save_profiles(profiles: dict[str, dict], path: Path = DEFAULT_OUT) -> None:
@@ -261,14 +279,33 @@ async def onboard_did(
     client: httpx.AsyncClient,
     path: Path = DEFAULT_OUT,
 ) -> dict | None:
-    """Fetch one DID, build its profile, upsert into profiles.json. None if no content."""
+    """Fetch one DID, build its profile, and persist it. None if no content.
+
+    Written to BOTH the agent PDS (the runtime source of truth — also updating the
+    in-memory cache so it's visible to the very next read) and the local JSON
+    backup. When the agent isn't configured, only the JSON backup is written,
+    preserving the original offline behaviour."""
     raw = await fetch_raw(did, handle, client)
     profile = build_profile(did, raw)
     if profile is None:
         return None
-    profiles = load_profiles(path)
+
+    # Local JSON backup — read the FILE (not the cache) so the backup stays whole.
+    profiles = _read_profiles_file(path)
     profiles[did] = profile
     save_profiles(profiles, path)
+
+    # Agent PDS — the runtime source of truth. Best-effort; never blocks onboarding.
+    from services.atproto import agent_store
+
+    store = agent_store.get_store()
+    if store.configured:
+        try:
+            await store.put_profile(profile, client)
+            agent_store.cache_profile(profile)
+        except Exception as exc:
+            logger.warning("Agent-PDS profile write failed for %s: %s", did, exc)
+
     return profile
 
 

@@ -1,0 +1,16 @@
+# Keep secrets, local venvs and caches out of the image / build context.
+.env
+.env.*
+!.env.example
+.venv
+venv
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache
+.mypy_cache
+.ruff_cache
+*.egg-info
+.git
+.gitignore
+.DS_Store

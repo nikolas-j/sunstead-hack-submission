@@ -1,0 +1,37 @@
+{
+  "lexicon": 1,
+  "id": "sh.tangled.fyp.issueCard",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "One precomputed issue card in the FYP issue pool, published by the agent. Stores the runtime IssueCard/issues.json entry verbatim (snake_case keys) for a lossless round-trip. rkey = base32(sha256(issue_key)).",
+      "key": "any",
+      "record": {
+        "type": "object",
+        "required": ["issue_key", "author_did", "title"],
+        "properties": {
+          "issue_key": { "type": "string", "description": "issue AT-URI; the stable card id" },
+          "repo_ref": { "type": "string" },
+          "repo_name": { "type": "string" },
+          "repo_owner_did": { "type": "string" },
+          "repo_owner_handle": { "type": "string" },
+          "repo_did": { "type": "string" },
+          "knot": { "type": "string" },
+          "repo_url": { "type": "string" },
+          "issue_url": { "type": "string" },
+          "author_did": { "type": "string" },
+          "author_handle": { "type": "string" },
+          "title": { "type": "string" },
+          "body_excerpt": { "type": "string" },
+          "labels": { "type": "array", "items": { "type": "string" } },
+          "created_at": { "type": "string" },
+          "state": { "type": "string" },
+          "languages": { "type": "array", "items": { "type": "string" } },
+          "topics": { "type": "array", "items": { "type": "string" } },
+          "issue_age_days": { "type": "integer" },
+          "stats": { "type": "unknown", "description": "pool-local author stats (author_level, author_total_stars/_follows/_repos, label_count, issue_age_days, pool_local)" }
+        }
+      }
+    }
+  }
+}

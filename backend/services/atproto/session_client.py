@@ -174,3 +174,26 @@ class SessionRecordClient:
             if not cursor or not data.get("records"):
                 break
         return records
+
+    async def list_records_full(self, collection: str, client: httpx.AsyncClient) -> list[dict]:
+        """Like list_records, but returns the FULL record envelopes ({uri, cid,
+        value}) instead of just the values — needed when the caller must recover
+        each record's rkey (e.g. to prune stale records)."""
+        records: list[dict] = []
+        cursor: str | None = None
+        while True:
+            params: dict = {"repo": self.did, "collection": collection, "limit": PAGE_LIMIT}
+            if cursor:
+                params["cursor"] = cursor
+            resp = await client.get(
+                f"{self.pds}/xrpc/com.atproto.repo.listRecords",
+                params=params,
+                timeout=15.0,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            records.extend(data.get("records", []))
+            cursor = data.get("cursor")
+            if not cursor or not data.get("records"):
+                break
+        return records

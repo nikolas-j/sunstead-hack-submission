@@ -14,7 +14,7 @@ import asyncio
 
 import httpx
 
-from services.atproto.resolver import resolve_did_to_handle
+from services.atproto.resolver import resolve_handle_for_did
 
 # Cleared per process. We cache None too (a DID with no resolvable handle) so a
 # missing handle doesn't re-hit plc.directory on every page load.
@@ -25,7 +25,7 @@ async def get_handle(did: str, client: httpx.AsyncClient) -> str | None:
     """One DID -> handle, memoised. Never raises."""
     if did in _HANDLE_CACHE:
         return _HANDLE_CACHE[did]
-    handle = await resolve_did_to_handle(did, client)
+    handle = await resolve_handle_for_did(did, client)
     _HANDLE_CACHE[did] = handle
     return handle
 

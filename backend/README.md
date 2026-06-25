@@ -33,7 +33,14 @@ uv run python -m services.fetch_profiles.discover                    # stage 1: 
 uv run python -m services.fetch_profiles.expand                      # stage 1b: 1-hop follow/star/repo crawl → broaden raw_dids.json
 uv run python -m services.create_feature_profiles.create_profiles    # stage 2:  build profiles.json
 uv run python -m services.fetch_issues.build_issues                  # stage 3:  build issues.json pool
+uv run python -m services.fetch_repos.build_repos                    # stage 3b: build repos.json pool
+uv run python -m services.atproto.sync_pools                         # stage 4:  publish all pools → agent PDS (needs AGENT_* in .env)
 ```
+
+Stage 4 publishes the three JSON pools into the FYP agent's own repo as native AT
+Protocol records (`sh.tangled.fyp.profile` / `.issueCard` / `.repoCard`); the API
+then serves from the agent PDS (warmed into memory at startup), with the JSON
+files as the fallback. It's an upsert + prune, so re-run it after any rebuild.
 
 `raw_dids.json` is the single seed dataset: `{did: {handle, events[]}}`. Stage 1 fills it from the firehose with everyone active on `sh.tangled.*` in the last ~3 days (with their captured events). The public relay only retains ~72h, so to reach the broader, less-recently-active community **stage 1b crawls one hop** along each seed's `follow` / `star` / `repo` records — PDS history is not time-limited — and keeps only DIDs verified to have real Tangled content (repo/issue/pull/actor profile), added with their resolved handle and empty `events`. Stage 2 deep-fetches **every** DID from its PDS for a full skill profile (broad by default; pass `--prefilter` to skip passive star/follow-only DIDs); stage 3 lists each candidate's `sh.tangled.repo.issue` backlog and folds in the firehose-recent issues. `issues.json` and `profiles.json` are precomputed and committed so the feed runs offline at demo time. (`fetch_profiles/fetch.py` is the older DID-only discovery script, superseded by `discover.py`.)
 
@@ -80,4 +87,4 @@ npm run dev
 
 4. `GET /issue/peek?knot=&repo_did=&name=` → a **live, non-persisted** "code peek": the top of the repo's README, fetched from its knot on demand (`sh.tangled.repo.tree` → `readme.contents`, via `services/atproto.pds_client.get_repo_readme`). Best-effort — a down / private / `localhost` knot returns `{ available: false }` fast (no hang). The frontend (`Feed.tsx` `CodePeek`) calls this per card only while it's on screen, shows a skeleton while loading, and aborts on a 10s timeout or when you scroll past. README content is deliberately **not** stored in `issues.json`.
 
-5. Next step: persist profiles as native AT Protocol records (`sh.tangled.fyp.*` lexicons via `services/atproto`) instead of a local JSON file. Also planned: a server-side seen-set so `POST /feed`'s `exclude` paginates the pool (today the frontend dedupes client-side).
+5. Storage: the pools (`profiles` / `issues` / `repos`) live as native AT Protocol records in the FYP agent's own repo (`sh.tangled.fyp.profile` / `.issueCard` / `.repoCard`), published by `services/atproto/sync_pools.py` and warmed into memory at startup by `services/atproto/agent_store.py`. The runtime readers (`load_profiles` / `load_issues` / `load_repos`) serve from that cache and fall back to `profile_output/*.json` when the agent isn't configured/synced. `/onboard` writes new profiles to both. Custom feeds, subscriptions, and follows are stored on each signed-in **user's own** PDS. Still planned: a server-side seen-set so `POST /feed`'s `exclude` paginates the pool (today the frontend dedupes client-side).

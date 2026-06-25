@@ -29,8 +29,24 @@ export function formatCount(n: number): string {
   return String(n)
 }
 
+/** Tangled web app origin. `tangled.sh` 301-redirects to `tangled.org`
+ *  (path preserved), so links built here resolve either way; we keep the value
+ *  that the backend bakes into repo_url/issue_url so every link is consistent. */
+export const TANGLED_WEB = "https://tangled.sh"
+
 /** Canonical Tangled profile URL. Resolves with either a handle or a bare DID,
  *  so a working link can always be built even when the handle is unknown. */
 export function tangledProfileUrl(handleOrDid: string): string {
-  return `https://tangled.org/${encodeURIComponent(handleOrDid)}`
+  return `${TANGLED_WEB}/@${encodeURIComponent(handleOrDid)}`
+}
+
+/** Tangled repo URL: https://tangled.sh/@{owner}/{repo}. Mirrors the backend's
+ *  repo_url (services/fetch_issues/build_issues.py). Needs the owner *handle* —
+ *  Tangled routes repos by handle, not DID — so returns null without one. */
+export function tangledRepoUrl(
+  ownerHandle: string | null | undefined,
+  repoName: string | null | undefined,
+): string | null {
+  if (!ownerHandle || !repoName) return null
+  return `${TANGLED_WEB}/@${ownerHandle}/${repoName}`
 }

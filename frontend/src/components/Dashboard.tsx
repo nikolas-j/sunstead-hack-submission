@@ -6,6 +6,7 @@ import { RightColumn } from "./RightColumn"
 import { CursorGlow } from "./CursorGlow"
 import { Globe } from "./Globe"
 import type { Profile } from "../api"
+import { useSavedCount } from "../saved"
 
 /* The main page. The center column is a live repo feed driven by the feed
    generator (built-in + custom feeds); the right column is live, driven by
@@ -17,12 +18,14 @@ export function Dashboard({
   profile,
   onOpenFeed,
   onLogout,
+  onOpenSaved,
 }: {
   handle: string
   did: string
   profile: Profile
   onOpenFeed: () => void
   onLogout?: () => void
+  onOpenSaved: () => void
 }) {
   const savedCount = useSavedCount(did)
 
@@ -56,7 +59,14 @@ export function Dashboard({
     <>
       <CursorGlow />
       <Globe />
-      <TopNav handle={handle} onOpenFeed={onOpenFeed} onLogout={onLogout} />
+      <TopNav
+        handle={handle}
+        onOpenFeed={onOpenFeed}
+        onOpenSaved={onOpenSaved}
+        onLogout={onLogout}
+        savedCount={savedCount}
+        active="home"
+      />
       <main className="layout">
         <CenterColumn
           did={did}
