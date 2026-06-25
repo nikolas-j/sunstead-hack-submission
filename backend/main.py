@@ -12,6 +12,7 @@ from api.auth import router as auth_router
 from api.feed import router as feed_router
 from api.feed_gen import router as feed_gen_router
 from api.graph import router as graph_router
+from api.issue_detail import router as issue_detail_router
 from api.onboard import router as onboard_router
 from api.recommend import router as recommend_router
 
@@ -43,6 +44,7 @@ app.include_router(recommend_router)
 app.include_router(feed_router)
 app.include_router(feed_gen_router)
 app.include_router(graph_router)
+app.include_router(issue_detail_router)
 
 
 @app.get("/")

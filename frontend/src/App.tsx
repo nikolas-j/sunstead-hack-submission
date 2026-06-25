@@ -10,6 +10,17 @@ export default function App() {
   const [session, setSession] = useState<SessionInfo | null>(null)
   const [restoring, setRestoring] = useState(true)
   const [page, setPage] = useState<"home" | "feed">("home")
+import { Saved } from "./components/Saved"
+import type { Profile } from "./api"
+
+type Session = { profile: Profile; handle: string }
+
+export default function App() {
+  // The onboarded user. null => show the login page. We keep the handle the
+  // user signed in with (the backend resolves it to a DID) so the main page
+  // can show it; the profile is held ready for the /recommend wiring next.
+  const [session, setSession] = useState<Session | null>(null)
+  const [page, setPage] = useState<"home" | "feed" | "saved">("home")
 
   useEffect(() => {
     me()
@@ -41,6 +52,17 @@ export default function App() {
     return <Feed identifier={session.did} onClose={() => setPage("home")} />
   }
 
+  if (page === "saved") {
+    return (
+      <Saved
+        identifier={session.profile.did}
+        handle={session.handle}
+        onHome={() => setPage("home")}
+        onOpenFeed={() => setPage("feed")}
+      />
+    )
+  }
+
   return (
     <Dashboard
       handle={session.handle}
@@ -48,6 +70,7 @@ export default function App() {
       profile={session.profile}
       onOpenFeed={() => setPage("feed")}
       onLogout={handleLogout}
+      onOpenSaved={() => setPage("saved")}
     />
   )
 }

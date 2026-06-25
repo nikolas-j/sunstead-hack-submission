@@ -52,16 +52,9 @@ async def resolve_pds(did: str, client: httpx.AsyncClient) -> str:
         return FALLBACK_PDS
 
 
-async def resolve_did_to_handle(did: str, client: httpx.AsyncClient) -> str | None:
-    """Reverse of resolve_handle: a DID -> its primary handle (read from the DID
-    document's `alsoKnownAs`), e.g. did:plc:… -> "alice.tngl.sh". Returns None if
-    the DID can't be resolved or claims no handle. Never raises.
-
-    NOTE: this is the handle the DID *claims*; for display that's all we need. It
-    is NOT re-verified against the handle's own resolution, so don't trust it for
-    auth decisions."""
-    if not did.startswith("did:"):
-        return None
+async def resolve_handle_for_did(did: str, client: httpx.AsyncClient) -> str | None:
+    """Reverse of resolve_handle: a DID -> its handle, read from the DID document's
+    `alsoKnownAs` (e.g. `at://julien.rbrt.fr`). Best-effort: None on any failure."""
     try:
         return _extract_handle(await _fetch_did_doc(did, client))
     except Exception:
@@ -69,8 +62,7 @@ async def resolve_did_to_handle(did: str, client: httpx.AsyncClient) -> str | No
 
 
 async def _fetch_did_doc(did: str, client: httpx.AsyncClient) -> dict:
-    """Fetch a DID document: plc.directory for did:plc, the domain's own
-    /.well-known/did.json for did:web."""
+    """Fetch the DID document (plc.directory for did:plc, /.well-known for did:web)."""
     if did.startswith("did:plc:"):
         resp = await client.get(f"{PLC_DIRECTORY}/{did}", timeout=10.0)
     elif did.startswith("did:web:"):
@@ -94,11 +86,10 @@ def _extract_pds(doc: dict) -> str:
 
 
 def _extract_handle(doc: dict) -> str | None:
-    """The primary handle from a DID doc's `alsoKnownAs` (first `at://<handle>`
-    entry), without the `at://` scheme."""
+    """First `at://`-prefixed handle in the DID doc's `alsoKnownAs`, sans scheme."""
     for aka in doc.get("alsoKnownAs", []):
         if isinstance(aka, str) and aka.startswith("at://"):
-            handle = aka[len("at://"):].strip()
+            handle = aka.removeprefix("at://").strip("/")
             if handle:
                 return handle
     return None

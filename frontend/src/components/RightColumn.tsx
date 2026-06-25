@@ -1,47 +1,45 @@
 import { useEffect, useRef, useState } from "react"
-import { Users, UserPlus, ShieldCheck, ArrowRight, Plus } from "lucide-react"
-import {
-  recommend,
-  follow as followApi,
-  unfollow as unfollowApi,
-  listFollowing,
-  type ProfileMatch,
-} from "../api"
+import { Users, ShieldCheck, ArrowRight, Plus } from "lucide-react"
+import { recommend, type ProfileMatch } from "../api"
 import { Avatar } from "./Avatar"
-import { formatCount, gradientFor } from "../lib"
+import { formatCount, gradientFor, tangledProfileUrl } from "../lib"
 
 const PAGE = 5
+const MAX_STACK = 4 // languages + topics shown per row
 
 function shortDid(did: string): string {
-  return did.length > 22 ? did.slice(0, 20) + "…" : did
+  return did.length > 24 ? did.slice(0, 22) + "…" : did
 }
 
-/** score 0 = cold-start "popular" fallback; otherwise show the shared tags. */
-function reasonFor(p: ProfileMatch): string {
-  if (p.score > 0 && p.shared.length) return `Shares ${p.shared.slice(0, 3).join(", ")}`
-  return "Active across open source"
-}
-
-function ProfileRow({
-  p,
-  following,
-  busy,
-  onToggle,
-}: {
-  p: ProfileMatch
-  following: boolean
-  busy: boolean
-  onToggle: () => void
-}) {
+function ProfileRow({ p }: { p: ProfileMatch }) {
+  const [following, setFollowing] = useState(false)
   const name = p.handle ?? shortDid(p.did)
-  const sub = [p.level, p.location].filter(Boolean).join(" · ")
+  // Link resolves with a handle or a bare DID, so every row is clickable.
+  const href = tangledProfileUrl(p.handle ?? p.did)
+  const stack = [...p.languages, ...p.topics].slice(0, MAX_STACK)
   return (
     <div className="profile">
       <div className="profile__top">
-        <Avatar name={name} gradient={gradientFor(p.did)} size="md" />
+        <a
+          className="profile__avatar"
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${name} on Tangled`}
+        >
+          <Avatar name={name} gradient={gradientFor(p.did)} size="md" />
+        </a>
         <div className="profile__id">
-          <div className="profile__handle">{name}</div>
-          <div className="profile__name">{sub}</div>
+          <a
+            className="profile__handle"
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {name}
+          </a>
+          {/* Only show the DID line when the handle is the display name above. */}
+          {p.handle ? <div className="profile__did">{shortDid(p.did)}</div> : null}
         </div>
         <button
           className={"btn btn--sm " + (following ? "btn--secondary" : "btn--primary")}
@@ -52,16 +50,24 @@ function ProfileRow({
           {busy ? "…" : following ? "Following" : "Follow"}
         </button>
       </div>
-      {p.description ? <p className="profile__bio">{p.description}</p> : null}
-      <div className="profile__reason">
-        <UserPlus size={12} /> {reasonFor(p)}
-      </div>
+      {stack.length ? (
+        <div className="profile__stack">
+          {stack.map((t) => (
+            <span className="tag" key={t}>
+              {t}
+            </span>
+          ))}
+        </div>
+      ) : null}
       <div className="profile__stats">
         <span>
-          <b>{p.total_repos}</b> repos
+          <b>{formatCount(p.total_repos)}</b> repos
         </span>
         <span>
           <b>{formatCount(p.total_follows)}</b> following
+        </span>
+        <span>
+          <b>{formatCount(p.total_stars)}</b> stars
         </span>
       </div>
     </div>

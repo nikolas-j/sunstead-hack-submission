@@ -28,3 +28,9 @@ export function formatCount(n: number): string {
   if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "k"
   return String(n)
 }
+
+/** Canonical Tangled profile URL. Resolves with either a handle or a bare DID,
+ *  so a working link can always be built even when the handle is unknown. */
+export function tangledProfileUrl(handleOrDid: string): string {
+  return `https://tangled.org/${encodeURIComponent(handleOrDid)}`
+}

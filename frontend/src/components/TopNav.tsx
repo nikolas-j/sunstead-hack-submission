@@ -1,4 +1,4 @@
-import { Search, MessageSquare, Bell, Play, LogOut } from "lucide-react"
+import { Search, Bookmark, Play } from "lucide-react"
 import { Avatar } from "./Avatar"
 import { TangledLogo } from "./TangledLogo"
 import { gradientFor } from "../lib"
@@ -6,16 +6,32 @@ import { gradientFor } from "../lib"
 export function TopNav({
   handle,
   onOpenFeed,
-  onLogout,
+  onOpenSaved,
+  onHome,
+  savedCount = 0,
+  active = "home",
 }: {
   handle: string
   onOpenFeed?: () => void
-  onLogout?: () => void
+  onOpenSaved?: () => void
+  onHome?: () => void
+  savedCount?: number
+  active?: "home" | "saved"
 }) {
   return (
     <header className="topnav">
       <div className="topnav__inner">
-        <a className="brand" href="#" aria-label="Tangled home">
+        <a
+          className="brand"
+          href="#"
+          aria-label="Tangled home"
+          onClick={(e) => {
+            if (onHome) {
+              e.preventDefault()
+              onHome()
+            }
+          }}
+        >
           <span className="brand__logo">
             <TangledLogo size={26} />
           </span>
@@ -35,13 +51,23 @@ export function TopNav({
               <span className="btn--feed__label">GitTok</span>
             </button>
           ) : null}
-          <button className="btn btn--secondary">
-            <MessageSquare size={16} /> Messages
+          <button
+            className={
+              "btn btn--icon btn--bookmark" + (active === "saved" ? " is-active" : "")
+            }
+            aria-label="Saved posts"
+            aria-pressed={active === "saved"}
+            onClick={onOpenSaved}
+          >
+            <Bookmark
+              size={18}
+              fill={active === "saved" ? "currentColor" : "none"}
+            />
+            {savedCount > 0 ? (
+              <span className="btn--bookmark__count">{savedCount}</span>
+            ) : null}
           </button>
-          <button className="btn btn--icon" aria-label="Notifications">
-            <Bell size={18} />
-          </button>
-          <span className="user">
+          <a className="user" href="#">
             <Avatar name={handle} gradient={gradientFor(handle)} size="sm" />
             <span className="user__handle">{handle}</span>
           </span>

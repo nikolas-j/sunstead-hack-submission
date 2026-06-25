@@ -31,7 +31,9 @@ from pathlib import Path
 
 import httpx
 
+from services.atproto.resolver import resolve_handle_for_did
 from services.fetch_profiles import config
+from services.fetch_profiles import discover
 from services.fetch_profiles import pds as pds_mod
 from services.create_feature_profiles import taxonomy
 
@@ -73,8 +75,12 @@ def _extract_actor(records: list[dict]) -> dict:
 
 
 async def fetch_raw(did: str, handle: str | None, client: httpx.AsyncClient) -> dict:
-    """Resolve PDS, pull repos, posts, stars, follows, and actor profile."""
+    """Resolve PDS, pull repos, posts, stars, follows, and actor profile.
+    Reverse-resolves the handle from the DID doc when one wasn't supplied, so the
+    UI can show a real Tangled handle (and link) instead of a bare DID."""
     pds_url = await pds_mod.resolve_pds(did, client)
+    if not handle:
+        handle = await resolve_handle_for_did(did, client)
     repos, posts, stars, follows, actor = await asyncio.gather(
         pds_mod.list_records(pds_url, did, config.COLLECTION_TANGLED_REPO, client),
         pds_mod.list_records(pds_url, did, config.COLLECTION_BSKY_POST, client),
@@ -121,7 +127,9 @@ _WS_RE = re.compile(r"\s+")
 
 
 def build_text_blob(raw: dict) -> str:
-    """Concatenate repo names + descriptions + post texts, lowercased & cleaned."""
+    """Concatenate repo names + descriptions, post texts, and the actor's bio /
+    location / links, lowercased & cleaned. The actor fields are folded in so a user
+    with a real bio but no repos/posts still produces a profile (broad discovery)."""
     parts: list[str] = []
     for repo in raw.get("repos", []):
         for key in ("name", "description"):
@@ -130,6 +138,13 @@ def build_text_blob(raw: dict) -> str:
     for post in raw.get("posts", []):
         if post.get("text"):
             parts.append(str(post["text"]))
+    actor = raw.get("actor", {})
+    for key in ("description", "location"):
+        if actor.get(key):
+            parts.append(str(actor[key]))
+    for link in actor.get("links", []) or []:
+        if link:
+            parts.append(str(link))
     blob = _CLEAN_RE.sub(" ", " ".join(parts).lower())
     return _WS_RE.sub(" ", blob).strip()[:MAX_TEXT_BLOB_CHARS]
 
@@ -171,10 +186,26 @@ def _last_active(raw: dict) -> str | None:
     return max(times) if times else None
 
 
+def _has_signal(raw: dict) -> bool:
+    """Any reason to keep this DID in the pool: a handle, a bio, or any
+    repo/post/star/follow activity. Used to drop ONLY the truly empty."""
+    return bool(
+        raw.get("handle")
+        or raw.get("actor", {}).get("description")
+        or raw.get("repos")
+        or raw.get("posts")
+        or raw.get("stars")
+        or raw.get("follows")
+    )
+
+
 def build_profile(did: str, raw: dict) -> dict | None:
-    """One raw user blob -> one feature profile, or None if nothing to match."""
+    """One raw user blob -> one feature profile. Returns None ONLY for a DID with no
+    usable signal at all (no handle, bio, or any activity). A thin profile with no
+    matched features is still kept: it surfaces via the recommender's cold-start
+    fallback, which keeps the feed / "load more" abundantly deep for the demo."""
     blob = build_text_blob(raw)
-    if not blob:
+    if not blob and not _has_signal(raw):
         return None
     words = _word_set(blob)
     languages = _match(blob, words, taxonomy.LANGUAGES)
@@ -244,11 +275,35 @@ async def onboard_did(
 # --------------------------------------------------------------------------- #
 # CLI
 # --------------------------------------------------------------------------- #
-async def run(in_path: Path, out_path: Path) -> dict[str, dict]:
-    dids = json.loads(in_path.read_text(encoding="utf-8"))
-    print(f"Fetching {len(dids)} DID(s) from their PDS...")
+def select_dids(raw_dids: dict[str, dict], content_only: bool) -> dict[str, str | None]:
+    """Pick which DIDs to deep-fetch, as {did: handle}. With `content_only` we skip
+    DIDs whose firehose activity was purely passive (stars / follows) to cut wasted
+    PDS fetches — but only when the rich `events` are actually present. A legacy
+    flat raw_dids.json (no events) can't be filtered, so we fetch everyone, exactly
+    as before. Skipped users still onboard on-the-fly via /onboard."""
+    have_events = any(discover.events_of(e) for e in raw_dids.values())
+    if content_only and have_events:
+        return {
+            did: discover.handle_of(entry)
+            for did, entry in raw_dids.items()
+            if discover.is_content_bearing(entry)
+        }
+    return {did: discover.handle_of(entry) for did, entry in raw_dids.items()}
+
+
+async def run(in_path: Path, out_path: Path, *, content_only: bool = False) -> dict[str, dict]:
+    raw_dids = discover.load_raw_dids(in_path)
+    if not raw_dids:
+        raise SystemExit(f"No DIDs at {in_path}. Run stage 1 (discover.py) first.")
+
+    selected = select_dids(raw_dids, content_only)
+    skipped = len(raw_dids) - len(selected)
+    print(
+        f"Fetching {len(selected)} DID(s) from their PDS "
+        f"({skipped} passive-only skipped of {len(raw_dids)})..."
+    )
     async with httpx.AsyncClient(follow_redirects=True) as client:
-        raw_map = await fetch_all_raw(dids, client)
+        raw_map = await fetch_all_raw(selected, client)
 
     profiles = build_profiles(raw_map)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -259,11 +314,16 @@ async def run(in_path: Path, out_path: Path) -> dict[str, dict]:
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description="Stage 2: DIDs -> PDS fetch -> profiles")
+    p = argparse.ArgumentParser(description="Stage 2: rich raw_dids -> PDS fetch -> profiles")
     p.add_argument("--in", dest="in_path", type=Path, default=DEFAULT_IN)
     p.add_argument("--out", dest="out_path", type=Path, default=DEFAULT_OUT)
+    p.add_argument(
+        "--prefilter", dest="content_only", action="store_true",
+        help="Only deep-fetch content-bearing DIDs (skip passive star/follow-only ones). "
+             "OFF by default now — we fetch every discovered DID for broad discovery.",
+    )
     args = p.parse_args()
-    asyncio.run(run(args.in_path, args.out_path))
+    asyncio.run(run(args.in_path, args.out_path, content_only=args.content_only))
 
 
 if __name__ == "__main__":

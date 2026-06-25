@@ -384,6 +384,33 @@ input {
   color: var(--ink);
 }
 
+/* Top-bar bookmark (saved posts). Carries a small count badge; lights up teal
+   when the Saved page is the active view. */
+.btn--bookmark {
+  position: relative;
+}
+.btn--bookmark.is-active {
+  color: var(--accent);
+  background: var(--accent-tint);
+}
+.btn--bookmark__count {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--on-accent);
+  background: var(--accent);
+  border-radius: var(--r-pill);
+  border: 2px solid var(--canvas);
+}
+
 .btn--sm {
   min-height: 30px;
   padding: 5px 11px;
@@ -932,35 +959,48 @@ input {
   min-width: 0;
   flex: 1;
 }
+.profile__avatar {
+  flex-shrink: 0;
+  display: inline-flex;
+  line-height: 0;
+  border-radius: var(--r-pill);
+  transition: opacity 0.15s ease;
+}
+.profile__avatar:hover {
+  opacity: 0.85;
+}
 .profile__handle {
+  display: block;
   font-size: 14px;
   font-weight: 600;
   color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.15s ease;
+}
+.profile__handle:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.profile__did {
+  margin-top: 1px;
+  font-family: var(--font-mono, ui-monospace, "SF Mono", monospace);
+  font-size: 11px;
+  color: var(--ink-subtle);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.profile__name {
-  font-size: 12px;
-  color: var(--ink-subtle);
-}
-.profile__bio {
-  font-size: 13px;
-  line-height: 1.45;
-  color: var(--ink-muted);
-}
-.profile__reason {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  color: var(--ink-subtle);
-}
-.profile__reason svg {
-  color: var(--accent);
+.profile__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 .profile__stats {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--s-md);
   font-size: 12px;
   color: var(--ink-subtle);
@@ -1432,11 +1472,52 @@ input {
   padding: 3px 10px;
 }
 .reel__name {
-  font-size: 26px;
+  font-size: 19px;
   font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.6px;
+  line-height: 1.25;
+  letter-spacing: -0.3px;
   color: var(--ink);
+  /* Issue titles can be long — clamp to 3 lines so the card never blows out. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.reel__name--link {
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.reel__name--link:hover {
+  color: var(--accent);
+}
+.reel__repo {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  align-self: flex-start;
+  max-width: 100%;
+  font-size: 12.5px;
+  color: var(--ink-subtle);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.reel__repo:hover {
+  color: var(--ink);
+}
+.reel__repo-owner {
+  color: var(--ink-subtle);
+}
+.reel__repo-name {
+  color: var(--ink-muted);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.reel__repo svg:last-child {
+  opacity: 0.6;
+  flex: none;
 }
 .reel__owner {
   color: var(--ink-subtle);
@@ -1635,6 +1716,62 @@ input {
   letter-spacing: 0.4px;
   color: var(--ink-tertiary);
   opacity: 0.7;
+}
+
+/* ---- Live README peek: skeleton rows, real code, and the fallback --------- */
+/* A row is shared by the loading skeleton (.skel bar) and a real code line. */
+.snip-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.reel__snippet-body--code {
+  gap: 2px;
+  padding-bottom: var(--s-md);
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, #000 70%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent);
+}
+.snip-code {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  white-space: pre;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.snip-more {
+  padding-left: 30px;
+  font-family: var(--font-mono);
+  color: var(--ink-tertiary);
+  opacity: 0.7;
+}
+.reel__snippet-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--ink-tertiary);
+}
+.reel__snippet-fallback p {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.3px;
+}
+.reel__snippet-fallback a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--accent);
+  text-decoration: none;
+}
+.reel__snippet-fallback a:hover {
+  text-decoration: underline;
 }
 
 /* ---- Issue-specific text bits -------------------------------------------- */

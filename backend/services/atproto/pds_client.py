@@ -87,3 +87,33 @@ async def get_repo_languages(
         return data.get("languages", {})
     except Exception:
         return {}
+
+
+async def get_repo_readme(
+    knot: str,
+    repo_did: str,
+    repo_name: str,
+    client: httpx.AsyncClient,
+    timeout: float = 8.0,
+) -> str | None:
+    """
+    Fetches a repo's README text from its knot server. The repo tree endpoint
+    already embeds the rendered README (`readme.contents`), so this is a single
+    call. Returns None on any failure — always best-effort.
+
+    NB: the knot keys repos by `repoDid` (the repo record's repoDid field), not the
+    record owner DID; pass repo_did, not the issue/repo owner.
+    """
+    try:
+        resp = await client.get(
+            f"https://{knot}/xrpc/sh.tangled.repo.tree",
+            params={"repo": repo_did, "name": repo_name},
+            timeout=timeout,
+        )
+        if resp.status_code != 200:
+            return None
+        readme = resp.json().get("readme") or {}
+        contents = readme.get("contents")
+        return contents if isinstance(contents, str) and contents.strip() else None
+    except Exception:
+        return None

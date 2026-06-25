@@ -51,6 +51,13 @@ export type IssueCard = {
   issue_key: string // AT-URI — the stable card id used for the "seen" cache
   repo_ref: string | null
   repo_name: string | null
+  // repo identity, enriched at build time (phase 2)
+  repo_owner_did: string | null
+  repo_owner_handle: string | null
+  repo_did: string | null // knot-side key, passed to /issue/peek
+  knot: string | null
+  repo_url: string | null // https://tangled.sh/@{owner}/{repo}
+  issue_url: string | null
   author_did: string
   author_handle: string | null
   title: string
@@ -573,6 +580,34 @@ export async function feed(
     throw new Error(await extractDetail(resp, "Couldn't load the feed"))
   }
   return (await resp.json()) as FeedResponse
+}
+
+/** A live, non-persisted README "code peek" for a card. Mirrors backend
+   api/issue_detail.py IssuePeekResponse. `available: false` = knot down/private. */
+export type IssuePeek = {
+  available: boolean
+  file: string | null
+  lines: string[]
+  truncated: boolean
+}
+
+/**
+ * GET /issue/peek — fetch the top of a repo's README from its knot, on demand.
+ * Best-effort: a down/private/localhost knot resolves to `{ available: false }`.
+ * Pass an AbortSignal so the caller can cancel on a timeout or scroll-away.
+ */
+export async function issuePeek(
+  params: { knot: string; repo_did: string; name: string },
+  signal?: AbortSignal,
+): Promise<IssuePeek> {
+  const q = new URLSearchParams({
+    knot: params.knot,
+    repo_did: params.repo_did,
+    name: params.name,
+  })
+  const resp = await fetch(`${API_BASE}/issue/peek?${q}`, { signal })
+  if (!resp.ok) throw new Error(`Peek failed (${resp.status})`)
+  return (await resp.json()) as IssuePeek
 }
 
 /** Pull FastAPI's `{ detail }` error message, falling back to the status code. */

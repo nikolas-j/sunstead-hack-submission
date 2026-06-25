@@ -11,6 +11,8 @@ import {
   Sparkles,
   Trash2,
   GitFork,
+  FolderGit2,
+  ExternalLink,
 } from "lucide-react"
 import {
   generateIssues,
@@ -121,59 +123,149 @@ function isGoodFirst(labels: string[]): boolean {
   return labels.some((l) => GOOD_FIRST_LABELS.has(l.toLowerCase().trim()))
 }
 
-// ---- the placeholder "image": a faux GitHub repo code snippet ---------------
-// The same placeholder renders on every card until the backend attaches a real
-// `snippet` (see models/issue_card.py — "the code image attaches here later").
-const SNIPPET_LINES: { w: number; k: string }[] = [
-  { w: 34, k: "kw" },
-  { w: 62, k: "fn" },
-  { w: 48, k: "" },
-  { w: 70, k: "str" },
-  { w: 41, k: "" },
-  { w: 56, k: "kw" },
-  { w: 30, k: "" },
-  { w: 66, k: "fn" },
-  { w: 45, k: "" },
-  { w: 58, k: "str" },
-  { w: 38, k: "" },
-  { w: 52, k: "kw" },
-  { w: 44, k: "" },
-  { w: 60, k: "fn" },
-]
+// ---- the card "image": a live README peek from the repo's knot ---------------
+// Fetched on demand (GET /issue/peek) only while the card is on screen, with a
+// skeleton while it loads. The in-flight request is cancelled when the card
+// scrolls out of view or after a 10s timeout (see PEEK_TIMEOUT_MS). A down /
+// private / localhost knot returns available:false → graceful "open in Tangled".
+const PEEK_TIMEOUT_MS = 10_000
+const SKELETON_WIDTHS = [34, 62, 48, 70, 41, 56, 30, 66, 45, 58, 38, 52]
+type PeekState = "idle" | "loading" | "ready" | "unavailable"
 
-function SnippetPlaceholder({ card }: { card: IssueCard }) {
-  const lang = card.languages[0] ?? "code"
-  const file = `${(card.repo_name ?? "repository").toLowerCase()}.${lang.slice(0, 3)}`
+function CodePeek({ card }: { card: IssueCard }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [state, setState] = useState<PeekState>("idle")
+  const [peek, setPeek] = useState<IssuePeek | null>(null)
+
+  const canPeek = Boolean(card.knot && card.repo_did && card.repo_name)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!canPeek) {
+      setState("unavailable")
+      return
+    }
+    if (!el) return
+
+    let controller: AbortController | null = null
+    let timer: number | undefined
+    let done = false
+    let timedOut = false
+
+    const stop = () => {
+      window.clearTimeout(timer)
+      controller?.abort()
+      controller = null
+    }
+    const start = () => {
+      if (done || controller) return // already loaded or in flight
+      controller = new AbortController()
+      timedOut = false
+      setState("loading")
+      timer = window.setTimeout(() => {
+        timedOut = true
+        controller?.abort()
+      }, PEEK_TIMEOUT_MS)
+      issuePeek(
+        { knot: card.knot!, repo_did: card.repo_did!, name: card.repo_name! },
+        controller.signal,
+      )
+        .then((res) => {
+          done = true
+          if (res.available && res.lines.length) {
+            setPeek(res)
+            setState("ready")
+          } else {
+            setState("unavailable")
+          }
+        })
+        .catch(() => {
+          // Timeout → give up (fallback). Scroll-away abort → allow a retry on return.
+          if (timedOut) {
+            done = true
+            setState("unavailable")
+          } else {
+            setState("idle")
+          }
+        })
+        .finally(() => {
+          window.clearTimeout(timer)
+          controller = null
+        })
+    }
+
+    // Fetch only while ~half the card is on screen; cancel an in-flight load as
+    // soon as it scrolls away (that's the "scroll forward" cancel).
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) start()
+        else if (!done) stop()
+      },
+      { threshold: 0.5 },
+    )
+    io.observe(el)
+    return () => {
+      io.disconnect()
+      stop()
+    }
+  }, [canPeek, card.knot, card.repo_did, card.repo_name])
+
+  const fileLabel = peek?.file ?? "README.md"
+  const repoLabel = card.repo_name ?? "repository"
+
   return (
-    <div className="reel__snippet" aria-hidden="true">
+    <div className="reel__snippet" ref={ref}>
       <div className="reel__snippet-chrome">
         <span className="reel__snippet-dots">
           <i />
           <i />
           <i />
         </span>
-        <span className="reel__snippet-file">{file}</span>
+        <span className="reel__snippet-file">
+          {state === "ready" ? `${repoLabel} · ${fileLabel}` : repoLabel}
+        </span>
       </div>
-      <div className="reel__snippet-body">
-        {SNIPPET_LINES.map((line, i) => (
-          <div className="snip-line" key={i}>
-            <span className="snip-ln">{i + 1}</span>
-            <span
-              className={"snip-bar" + (line.k ? ` snip-bar--${line.k}` : "")}
-              style={{ width: `${line.w}%` }}
-            />
-          </div>
-        ))}
-      </div>
-      <div className="reel__snippet-note">Code preview coming soon</div>
+
+      {state === "ready" && peek ? (
+        <div className="reel__snippet-body reel__snippet-body--code">
+          {peek.lines.map((line, i) => (
+            <div className="snip-row" key={i}>
+              <span className="snip-ln">{i + 1}</span>
+              <code className="snip-code">{line || " "}</code>
+            </div>
+          ))}
+          {peek.truncated ? <div className="snip-more">…</div> : null}
+        </div>
+      ) : state === "unavailable" ? (
+        <div className="reel__snippet-fallback">
+          <FolderGit2 size={20} />
+          <p>Code preview unavailable</p>
+          {card.repo_url ? (
+            <a href={card.repo_url} target="_blank" rel="noreferrer">
+              Open in Tangled <ExternalLink size={12} />
+            </a>
+          ) : null}
+        </div>
+      ) : (
+        <div className="reel__snippet-body" aria-hidden="true">
+          {SKELETON_WIDTHS.map((w, i) => (
+            <div className="snip-row" key={i}>
+              <span className="snip-ln">{i + 1}</span>
+              <span className="skel skel--line" style={{ width: `${w}%` }} />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
 
 // ---- one issue card ----------------------------------------------------------
-function IssueReel({ card }: { card: IssueCard }) {
+function IssueReel({ card, identifier }: { card: IssueCard; identifier: string }) {
   const [liked, setLiked] = useState(false)
-  const [saved, setSaved] = useState(false)
+  // Saved state lives in the shared bookmark store (persisted, per-user) so it
+  // shows up in the top-bar count and the Saved page, and survives reloads.
+  const saved = useIsSaved(identifier, card.issue_key)
   const [copied, setCopied] = useState(false)
 
   const s = card.stats ?? {}
@@ -207,10 +299,36 @@ function IssueReel({ card }: { card: IssueCard }) {
     <section className="reel">
       <div className="reel__stage">
         <article className="reel__card">
-          <SnippetPlaceholder card={card} />
+          <CodePeek card={card} />
           <div className="reel__inner">
             <span className="reel__reason">{reasonFor(card)}</span>
-            <h2 className="reel__name">{card.title}</h2>
+            {card.issue_url || card.repo_url ? (
+              <a
+                className="reel__name reel__name--link"
+                href={card.issue_url ?? card.repo_url ?? undefined}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {card.title}
+              </a>
+            ) : (
+              <h2 className="reel__name">{card.title}</h2>
+            )}
+            {card.repo_name ? (
+              <a
+                className="reel__repo"
+                href={card.repo_url ?? undefined}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FolderGit2 size={13} />
+                <span className="reel__repo-owner">
+                  {card.repo_owner_handle ?? "repo"}/
+                </span>
+                <span className="reel__repo-name">{card.repo_name}</span>
+                <ExternalLink size={11} />
+              </a>
+            ) : null}
             {card.body_excerpt ? (
               <p className="reel__desc">{card.body_excerpt}</p>
             ) : null}
@@ -284,7 +402,7 @@ function IssueReel({ card }: { card: IssueCard }) {
           <div className="reel-action">
             <button
               className={"reel-action__btn" + (saved ? " is-saved" : "")}
-              onClick={() => setSaved((v) => !v)}
+              onClick={() => toggleSaved(identifier, card)}
               aria-pressed={saved}
               aria-label="Save for later"
             >
@@ -493,7 +611,7 @@ export function Feed({
         ) : (
           <>
             {cards.map((c) => (
-              <IssueReel key={c.issue_key} card={c} />
+              <IssueReel key={c.issue_key} card={c} identifier={identifier} />
             ))}
 
             {/* Sentinel + end-of-feed state. Always rendered so the observer has a

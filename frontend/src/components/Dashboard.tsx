@@ -24,6 +24,8 @@ export function Dashboard({
   onOpenFeed: () => void
   onLogout?: () => void
 }) {
+  const savedCount = useSavedCount(did)
+
   useEffect(() => {
     // Respect users who ask for less motion — keep native scrolling for them.
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
