@@ -1,202 +1,3978 @@
 {
-  "did:plc:2pjd4l46ll2v3ytlxpzfugfm": null,
-  "did:plc:cdgeiwvgespxv3loh7xg6sdk": null,
-  "did:plc:mvy6jvolas42qzt6yezkyzou": null,
-  "did:plc:4srytxxvqxgfqzex62qrveph": null,
-  "did:plc:2xele35j3gibheafzexc3ojn": null,
-  "did:plc:kmd75cwrw3kuflznnplc2fmw": null,
-  "did:plc:74ugjxq4wb5oflhtqfq4mywo": null,
-  "did:plc:sfypmxv4qj6va7bzwrqj63wm": null,
-  "did:plc:uvy6ilat4g57dy6mwqy6gaj4": null,
-  "did:plc:tsponb7sztteb7crrwiu6lh2": null,
-  "did:plc:xu7ovnciqsq4zvu2avojj2v4": null,
-  "did:plc:e6acouatlo6sfa25cbp22tqb": null,
-  "did:plc:krq4xo6qn54wdgjotopwukst": null,
-  "did:plc:dye432b3fbkonjhxirqcrcho": null,
-  "did:plc:zzu4w6iecwa5utuunpkh22c5": null,
-  "did:plc:bqwlr5egcyejroftbm4edma4": null,
-  "did:plc:ws2djrzzcv5cupj6h6a7skng": null,
-  "did:plc:e3rlhpe3hjntpncei5l63k33": null,
-  "did:plc:bi5awq3b7xiuubhwo6qtuvdm": null,
-  "did:plc:7xwbysa7qjpz25pdaj2f65xs": null,
-  "did:plc:nq2dd3lzdw3nhnffr7knzu4f": null,
-  "did:plc:w2jkauui6uxmv4hbb2mbsa6v": null,
-  "did:plc:oxxxxbvcsn3ynnoreaq6lfit": null,
-  "did:plc:i63mbrpzioafunpr5ejigdg6": null,
-  "did:plc:ce2g7zjn2p2c6hhb2puq24ff": null,
-  "did:plc:slrecyg3cvfns5m3ub474xsh": null,
-  "did:plc:qfpnj4og54vl56wngdriaxug": null,
-  "did:plc:qnjinyhdurgbpcosgckjhds7": null,
-  "did:plc:kaq6rjjudzl4ylpcmlv4qqee": null,
-  "did:plc:45kqdifsgauoeqmnvgiszpuh": null,
-  "did:plc:qey3w2m5gav4wfql26fxmpqk": null,
-  "did:plc:q2qaoopawaueyhcgksej7pko": null,
-  "did:plc:in23p3pqh7yycgjvnss6p4gh": null,
-  "did:plc:axco74pea7jk72mqtaafxwun": null,
-  "did:plc:6bgromdbqcnbf5zomypr6ehl": null,
-  "did:plc:udmriduzw2grt3nkdhg5oece": null,
-  "did:plc:tjpwzjidmtoxaz2cbe5hgdld": null,
-  "did:plc:xms5i546ly25mzbvotz5hoxe": null,
-  "did:plc:5fa3qewvkbwtoxgzy5bwhht5": null,
-  "did:plc:zeee4odc5cxdrskgszldccsg": null,
-  "did:plc:cvdybbwue2jcfi4gvpecnfj7": null,
-  "did:plc:ixx3s5lcobljrmfmdy7oov36": null,
-  "did:plc:32rhb7vjjl6nnhxcf2rjwc5t": null,
-  "did:plc:4npgjkj7skiq4masgzn2twbn": null,
-  "did:plc:r53s5c7eq637cp3jgshxo65o": null,
-  "did:plc:6dtld5vgi77wxe23ezsjiyyh": null,
-  "did:plc:vqdqdcrdugbga5cfqke5gqks": null,
-  "did:plc:ayqydh2dvjltjqsdavj2z4kj": null,
-  "did:plc:dfc6xcbardcfvw2sj7rrk56e": null,
-  "did:plc:yvfb4cecw3addhhhaavvijx3": null,
-  "did:plc:trbobndw5zda22zhru3jliah": null,
-  "did:plc:frr2jwhxdqxbtupqzvusstwt": null,
-  "did:plc:ywes6nsn7usyfuzjfgpkgzbr": null,
-  "did:plc:yeqdaka5ukyoyluefhhu5iq4": null,
-  "did:plc:d5qdiupxhi2arfaxngsbsdou": null,
-  "did:plc:dysxpplr62qrw34w6ytjafh5": null,
-  "did:plc:yrp2f6wcixa7diygyjs2c7tx": null,
-  "did:plc:d45cue24cwqgfh4hct3osdju": null,
-  "did:plc:qrvgec7cuusarnxdbtiauifc": null,
-  "did:plc:ecxsy5fgkqbwt5kttfumldv5": null,
-  "did:plc:6q5mvnjtku2qxbg2o5ggbv76": null,
-  "did:plc:v4rc7yel6zfayeznrhtfa65z": null,
-  "did:plc:vip3siauvkzzgtihciq23hpp": null,
-  "did:plc:6at5iyhjlkrhlhozqzkvczlp": null,
-  "did:plc:7qjlpi5l4lb4hrdahslxceg7": null,
-  "did:plc:zurq3vbrh5bb3b7q3eiqt5od": null,
-  "did:plc:rkagcldecxf64optplrqkhwl": null,
-  "did:plc:vh75363dqt767dyw6c3ytr5k": null,
-  "did:plc:er72hemkqn5zginik3ukz4r2": null,
-  "did:plc:2ml3lbzfxn6jwz637keobjpf": null,
-  "did:plc:4jtasmg5fzxys7wzcrdxlka5": null,
-  "did:plc:jhfyawdyqniqubpsuqqjvwge": null,
-  "did:plc:zzhc2zcafcagxdiqzchxmw7f": null,
-  "did:plc:qhqsjnq5q4o6quodo356inyg": null,
-  "did:plc:law4fb4pdaamvgkcwfjvsnor": null,
-  "did:plc:ry4ehtfryhrxe5picw2ftqed": null,
-  "did:plc:ucvp2asoeu2n5h6vhfasqbuo": null,
-  "did:plc:qhewfp7cobmp3tc6oyssrchq": null,
-  "did:plc:22fwyapyd7vaof2ro7g7sko4": null,
-  "did:plc:wzfimoezphtlwrszihohdhad": null,
-  "did:plc:qgkji2wqaf3hb7hgcrl5bwse": null,
-  "did:plc:oeajogxek6evdeavmodg4oes": null,
-  "did:plc:t2amglpxta6i4ab2sazfnl5l": null,
-  "did:plc:p6q34he4s2ejnvc7auzhyz5x": null,
-  "did:plc:lbgdnulvmwf35x2ckdtdntnb": null,
-  "did:plc:wzhlaayutcq4p74ixdzoykfv": null,
-  "did:plc:qn4kcfoyalgxgcgavp4omfm7": null,
-  "did:plc:ltmk4yfkqzwa7zwuo5l2bglf": null,
-  "did:plc:sbxos5tzflwuggcmuif7rha4": null,
-  "did:plc:jt6kj2sep45tdidbjmssdtev": null,
-  "did:plc:h4fnywmagy5xdsyst3yke2e2": null,
-  "did:plc:f4fbmsj5amk6elkhgaxgwof7": null,
-  "did:plc:5pjncip55v62xtqf6zsr2aor": null,
-  "did:plc:e4byogblahr3u6f34vrl3zk3": null,
-  "did:plc:zrsizlbv663bhdinrc7dsc3s": null,
-  "did:plc:gmwajnfpj4of6udst3d2vpf7": null,
-  "did:plc:3dlrptpiavvovzl25div72n4": null,
-  "did:plc:fvwunvsoeldtat5f5rxa3wpg": null,
-  "did:plc:3cuctyds7q4smi4vfi7frrfz": null,
-  "did:plc:57zjb3mgd33agawnowfhm5tf": null,
-  "did:plc:lmp6lqipmgi754v7iyjvl5tb": null,
-  "did:plc:5dfrejhg5ruizouhxluztm7z": null,
-  "did:plc:mvu5lm633nordjjhjsazoiym": null,
-  "did:plc:nopkhih2d6mrk2tuonwcydok": null,
-  "did:plc:ej5lmsghf4md7nhp5xyxzwhj": null,
-  "did:plc:torlrtyri5stx466nmgv5dcx": null,
-  "did:plc:yl7o7gt5tdxez2tpsniw54ms": null,
-  "did:plc:45focl6lvubhhk4s2525p7yt": null,
-  "did:plc:etzokvnrdfnwj3zqgv4molyn": null,
-  "did:plc:vgalk64immmei6ldhleb6qm7": null,
-  "did:plc:oswgy7z4ome2n6m3fz5cak5o": null,
-  "did:plc:p6sfguu7q3lpacpkmdhvxwfb": null,
-  "did:plc:m2lwexwce4oanyvf4busumut": null,
-  "did:plc:6l6bvppg5hobws7avrcfzbnf": null,
-  "did:plc:iairgvhwqwyqhvnlyyglpnib": null,
-  "did:plc:xa6mdd7so23iob54ukgzxhci": null,
-  "did:plc:443qt3hbccooofhhkx6xgr5i": null,
-  "did:plc:ff2c5i7a3dmvdlc4nfudox2z": null,
-  "did:plc:f24zk6auocv4srcdnyehrofz": null,
-  "did:plc:n23rrib3pcaqyudimgtiislt": null,
-  "did:plc:tfe6iyjgh67nxdomzqpoiniz": null,
-  "did:plc:e4ap3htmnvvfxc3tf4a6yuxz": null,
-  "did:plc:faw52o3uqtkdnu4iyuy2q5s6": null,
-  "did:plc:wzwd3ldvticv62npbexucgfo": null,
-  "did:plc:cyytwoxdaj6wu5dlkubtqmf3": null,
-  "did:plc:2srmnoay3fyxruxydw2gju6i": null,
-  "did:plc:zuvsv5n7ugfwygticrqmd4mj": null,
-  "did:plc:enlzdjfhaxlozltletz6vxjf": null,
-  "did:plc:b3lvzdp2k457ywafqsdf4oiw": null,
-  "did:plc:it4qsb3fomffevpdiey2yvbp": null,
-  "did:plc:5wc6sm4lrfxvgcgtf26o7ut5": null,
-  "did:plc:v7bkuj4xsft6vboe3za4ofms": null,
-  "did:plc:sb777qp6b5z63nebxfzzwgqs": null,
-  "did:plc:ncbczsumeln3tg2tggte24it": null,
-  "did:plc:u7lf3kfovfntbo6ck6rgbexp": null,
-  "did:plc:zxphdvm36rjwpin63ibuue47": null,
-  "did:plc:37pm5rrtlwulszyece7fnr66": null,
-  "did:plc:ttkqrxdbqm5527alniarunfp": null,
-  "did:plc:lnyjsgtrdsd34ejwneqwaawi": null,
-  "did:plc:ysy42gk3jzamwypf72c2jais": null,
-  "did:plc:kawsyedizxf32hqrjbqlvubb": null,
-  "did:plc:jcawdwri4edmw2st4bmwx7gd": null,
-  "did:plc:dlqx32gksfhzemoa3bivfnmw": null,
-  "did:plc:fjhxyihqv6ndbu7dg3lf4sji": null,
-  "did:plc:s6lkekvymokbtrdpdtwj2ts3": null,
-  "did:plc:mo7tn5gutaairsctxgvwmhqs": null,
-  "did:plc:xfvdq77x3au7rvfsrhqdxq62": null,
-  "did:plc:mvaixyfkil7ptihknorchidu": null,
-  "did:plc:4pitehrlain6ciftodqusfzr": null,
-  "did:plc:phhddw6r64ppzkifowm44mhj": null,
-  "did:plc:42anrtukztdw6czkwqvfkhqz": null,
-  "did:plc:czksqwzv436ydxza6sikra3l": null,
-  "did:plc:pi25glfzf4mpnz5tngap56ry": null,
-  "did:plc:7lfde4jijzvren2lrybyudd7": null,
-  "did:plc:2lllxjfrtlmesfdu3htadrvr": null,
-  "did:plc:fx7a2ym6koqkss2dsljfpeas": null,
-  "did:plc:7pk37nzwfihqvunrvzs6p2ed": null,
-  "did:plc:wy3kckizomm4dvxpaq7ykxyo": null,
-  "did:plc:7m5qdrm5rq43qboc72ll7yd7": null,
-  "did:plc:kbszhvy4f7t4seykklsfku62": null,
-  "did:plc:jolax7xtadbkuesdbgf3k2qx": null,
-  "did:plc:aeajxnblcagredsexqrksds6": null,
-  "did:plc:abjebn6a6e57ykoebo6a5kxf": null,
-  "did:plc:aovbh5bbumchpw3djdqxmtvo": null,
-  "did:plc:rrijqw4w5u7omqxffe44wajj": null,
-  "did:plc:o42llsyi67az2lrn2vxuq3ej": null,
-  "did:plc:mhf5gyg7kwtri33sqfibevbt": null,
-  "did:plc:lhmjiih4frpxnwtkn7mj6iwa": null,
-  "did:plc:snvavg5eeoy4c44yqiyjj2cs": null,
-  "did:plc:obh67xqo5diueywolttbutk4": null,
-  "did:plc:ddnpqtlmqhozwc6natfbr67g": null,
-  "did:plc:whphm3nxmfipoczkxlhwkind": null,
-  "did:plc:6mirxsjmu4usr5lzz2yuogko": null,
-  "did:plc:4lbjmqs4hybmxs2p5e6p7kl7": null,
-  "did:plc:qw4hlnosed3fl4jq47vn7xcn": null,
-  "did:plc:sejdulhkezcc6wbebhwjxf5a": null,
-  "did:plc:nq2dxowgx3hhmw7cz3s7zdgb": null,
-  "did:plc:6oejskwivzebndyrass2sh62": null,
-  "did:plc:wfxmiftn75slnjsdmm7vbtmf": null,
-  "did:plc:ydvhnlzv3kmvmbs4euzlzskl": null,
-  "did:plc:hkjdhcz37zn472wlnemun4ic": null,
-  "did:plc:kc3abrdmti3z34b5qkgcg463": null,
-  "did:plc:ktm42fk4wm2yhyxwezst5tcu": null,
-  "did:plc:fa6bdb25ugro7sqsvbqkfjop": null,
-  "did:plc:zapwalfevovzbnooecxxhndx": null,
-  "did:plc:qv4sznlvavc4aw2x3p6yro4j": null,
-  "did:plc:dzzswojp6ojjg3o5lfr76mlf": null,
-  "did:plc:oxmly46a2lyj7mwp7fgnztfd": null,
-  "did:plc:euszmzdbuuy77nhxpnkruyom": null,
-  "did:plc:6nmc2vog3ji3vkmbweaep2o4": null,
-  "did:plc:rditrb4dfhcminicozvzbfqn": null,
-  "did:plc:zre6nfoemm7mheeruxpkpwb4": null,
-  "did:plc:kxk6ikxm6hepaos25vtj2a3f": null,
-  "did:plc:4s77fdmleyuasx55agsqznff": null,
-  "did:plc:anhsqfxz42yyzezjqlxxx4va": null,
-  "did:plc:34w5wzgmdu5lnedpxzgwwm7k": null,
-  "did:plc:jfbri7q2uhohl42q66a6djzc": null,
-  "did:plc:vjeqvcnracagzyk2f5dm7jfy": null,
-  "did:plc:wps54iuzkps6beuftlb7tngz": null,
-  "did:plc:elqoxjc7cq5lx2anfmvqq57t": null
+  "did:plc:tztzxg26o2rdzyceoejkupnw": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3moy7d7scke22",
+        "uri": "at://did:plc:tztzxg26o2rdzyceoejkupnw/sh.tangled.feed.star/3moy7d7scke22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-23T23:08:25+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:vgvsp3i5bqj3iqcdwfehhisv"
+          }
+        },
+        "time_us": 1782250499643565
+      }
+    ]
+  },
+  "did:plc:7a6j324u6kqlpdesay4rrzog": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.knot",
+        "operation": "update",
+        "rkey": "knot.nebu.land",
+        "uri": "at://did:plc:7a6j324u6kqlpdesay4rrzog/sh.tangled.knot/knot.nebu.land",
+        "record": {
+          "$type": "sh.tangled.knot",
+          "createdAt": "2026-06-23T23:12:57+03:00"
+        },
+        "time_us": 1782250774438937
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3moy7mtr2e322",
+        "uri": "at://did:plc:7a6j324u6kqlpdesay4rrzog/sh.tangled.feed.star/3moy7mtr2e322",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-23T23:13:48+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:fodfgwa72st5kdv5tbcvxfmg"
+          }
+        },
+        "time_us": 1782250824830026
+      },
+      {
+        "collection": "sh.tangled.graph.vouch",
+        "operation": "create",
+        "rkey": "did:plc:wshs7t2adsemcrrd4snkeqli",
+        "uri": "at://did:plc:7a6j324u6kqlpdesay4rrzog/sh.tangled.graph.vouch/did:plc:wshs7t2adsemcrrd4snkeqli",
+        "record": {
+          "$type": "sh.tangled.graph.vouch",
+          "createdAt": "2026-06-23T23:18:39+03:00",
+          "kind": "vouch"
+        },
+        "time_us": 1782251115939943
+      }
+    ]
+  },
+  "did:plc:stqgbcvdsr47hdul5rvkiash": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moy7rgmzhk22",
+        "uri": "at://did:plc:stqgbcvdsr47hdul5rvkiash/sh.tangled.graph.follow/3moy7rgmzhk22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-23T23:16:22+03:00",
+          "subject": "did:plc:v3lpbvpa4s5yxincntuvtwtm"
+        },
+        "time_us": 1782250981423215
+      }
+    ]
+  },
+  "did:plc:7whqxuytrlam6ll6zxmlikjl": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:7whqxuytrlam6ll6zxmlikjl/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": true,
+          "description": "Pharmacist by training, SRE by passion; foodie and techie at heart;",
+          "links": [
+            "https://bsky.app/profile/atmosx.bsky.social",
+            "https://libretooth.gr/@atmosx",
+            "https://www.convalesco.org/",
+            "",
+            ""
+          ],
+          "location": "Drama, Greece",
+          "preferredHandle": "",
+          "pronouns": "he/him",
+          "stats": [
+            "",
+            ""
+          ]
+        },
+        "time_us": 1782251343418250
+      },
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:7whqxuytrlam6ll6zxmlikjl/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "avatar": {
+            "$type": "blob",
+            "ref": {
+              "$link": "bafkreie6vz2gy5fjzbd7qltpux7pwpg2vm4emaof7tklyn7wtraxx6pgee"
+            },
+            "mimeType": "image/png",
+            "size": 896070
+          },
+          "bluesky": true,
+          "description": "Pharmacist by training, SRE by passion; foodie and techie at heart;",
+          "links": [
+            "https://bsky.app/profile/atmosx.bsky.social",
+            "https://libretooth.gr/@atmosx",
+            "https://www.convalesco.org/",
+            "",
+            ""
+          ],
+          "location": "Drama, Greece",
+          "preferredHandle": "",
+          "pronouns": "he/him",
+          "stats": [
+            "",
+            ""
+          ]
+        },
+        "time_us": 1782251354921534
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "s1234",
+        "uri": "at://did:plc:7whqxuytrlam6ll6zxmlikjl/sh.tangled.repo/s1234",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-23T23:28:07+03:00",
+          "description": "Repo example",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:nfjvw6gpchjmgspu2kllxpzp"
+        },
+        "time_us": 1782251745698860
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "create",
+        "rkey": "3moyahgo3zn22",
+        "uri": "at://did:plc:7whqxuytrlam6ll6zxmlikjl/sh.tangled.publicKey/3moyahgo3zn22",
+        "record": {
+          "$type": "sh.tangled.publicKey",
+          "createdAt": "2026-06-23T23:28:41+03:00",
+          "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMjeGCdkG0SzCtrHYXdnsVRzimwWW3LrP5bVSPV8I/8M",
+          "name": "personal"
+        },
+        "time_us": 1782251777863255
+      }
+    ]
+  },
+  "did:plc:mexvtvwyptcdlbwbj3osq2tg": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "update",
+        "rkey": "respawn-social-web",
+        "uri": "at://did:plc:mexvtvwyptcdlbwbj3osq2tg/sh.tangled.repo/respawn-social-web",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-19T16:47:06Z",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix"
+          ],
+          "repoDid": "did:plc:aj33wks2bdeiuoduc444jxpf",
+          "spindle": "spindle.tangled.sh"
+        },
+        "time_us": 1782251414354307
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "update",
+        "rkey": "respawn-social-web",
+        "uri": "at://did:plc:mexvtvwyptcdlbwbj3osq2tg/sh.tangled.repo/respawn-social-web",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-19T16:47:06Z",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix"
+          ],
+          "repoDid": "did:plc:aj33wks2bdeiuoduc444jxpf",
+          "spindle": "spindle.tangled.sh",
+          "website": "https://respawn.social"
+        },
+        "time_us": 1782251450715446
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moybne53sg22",
+        "uri": "at://did:plc:mexvtvwyptcdlbwbj3osq2tg/sh.tangled.graph.follow/3moybne53sg22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-23T23:49:53+03:00",
+          "subject": "did:plc:fpruhuo22xkm5o7ttr2ktxdo"
+        },
+        "time_us": 1782253087076931
+      }
+    ]
+  },
+  "did:plc:qfngkejlw4ghji2myc73hbdh": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "delete",
+        "rkey": "apertus-70b-instruct-2509-experiments",
+        "uri": "at://did:plc:qfngkejlw4ghji2myc73hbdh/sh.tangled.repo/apertus-70b-instruct-2509-experiments",
+        "record": null,
+        "time_us": 1782252557421441
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "p-lichen-fork",
+        "uri": "at://did:plc:qfngkejlw4ghji2myc73hbdh/sh.tangled.repo/p-lichen-fork",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T04:46:13Z",
+          "knot": "knot1.tangled.sh",
+          "name": "p-lichen-fork"
+        },
+        "time_us": 1782276374403821
+      }
+    ]
+  },
+  "did:plc:ew3qowq4bsc67qohlxcbmsdb": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "mod_uploader",
+        "uri": "at://did:plc:ew3qowq4bsc67qohlxcbmsdb/sh.tangled.repo/mod_uploader",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-23T23:55:24+03:00",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:dm4d6r6micvzrzsqwmfmsbb4"
+        },
+        "time_us": 1782253407302919
+      }
+    ]
+  },
+  "did:plc:vc7r2cxdspvghmv5jpw7jauv": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "create",
+        "rkey": "self",
+        "uri": "at://did:plc:vc7r2cxdspvghmv5jpw7jauv/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false
+        },
+        "time_us": 1782253494161725
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moyc235juc22",
+        "uri": "at://did:plc:vc7r2cxdspvghmv5jpw7jauv/sh.tangled.graph.follow/3moyc235juc22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-23T23:57:00+03:00",
+          "subject": "did:plc:fpruhuo22xkm5o7ttr2ktxdo"
+        },
+        "time_us": 1782253501008528
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moyc25za6b22",
+        "uri": "at://did:plc:vc7r2cxdspvghmv5jpw7jauv/sh.tangled.graph.follow/3moyc25za6b22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-23T23:57:03+03:00",
+          "subject": "did:plc:onu3oqfahfubgbetlr4giknc"
+        },
+        "time_us": 1782253503740339
+      }
+    ]
+  },
+  "did:plc:wshs7t2adsemcrrd4snkeqli": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.spindle.member",
+        "operation": "create",
+        "rkey": "3moybzw6ktr22",
+        "uri": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.spindle.member/3moybzw6ktr22",
+        "record": {
+          "$type": "sh.tangled.spindle.member",
+          "createdAt": "2026-06-23T23:56:54+03:00",
+          "instance": "spindle.tangled.sh",
+          "subject": "did:plc:vc7r2cxdspvghmv5jpw7jauv"
+        },
+        "time_us": 1782253494763352
+      },
+      {
+        "collection": "sh.tangled.spindle.member",
+        "operation": "create",
+        "rkey": "3moyerooioc22",
+        "uri": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.spindle.member/3moyerooioc22",
+        "record": {
+          "$type": "sh.tangled.spindle.member",
+          "createdAt": "2026-06-24T00:45:59+03:00",
+          "instance": "spindle.tangled.sh",
+          "subject": "did:plc:d3yfjwnyrxcxtmtotbkzjywd"
+        },
+        "time_us": 1782256353410435
+      },
+      {
+        "collection": "sh.tangled.spindle.member",
+        "operation": "create",
+        "rkey": "3moygpwh3v422",
+        "uri": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.spindle.member/3moygpwh3v422",
+        "record": {
+          "$type": "sh.tangled.spindle.member",
+          "createdAt": "2026-06-24T01:20:48+03:00",
+          "instance": "spindle.tangled.sh",
+          "subject": "did:plc:c6hlcsrxjrl75b54vqdotpdo"
+        },
+        "time_us": 1782258264369430
+      },
+      {
+        "collection": "sh.tangled.spindle.member",
+        "operation": "create",
+        "rkey": "3moyje4ktq622",
+        "uri": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.spindle.member/3moyje4ktq622",
+        "record": {
+          "$type": "sh.tangled.spindle.member",
+          "createdAt": "2026-06-24T02:07:52+03:00",
+          "instance": "spindle.tangled.sh",
+          "subject": "did:plc:enft5termehjcltb6gavxx6z"
+        },
+        "time_us": 1782260471114588
+      },
+      {
+        "collection": "sh.tangled.spindle.member",
+        "operation": "create",
+        "rkey": "3moynzi6wpo22",
+        "uri": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.spindle.member/3moynzi6wpo22",
+        "record": {
+          "$type": "sh.tangled.spindle.member",
+          "createdAt": "2026-06-24T03:31:25+03:00",
+          "instance": "spindle.tangled.sh",
+          "subject": "did:plc:c3jaxssn4xlxdlhjwn6rul2r"
+        },
+        "time_us": 1782263886616057
+      },
+      {
+        "collection": "sh.tangled.spindle.member",
+        "operation": "create",
+        "rkey": "3moz2gmjxvn22",
+        "uri": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.spindle.member/3moz2gmjxvn22",
+        "record": {
+          "$type": "sh.tangled.spindle.member",
+          "createdAt": "2026-06-24T07:13:30+03:00",
+          "instance": "spindle.tangled.sh",
+          "subject": "did:plc:g2cv2aanm64kfjsnl67bjlkc"
+        },
+        "time_us": 1782274411398266
+      },
+      {
+        "collection": "sh.tangled.spindle.member",
+        "operation": "create",
+        "rkey": "3moz7ugnifw22",
+        "uri": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.spindle.member/3moz7ugnifw22",
+        "record": {
+          "$type": "sh.tangled.spindle.member",
+          "createdAt": "2026-06-24T08:50:43+03:00",
+          "instance": "spindle.tangled.sh",
+          "subject": "did:plc:pw3smigfoipermltmsuc4224"
+        },
+        "time_us": 1782280244014006
+      },
+      {
+        "collection": "sh.tangled.spindle.member",
+        "operation": "create",
+        "rkey": "3mozbmv6gkm22",
+        "uri": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.spindle.member/3mozbmv6gkm22",
+        "record": {
+          "$type": "sh.tangled.spindle.member",
+          "createdAt": "2026-06-24T09:22:16+03:00",
+          "instance": "spindle.tangled.sh",
+          "subject": "did:plc:cc5bxncei6t5mcuxfyar3ieh"
+        },
+        "time_us": 1782282137817615
+      },
+      {
+        "collection": "sh.tangled.spindle.member",
+        "operation": "create",
+        "rkey": "3mozekobrqo22",
+        "uri": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.spindle.member/3mozekobrqo22",
+        "record": {
+          "$type": "sh.tangled.spindle.member",
+          "createdAt": "2026-06-24T10:14:44+03:00",
+          "instance": "spindle.tangled.sh",
+          "subject": "did:plc:5e44ypvdatwje5jxjwgnde66"
+        },
+        "time_us": 1782285285534116
+      }
+    ]
+  },
+  "did:plc:fip3nyk6tjo3senpq4ei2cxw": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3moyca5sup322",
+        "uri": "at://did:plc:fip3nyk6tjo3senpq4ei2cxw/sh.tangled.feed.star/3moyca5sup322",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T00:00:24+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#string",
+            "uri": "at://did:plc:ituoear7k6qx3smjfoxhufm4/sh.tangled.string/3moubdzukrx22"
+          }
+        },
+        "time_us": 1782253704915278
+      }
+    ]
+  },
+  "did:plc:nryyzbff6hqgwnlfjycj4vk3": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moycg2xdyz22",
+        "uri": "at://did:plc:nryyzbff6hqgwnlfjycj4vk3/sh.tangled.graph.follow/3moycg2xdyz22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T00:03:42+03:00",
+          "subject": "did:plc:fpruhuo22xkm5o7ttr2ktxdo"
+        },
+        "time_us": 1782253915506275
+      }
+    ]
+  },
+  "did:plc:vro3sykit2gjemuza2pwvxwy": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3moydi6yons22",
+        "uri": "at://did:plc:vro3sykit2gjemuza2pwvxwy/sh.tangled.feed.star/3moydi6yons22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T00:22:47+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:3vyrkgxr4zwl2xf5lduub7gz"
+          }
+        },
+        "time_us": 1782255031114661
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moydibvinq22",
+        "uri": "at://did:plc:vro3sykit2gjemuza2pwvxwy/sh.tangled.graph.follow/3moydibvinq22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T00:22:50+03:00",
+          "subject": "did:plc:d4f2eymfzitonxespadbr43y"
+        },
+        "time_us": 1782255033874040
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "delete",
+        "rkey": "markus",
+        "uri": "at://did:plc:vro3sykit2gjemuza2pwvxwy/sh.tangled.repo/markus",
+        "record": null,
+        "time_us": 1782255896565188
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "markus",
+        "uri": "at://did:plc:vro3sykit2gjemuza2pwvxwy/sh.tangled.repo/markus",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T00:37:38+03:00",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:azvhl4xeienzk45xnh5fleal"
+        },
+        "time_us": 1782255907473011
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "delete",
+        "rkey": "markus",
+        "uri": "at://did:plc:vro3sykit2gjemuza2pwvxwy/sh.tangled.repo/markus",
+        "record": null,
+        "time_us": 1782255912068187
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "markus",
+        "uri": "at://did:plc:vro3sykit2gjemuza2pwvxwy/sh.tangled.repo/markus",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T00:37:58+03:00",
+          "description": "your personal link storage assistant",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:zcragq27srw3na4zjc72xq2h"
+        },
+        "time_us": 1782255925878720
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3moyeexrb7y22",
+        "uri": "at://did:plc:vro3sykit2gjemuza2pwvxwy/sh.tangled.feed.star/3moyeexrb7y22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T00:38:53+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:zcragq27srw3na4zjc72xq2h"
+          }
+        },
+        "time_us": 1782255974243661
+      }
+    ]
+  },
+  "did:plc:hzh3ssn7o2i7yqdl7wzkquy3": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moydk7hyex22",
+        "uri": "at://did:plc:hzh3ssn7o2i7yqdl7wzkquy3/sh.tangled.graph.follow/3moydk7hyex22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T00:23:55+03:00",
+          "subject": "did:plc:fpruhuo22xkm5o7ttr2ktxdo"
+        },
+        "time_us": 1782255095630421
+      }
+    ]
+  },
+  "did:plc:knpy2gqiaxodiydgsfftxrvi": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.reaction",
+        "operation": "create",
+        "rkey": "3moye5josih22",
+        "uri": "at://did:plc:knpy2gqiaxodiydgsfftxrvi/sh.tangled.feed.reaction/3moye5josih22",
+        "record": {
+          "$type": "sh.tangled.feed.reaction",
+          "createdAt": "2026-06-24T00:34:43+03:00",
+          "reaction": "\ud83d\udc4d",
+          "subject": "at://did:plc:qay5t74gafoql7x4j3ahzau7/sh.tangled.feed.comment/3mkx7kwp24a22"
+        },
+        "time_us": 1782255737031477
+      }
+    ]
+  },
+  "did:plc:dh4fszenu2bvxhp5lngl755r": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "frontend-challenges",
+        "uri": "at://did:plc:dh4fszenu2bvxhp5lngl755r/sh.tangled.repo/frontend-challenges",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T00:36:01+03:00",
+          "description": "Frontend Challenges",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:4y5g6xybi2vlbtthpzzox2uf"
+        },
+        "time_us": 1782255814606193
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "create",
+        "rkey": "3moygmxq2zk22",
+        "uri": "at://did:plc:dh4fszenu2bvxhp5lngl755r/sh.tangled.publicKey/3moygmxq2zk22",
+        "record": {
+          "$type": "sh.tangled.publicKey",
+          "createdAt": "2026-06-24T01:19:09+03:00",
+          "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBBJ4jUmt5bLX9ZczTSeE2R5+INUMN4S11BiwzKV4JgQ andrew.dias2@gmail.com",
+          "name": "Andrito"
+        },
+        "time_us": 1782258184588703
+      }
+    ]
+  },
+  "did:plc:d3yfjwnyrxcxtmtotbkzjywd": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "create",
+        "rkey": "self",
+        "uri": "at://did:plc:d3yfjwnyrxcxtmtotbkzjywd/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false
+        },
+        "time_us": 1782256353388523
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "showtime",
+        "uri": "at://did:plc:d3yfjwnyrxcxtmtotbkzjywd/sh.tangled.repo/showtime",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T00:46:59+03:00",
+          "description": "A simple native app for live show control: sound, lighting, cross-communication with other tools",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:ws2fu3o77omzti3uhqx7jt6o"
+        },
+        "time_us": 1782256406390044
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "create",
+        "rkey": "3moyf36dqq722",
+        "uri": "at://did:plc:d3yfjwnyrxcxtmtotbkzjywd/sh.tangled.publicKey/3moyf36dqq722",
+        "record": {
+          "$type": "sh.tangled.publicKey",
+          "createdAt": "2026-06-24T00:51:18+03:00",
+          "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBUpmQ+4VMNJ2szrSrUEVDb4NrHm2DjXVw+AwhMyHMZw jjtm@beast",
+          "name": "beast"
+        },
+        "time_us": 1782256664456193
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "delete",
+        "rkey": "3moyf36dqq722",
+        "uri": "at://did:plc:d3yfjwnyrxcxtmtotbkzjywd/sh.tangled.publicKey/3moyf36dqq722",
+        "record": null,
+        "time_us": 1782257002222207
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "create",
+        "rkey": "3moyfgf24ow22",
+        "uri": "at://did:plc:d3yfjwnyrxcxtmtotbkzjywd/sh.tangled.publicKey/3moyfgf24ow22",
+        "record": {
+          "$type": "sh.tangled.publicKey",
+          "createdAt": "2026-06-24T00:57:34+03:00",
+          "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBUpmQ+4VMNJ2szrSrUEVDb4NrHm2DjXVw+AwhMyHMZw jjtm@beast",
+          "name": "beast"
+        },
+        "time_us": 1782257015947642
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "update",
+        "rkey": "showtime",
+        "uri": "at://did:plc:d3yfjwnyrxcxtmtotbkzjywd/sh.tangled.repo/showtime",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-23T21:46:59Z",
+          "description": "A simple native app for live show control: sound, lighting, cross-communication with other tools",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix"
+          ],
+          "repoDid": "did:plc:ws2fu3o77omzti3uhqx7jt6o",
+          "spindle": "spindle.tangled.sh"
+        },
+        "time_us": 1782257238944821
+      }
+    ]
+  },
+  "did:plc:c6hlcsrxjrl75b54vqdotpdo": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "create",
+        "rkey": "self",
+        "uri": "at://did:plc:c6hlcsrxjrl75b54vqdotpdo/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false
+        },
+        "time_us": 1782258264395506
+      }
+    ]
+  },
+  "did:plc:qttsv4e7pu2jl3ilanfgc3zn": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moyhngpdrt22",
+        "uri": "at://did:plc:qttsv4e7pu2jl3ilanfgc3zn/sh.tangled.graph.follow/3moyhngpdrt22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T01:37:18+03:00",
+          "subject": "did:plc:ibwpi5rsdkmwaq6d7zuac2vm"
+        },
+        "time_us": 1782259078492084
+      }
+    ]
+  },
+  "did:plc:6iyvi6miur4mvrevfbdubs7j": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "maki-provider-aperture",
+        "uri": "at://did:plc:6iyvi6miur4mvrevfbdubs7j/sh.tangled.repo/maki-provider-aperture",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T01:37:42+03:00",
+          "description": "A dynamic provider for https://maki.sh for Tailscale's Aperture gateway",
+          "knot": "knot.clee.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:f6dosltrgbx4f6x4kwpfe2ki"
+        },
+        "time_us": 1782259095048198
+      }
+    ]
+  },
+  "did:plc:enft5termehjcltb6gavxx6z": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "create",
+        "rkey": "self",
+        "uri": "at://did:plc:enft5termehjcltb6gavxx6z/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false
+        },
+        "time_us": 1782260470686093
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moyjet76ta22",
+        "uri": "at://did:plc:enft5termehjcltb6gavxx6z/sh.tangled.graph.follow/3moyjet76ta22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T02:08:17+03:00",
+          "subject": "did:plc:onu3oqfahfubgbetlr4giknc"
+        },
+        "time_us": 1782260488596874
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moyjf2zbzr22",
+        "uri": "at://did:plc:enft5termehjcltb6gavxx6z/sh.tangled.graph.follow/3moyjf2zbzr22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T02:08:25+03:00",
+          "subject": "did:plc:fpruhuo22xkm5o7ttr2ktxdo"
+        },
+        "time_us": 1782260493789304
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moyjfbwcrk22",
+        "uri": "at://did:plc:enft5termehjcltb6gavxx6z/sh.tangled.graph.follow/3moyjfbwcrk22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T02:08:32+03:00",
+          "subject": "did:plc:fpruhuo22xkm5o7ttr2ktxdo"
+        },
+        "time_us": 1782260498472034
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moyjfhyli722",
+        "uri": "at://did:plc:enft5termehjcltb6gavxx6z/sh.tangled.graph.follow/3moyjfhyli722",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T02:08:39+03:00",
+          "subject": "did:plc:fpruhuo22xkm5o7ttr2ktxdo"
+        },
+        "time_us": 1782260502367310
+      }
+    ]
+  },
+  "did:plc:dusmac2lcf7wstqgxb5zljqg": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.string",
+        "operation": "update",
+        "rkey": "3mly32xooja22",
+        "uri": "at://did:plc:dusmac2lcf7wstqgxb5zljqg/sh.tangled.string/3mly32xooja22",
+        "record": {
+          "$type": "sh.tangled.string",
+          "contents": "{\n\t\"[c]\": {\n\t\t\"editor.defaultFormatter\": \"llvm-vs-code-extensions.vscode-clangd\",\n\t\t\"editor.tabSize\": 2\n\t},\n\t\"[css]\": {\n\t\t\"editor.defaultFormatter\": \"biomejs.biome\"\n\t},\n\t\"[haskell]\": {\n\t\t\"editor.defaultFormatter\": \"haskell.haskell\"\n\t},\n\t\"[html]\": {\n\t\t\"editor.defaultFormatter\": \"biomejs.biome\"\n\t},\n\t\"[javascript]\": {\n\t\t\"editor.defaultFormatter\": \"biomejs.biome\"\n\t},\n\t\"[json]\": {\n\t\t\"editor.defaultFormatter\": \"biomejs.biome\"\n\t},\n\t\"[jsonc]\": {\n\t\t\"editor.defaultFormatter\": \"biomejs.biome\"\n\t},\n\t\"[svelte]\": {\n\t\t\"editor.defaultFormatter\": \"svelte.svelte-vscode\"\n\t},\n\t\"[typescript]\": {\n\t\t\"editor.defaultFormatter\": \"biomejs.biome\"\n\t},\n\t\"biome.requireConfiguration\": true,\n\t\"breadcrumbs.enabled\": false,\n\t\"calva.paredit.defaultKeyMap\": \"strict\",\n\t\"calva.prettyPrintingOptions\": {\n\t\t\"enabled\": true,\n\t\t\"maxLength\": 50,\n\t\t\"printEngine\": \"pprint\",\n\t\t\"width\": 120\n\t},\n\t\"editor.bracketPairColorization.enabled\": true,\n\t\"editor.codeActionsOnSave\": {\n\t\t\"source.organizeImports.biome\": \"always\"\n\t},\n\t\"editor.experimental.treeSitterTelemetry\": true,\n\t\"editor.find.globalFindClipboard\": true,\n\t\"editor.fontFamily\": \"\\\"JetBrains Mono\\\", \\\"Input Sans\\\", \\\"Cascadia Code\\\", \\\"SF Mono\\\", \\\"Monaspace Neon Var\\\", \\\"Iosevka Extended\\\", Menlo, Monaco, 'Courier New', monospace\",\n\t\"editor.fontLigatures\": true,\n\t\"editor.fontSize\": 13,\n\t\"editor.formatOnPaste\": true,\n\t\"editor.formatOnSave\": true,\n\t\"editor.formatOnType\": true,\n\t\"editor.minimap.maxColumn\": 40,\n\t\"editor.minimap.showSlider\": \"always\",\n\t\"editor.renderFinalNewline\": \"off\",\n\t\"editor.rulers\": [\n\t\t80,\n\t\t120\n\t],\n\t\"editor.scrollbar.horizontalScrollbarSize\": 8,\n\t\"editor.scrollbar.verticalScrollbarSize\": 8,\n\t\"errorLens.enabledDiagnosticLevels\": [\n\t\t\"warning\",\n\t\t\"error\"\n\t],\n\t\"errorLens.fontFamily\": \"SF Pro Text\",\n\t\"errorLens.fontSize\": \"0.95em\",\n\t\"explorer.compactFolders\": false,\n\t\"files.insertFinalNewline\": true,\n\t\"files.trimFinalNewlines\": true,\n\t\"files.trimTrailingWhitespace\": true,\n\t\"git.autofetch\": true,\n\t\"git.blame.editorDecoration.enabled\": true,\n\t\"git.blame.statusBarItem.enabled\": false,\n\t\"git.confirmSync\": false,\n\t\"git.defaultBranchName\": \"\",\n\t\"git.enableSmartCommit\": true,\n\t\"haskell.manageHLS\": \"GHCup\",\n\t\"haskell.plugin.semanticTokens.globalOn\": true,\n\t\"js/ts.updateImportsOnFileMove.enabled\": \"prompt\",\n\t\"json.schemaDownload.trustedDomains\": {\n\t\t\"https://biomejs.dev\": true,\n\t\t\"https://developer.microsoft.com/json-schemas/\": true,\n\t\t\"https://esm.sh\": true,\n\t\t\"https://json-schema.org/\": true,\n\t\t\"https://json.schemastore.org/\": true,\n\t\t\"https://raw.githubusercontent.com/devcontainers/spec/\": true,\n\t\t\"https://raw.githubusercontent.com/microsoft/vscode/\": true,\n\t\t\"https://schemastore.azurewebsites.net/\": true,\n\t\t\"https://www.schemastore.org/\": true\n\t},\n\t\"problems.showCurrentInStatus\": true,\n\t\"svelte.enable-ts-plugin\": true,\n\t\"terminal.integrated.enableMultiLinePasteWarning\": \"never\",\n\t\"terminal.integrated.fontFamily\": \"JetBrainsMono Nerd Font\",\n\t\"terminal.integrated.fontSize\": 13,\n\t\"terminal.integrated.initialHint\": false,\n\t\"window.autoDetectColorScheme\": true,\n\t\"window.commandCenter\": false,\n\t\"window.density.editorTabHeight\": \"compact\",\n\t\"window.menuStyle\": \"native\",\n\t\"window.newWindowDimensions\": \"offset\",\n\t\"window.systemColorTheme\": \"auto\",\n\t\"window.title\": \"${rootName}${separator}${profileName}\",\n\t\"workbench.activityBar.location\": \"top\",\n\t\"workbench.colorTheme\": \"Monokai Pro (Filter Octagon)\",\n\t\"workbench.commandPalette.experimental.suggestCommands\": true,\n\t\"workbench.editor.defaultBinaryEditor\": \"hexEditor.hexedit\",\n\t\"workbench.editor.empty.hint\": \"hidden\",\n\t\"workbench.editor.tabActionLocation\": \"left\",\n\t\"workbench.editor.useModal\": \"off\",\n\t\"workbench.iconTheme\": \"catppuccin-frappe\",\n\t\"workbench.preferredDarkColorTheme\": \"Vitesse Dark Soft\",\n\t\"workbench.preferredLightColorTheme\": \"Ros\u00e9 Pine Dawn\",\n\t\"workbench.secondarySideBar.defaultVisibility\": \"hidden\",\n\t\"workbench.sideBar.location\": \"right\"\n}\n",
+          "createdAt": "2026-05-16T17:36:39+03:00",
+          "description": "",
+          "filename": "settings.json"
+        },
+        "time_us": 1782261357063741
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "create",
+        "rkey": "3moyt7tktp222",
+        "uri": "at://did:plc:dusmac2lcf7wstqgxb5zljqg/sh.tangled.publicKey/3moyt7tktp222",
+        "record": {
+          "$type": "sh.tangled.publicKey",
+          "createdAt": "2026-06-24T05:04:27+03:00",
+          "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHjO9uAAYr72gOhdE10LHTwjS2m0j+lJg8BtAZsmooI4 git@dontwanttoth.ink",
+          "name": "MacBook Pro"
+        },
+        "time_us": 1782267415089647
+      }
+    ]
+  },
+  "did:plc:kna35y6pd75pzh5wq4uxi6t5": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "rjacobhoopes.carfree.life",
+        "uri": "at://did:plc:kna35y6pd75pzh5wq4uxi6t5/sh.tangled.repo/rjacobhoopes.carfree.life",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T02:32:31+03:00",
+          "description": "A website for my writings and work.",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix"
+          ],
+          "repoDid": "did:plc:oc3obovzsu3tctyk3wszfvpf"
+        },
+        "time_us": 1782261489400110
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "update",
+        "rkey": "site",
+        "uri": "at://did:plc:kna35y6pd75pzh5wq4uxi6t5/sh.tangled.repo/site",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T03:14:11+03:00",
+          "description": "A website for my writings and work.",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix"
+          ],
+          "name": "Site",
+          "repoDid": "did:plc:oc3obovzsu3tctyk3wszfvpf"
+        },
+        "time_us": 1782263189089498
+      }
+    ]
+  },
+  "did:plc:lllgm3bcap6k4msea43rvpzq": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3moyln5lc7722",
+        "uri": "at://did:plc:lllgm3bcap6k4msea43rvpzq/sh.tangled.feed.star/3moyln5lc7722",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T02:48:44+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:6atzzmsifkfmfqmeqrl6jwzo"
+          }
+        },
+        "time_us": 1782262174880428
+      }
+    ]
+  },
+  "did:plc:n46r6vgvovddymp4esuhyu63": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo.issue",
+        "operation": "update",
+        "rkey": "3mkad6puoko22",
+        "uri": "at://did:plc:n46r6vgvovddymp4esuhyu63/sh.tangled.repo.issue/3mkad6puoko22",
+        "record": {
+          "$type": "sh.tangled.repo.issue",
+          "body": "in the daniela.lol app there is a toggle to disable the superfluous up arrow on the lower left of feeds. it behaves like the home button, so is redundant, and i find it visually distracting. it's honestly the only reason i still use an old daniela.lol build instead of this app",
+          "createdAt": "2026-04-24T10:32:49Z",
+          "repo": "did:plc:o32gsn3jolddqna6w4kdzuv2",
+          "title": "feat: toggle up arrow on feed"
+        },
+        "time_us": 1782263078686525
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "update",
+        "rkey": "3mkacr3fp5r22",
+        "uri": "at://did:plc:n46r6vgvovddymp4esuhyu63/sh.tangled.feed.star/3mkacr3fp5r22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-04-24T10:25:12Z",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:o32gsn3jolddqna6w4kdzuv2"
+          }
+        },
+        "time_us": 1782263078858620
+      },
+      {
+        "collection": "sh.tangled.repo.issue",
+        "operation": "create",
+        "rkey": "3moymxn7u7d22",
+        "uri": "at://did:plc:n46r6vgvovddymp4esuhyu63/sh.tangled.repo.issue/3moymxn7u7d22",
+        "record": {
+          "$type": "sh.tangled.repo.issue",
+          "body": "i need to be able to mute some people for some of the time.\n\nsometimes a person is either reskeeting or just skeeting about something tiresome for a few days and then they stop, and i want to be able to temporarily mute them for that time.\n\ni also want to be able to ONLY mute reskeets on an offending-user-level basis so if someone posts bangers but reskeets tons of porn or doomer articles i can just disable their reskeets without unfollowing\n\ni need this because sometimes i dont want to entirely mute someone because we are mutuals and i want to be able to see their replies to me, but i need them to not be filling my feed with news articles that make me want to jump off a bridge, but i cant escape without breaking mutual or muting the entire account.\n\ni think both currently available options are extreme and unnecessary in a lot of cases and we need more gradation in our options. some people i want to mute temporarily and some people i want to mute reskeets and some people i want every combination thereof \ud83d\ude2e\u200d\ud83d\udca8\n\ni know i can disable all reskeets wholesale but i dont think i should have to demolish half my feed just because one person reskeets stuff i dont wanna see, i should be able to mute the specific user just like on twitter. why are we behind TWITTER on this point?!",
+          "createdAt": "2026-06-24T03:12:29+03:00",
+          "repo": "did:plc:o32gsn3jolddqna6w4kdzuv2",
+          "title": "deep mute settings"
+        },
+        "time_us": 1782263115708769
+      }
+    ]
+  },
+  "did:plc:ewnvy2os3jmlzsknbmglskly": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.reaction",
+        "operation": "create",
+        "rkey": "3moynpevfi322",
+        "uri": "at://did:plc:ewnvy2os3jmlzsknbmglskly/sh.tangled.feed.reaction/3moynpevfi322",
+        "record": {
+          "$type": "sh.tangled.feed.reaction",
+          "createdAt": "2026-06-24T03:25:46+03:00",
+          "reaction": "\ud83d\udc4d",
+          "subject": "at://did:plc:n46r6vgvovddymp4esuhyu63/sh.tangled.repo.issue/3moymxn7u7d22"
+        },
+        "time_us": 1782263684404315
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3moyntz77ye22",
+        "uri": "at://did:plc:ewnvy2os3jmlzsknbmglskly/sh.tangled.feed.star/3moyntz77ye22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T03:28:21+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:hzbaphtvytr46ai324txenau"
+          }
+        },
+        "time_us": 1782263776229021
+      }
+    ]
+  },
+  "did:plc:c3jaxssn4xlxdlhjwn6rul2r": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "create",
+        "rkey": "self",
+        "uri": "at://did:plc:c3jaxssn4xlxdlhjwn6rul2r/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false
+        },
+        "time_us": 1782263886879822
+      }
+    ]
+  },
+  "did:plc:ke3nfv7zx3ocpw6bbr4hi7zo": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moyouz74rn22",
+        "uri": "at://did:plc:ke3nfv7zx3ocpw6bbr4hi7zo/sh.tangled.graph.follow/3moyouz74rn22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T03:46:49+03:00",
+          "subject": "did:plc:44ybard66vv44zksje25o7dz"
+        },
+        "time_us": 1782264436961138
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3moyovynn4z22",
+        "uri": "at://did:plc:ke3nfv7zx3ocpw6bbr4hi7zo/sh.tangled.graph.follow/3moyovynn4z22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T03:47:22+03:00",
+          "subject": "did:plc:cveom2iroj3mt747sd4qqnr2"
+        },
+        "time_us": 1782264455522932
+      }
+    ]
+  },
+  "did:plc:c52wep6lj4sfbsqiz3yvb55h": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.reaction",
+        "operation": "create",
+        "rkey": "3moyq6rwiwb22",
+        "uri": "at://did:plc:c52wep6lj4sfbsqiz3yvb55h/sh.tangled.feed.reaction/3moyq6rwiwb22",
+        "record": {
+          "$type": "sh.tangled.feed.reaction",
+          "createdAt": "2026-06-24T04:10:10+03:00",
+          "reaction": "\ud83c\udf89",
+          "subject": "at://did:plc:qfpnj4og54vl56wngdriaxug/sh.tangled.feed.comment/3mourrjlw4w22"
+        },
+        "time_us": 1782265290064952
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3moyqicxn6u22",
+        "uri": "at://did:plc:c52wep6lj4sfbsqiz3yvb55h/sh.tangled.feed.star/3moyqicxn6u22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T04:15:30+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:hzbaphtvytr46ai324txenau"
+          }
+        },
+        "time_us": 1782265494860069
+      },
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:c52wep6lj4sfbsqiz3yvb55h/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": true,
+          "description": "hi :3",
+          "links": [
+            "https://bas.sh",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "location": "Netherlands",
+          "pinnedRepositories": [
+            "did:plc:2k7ybaocmkuiutawnj5dl4q5",
+            "did:plc:t6f3erdet7cyzvqsulyhvjb2",
+            "did:plc:qwx5uqtwe3m4dtp2spne625f",
+            "did:plc:sh7ddofvcx427f3tlstzumrc"
+          ],
+          "preferredHandle": "",
+          "pronouns": "",
+          "stats": [
+            "",
+            ""
+          ]
+        },
+        "time_us": 1782265518409321
+      }
+    ]
+  },
+  "did:plc:rtokeh2dsmapicefqxkefbfn": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "update",
+        "rkey": "3mgd35nadui22",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.feed.star/3mgd35nadui22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-03-05T15:06:16Z",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:ce6clisfsopkw4xddevgml26"
+          }
+        },
+        "time_us": 1782265406529723
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "update",
+        "rkey": "3mgv545qygm22",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.repo/3mgv545qygm22",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-03-12T19:29:09Z",
+          "description": "A tool to help manage Public SSH Keys in ATProto",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "name": "atproto-ssh-tool",
+          "repoDid": "did:plc:7lzdsipedkrrdrra6mgh4ot5"
+        },
+        "time_us": 1782265406858211
+      },
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false,
+          "description": "",
+          "links": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "location": "",
+          "pinnedRepositories": [
+            "did:plc:7lzdsipedkrrdrra6mgh4ot5",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "pronouns": "",
+          "stats": [
+            "",
+            ""
+          ]
+        },
+        "time_us": 1782265407106967
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "update",
+        "rkey": "3lwcgabwe4w22",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.feed.star/3lwcgabwe4w22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2025-08-13T18:08:50Z",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:f5s5la5wlofsxidb3zemdune"
+          }
+        },
+        "time_us": 1782265407322475
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "update",
+        "rkey": "3mgnbud3z5422",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.feed.star/3mgnbud3z5422",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-03-09T16:32:57Z",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:6yayrzsaxqf2s6yw5i4rfycf"
+          }
+        },
+        "time_us": 1782265407687952
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3moyqf6l6hr22",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.feed.star/3moyqf6l6hr22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T04:13:45+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:hzbaphtvytr46ai324txenau"
+          }
+        },
+        "time_us": 1782265422674971
+      },
+      {
+        "collection": "sh.tangled.knot",
+        "operation": "create",
+        "rkey": "knot.gae.moe",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.knot/knot.gae.moe",
+        "record": {
+          "$type": "sh.tangled.knot",
+          "createdAt": "2026-06-24T06:15:36+03:00"
+        },
+        "time_us": 1782270937361059
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "tpb",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.repo/tpb",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T06:21:29+03:00",
+          "knot": "knot.gae.moe",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:3c7hgyrr3bzrtpfcayhgsdad"
+        },
+        "time_us": 1782271290125762
+      },
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": true,
+          "description": "",
+          "links": [
+            "https://grace.pink",
+            "https://git.gae.moe/grace",
+            "https://github.com/gyoder",
+            "",
+            ""
+          ],
+          "location": "",
+          "pinnedRepositories": [
+            "did:plc:7lzdsipedkrrdrra6mgh4ot5"
+          ],
+          "preferredHandle": "",
+          "pronouns": "She/They",
+          "stats": [
+            "",
+            ""
+          ]
+        },
+        "time_us": 1782272086635249
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "delete",
+        "rkey": "tpb",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.repo/tpb",
+        "record": null,
+        "time_us": 1782272100460957
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "tpb",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.repo/tpb",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T06:43:54+03:00",
+          "description": "Mirror of https://git.gae.moe/grace/tpb",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:ashwqrjf7whw2ihwvnanio5q"
+        },
+        "time_us": 1782272634914163
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "create",
+        "rkey": "3moyytvzhic22",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.publicKey/3moyytvzhic22",
+        "record": {
+          "$type": "sh.tangled.publicKey",
+          "createdAt": "2026-06-24T06:45:09+03:00",
+          "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJC/bERsYM4oju+6XUJiIi+4Acixboi9UsWkE6fgWUZ+",
+          "name": "forgejo"
+        },
+        "time_us": 1782272710154918
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "update",
+        "rkey": "tpb",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.repo/tpb",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T03:43:54Z",
+          "description": "Mirror of https://git.gae.moe/grace/tpb",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix"
+          ],
+          "repoDid": "did:plc:ashwqrjf7whw2ihwvnanio5q",
+          "website": "https://git.gae.moe/grace/tpb"
+        },
+        "time_us": 1782272761933575
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "update",
+        "rkey": "tpb",
+        "uri": "at://did:plc:rtokeh2dsmapicefqxkefbfn/sh.tangled.repo/tpb",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T03:43:54Z",
+          "description": "Tee your Paste Board",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix"
+          ],
+          "repoDid": "did:plc:ashwqrjf7whw2ihwvnanio5q",
+          "website": "https://git.gae.moe/grace/tpb"
+        },
+        "time_us": 1782272776118975
+      }
+    ]
+  },
+  "did:plc:lxgxj77vbcivpon53h5yljfu": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo.pull",
+        "operation": "create",
+        "rkey": "3moyqnoe6rw22",
+        "uri": "at://did:plc:lxgxj77vbcivpon53h5yljfu/sh.tangled.repo.pull/3moyqnoe6rw22",
+        "record": {
+          "$type": "sh.tangled.repo.pull",
+          "body": "Add a single global cadence clock for the whole feed list, distinct from\nper-feed eligibility. `refresh_due()` (pure, deterministic \u2014 takes `now`)\ndecides when an automatic full-list refresh is due, anchored on a durable\n`last_refresh` stored machine-locally in the per-store cache dir so a synced\nstore copy never conflicts on a value that changes every cadence.\n\n- turss-domain: `refresh_due()` + unit tests (never-refreshed / within-window\n  / past-window / boundary / unparseable cases).\n- turss-store: `load_last_refresh` / `save_last_refresh` on the Store trait,\n  the fsstore impl, and store tests.\n- turss-runtime/queue: arm the automatic refresh from the cadence clock.\n- flake: drop the devshell shellHook echo.\n\nCo-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>",
+          "createdAt": "2026-06-24T04:18:32+03:00",
+          "rounds": [
+            {
+              "createdAt": "2026-06-24T04:18:32+03:00",
+              "patchBlob": {
+                "$type": "blob",
+                "ref": {
+                  "$link": "bafkreigtjk75c6ef5lojcz7czkeawyea4brepm4ezzfwbo4g2n7qgwqya4"
+                },
+                "mimeType": "application/gzip",
+                "size": 22460
+              }
+            }
+          ],
+          "source": {
+            "branch": "feat/index-rebuild-cli"
+          },
+          "target": {
+            "branch": "main",
+            "repo": "did:plc:7ed7qvfahgnxfnaikd75ijbr",
+            "repoDid": "did:plc:7ed7qvfahgnxfnaikd75ijbr"
+          },
+          "title": "Move reindexing out of the UI and into a separate cli command"
+        },
+        "time_us": 1782265612562594
+      },
+      {
+        "collection": "sh.tangled.repo.pull",
+        "operation": "create",
+        "rkey": "3moyqpbg4i522",
+        "uri": "at://did:plc:lxgxj77vbcivpon53h5yljfu/sh.tangled.repo.pull/3moyqpbg4i522",
+        "record": {
+          "$type": "sh.tangled.repo.pull",
+          "body": "`turss reindex` re-embedded the whole captured set one article at a time \u2014\nload+parse (CPU) \u2192 embed (Metal) \u2192 upsert (redb), each awaited in series \u2014 so\nthe GPU idled during every parse and write, and each embed call carried only one\narticle's handful of chunks. On a large store the full rebuild took hours.\n\nRefactor `index_article` into three shared, blocking-pool stage helpers\n(`load_and_chunk` / `embed_chunks` / `upsert_pairs`); the per-fetch path is now a\nthin composition of them with identical behavior.\n\nReplace the sequential reindex loop with a pipeline that overlaps the three\nstages across articles:\n- a parse-ahead producer streams `(id, chunks)` over a bounded channel so CPU\n  parsing runs ahead of the GPU,\n- a batch-embed driver accumulates whole articles up to a soft chunk cap\n  (REINDEX_BATCH_CHUNKS=64) and embeds each batch in one call, splitting the\n  vectors back per article, and\n- upserts run on a bounded JoinSet so redb writes overlap the next batch's embed.\n\nCorrectness is preserved: a batch-embed error (or length mismatch) falls back to\nper-article embedding so one bad article can't sink the batch; per-article upsert\nfailures count only themselves; the model stamp is still advanced only on a clean\npass; progress is reported from a single drain point, ending at (total, total).\n\nCo-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>",
+          "createdAt": "2026-06-24T04:19:23+03:00",
+          "rounds": [
+            {
+              "createdAt": "2026-06-24T04:19:23+03:00",
+              "patchBlob": {
+                "$type": "blob",
+                "ref": {
+                  "$link": "bafkreigbexzovfnvxy5h4luydzjnmjrtl4bn7k5xi75tlp3wooqd7be73u"
+                },
+                "mimeType": "application/gzip",
+                "size": 5316
+              }
+            }
+          ],
+          "source": {
+            "branch": "indexing-perf"
+          },
+          "target": {
+            "branch": "feat/index-rebuild-cli",
+            "repo": "did:plc:7ed7qvfahgnxfnaikd75ijbr",
+            "repoDid": "did:plc:7ed7qvfahgnxfnaikd75ijbr"
+          },
+          "title": "perf(index): pipeline and batch the reindex loop"
+        },
+        "time_us": 1782265646636036
+      },
+      {
+        "collection": "sh.tangled.repo.pull",
+        "operation": "create",
+        "rkey": "3moyr2khuco22",
+        "uri": "at://did:plc:lxgxj77vbcivpon53h5yljfu/sh.tangled.repo.pull/3moyr2khuco22",
+        "record": {
+          "$type": "sh.tangled.repo.pull",
+          "body": "`turss reindex` re-embedded the whole captured set one article at a time \u2014\nload+parse (CPU) \u2192 embed (Metal) \u2192 upsert (redb), each awaited in series \u2014 so\nthe GPU idled during every parse and write, and each embed call carried only one\narticle's handful of chunks. On a large store the full rebuild took hours.\n\nRefactor `index_article` into three shared, blocking-pool stage helpers\n(`load_and_chunk` / `embed_chunks` / `upsert_pairs`); the per-fetch path is now a\nthin composition of them with identical behavior.\n\nReplace the sequential reindex loop with a pipeline that overlaps the three\nstages across articles:\n- a parse-ahead producer streams `(id, chunks)` over a bounded channel so CPU\n  parsing runs ahead of the GPU,\n- a batch-embed driver accumulates whole articles up to a soft chunk cap\n  (REINDEX_BATCH_CHUNKS=64) and embeds each batch in one call, splitting the\n  vectors back per article, and\n- upserts run on a bounded JoinSet so redb writes overlap the next batch's embed.\n\nCorrectness is preserved: a batch-embed error (or length mismatch) falls back to\nper-article embedding so one bad article can't sink the batch; per-article upsert\nfailures count only themselves; the model stamp is still advanced only on a clean\npass; progress is reported from a single drain point, ending at (total, total).\n\nCo-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>",
+          "createdAt": "2026-06-24T04:25:43+03:00",
+          "rounds": [
+            {
+              "createdAt": "2026-06-24T04:25:43+03:00",
+              "patchBlob": {
+                "$type": "blob",
+                "ref": {
+                  "$link": "bafkreibcdehghnrielcw2v5y6kuljusl2hqggmfzrzwfhn6e6ekru54s6a"
+                },
+                "mimeType": "application/gzip",
+                "size": 5318
+              }
+            }
+          ],
+          "source": {
+            "branch": "indexing-perf"
+          },
+          "target": {
+            "branch": "main",
+            "repo": "did:plc:7ed7qvfahgnxfnaikd75ijbr",
+            "repoDid": "did:plc:7ed7qvfahgnxfnaikd75ijbr"
+          },
+          "title": "perf(index): pipeline and batch the reindex loop"
+        },
+        "time_us": 1782265893983834
+      },
+      {
+        "collection": "sh.tangled.feed.reaction",
+        "operation": "create",
+        "rkey": "3moysita7zd22",
+        "uri": "at://did:plc:lxgxj77vbcivpon53h5yljfu/sh.tangled.feed.reaction/3moysita7zd22",
+        "record": {
+          "$type": "sh.tangled.feed.reaction",
+          "createdAt": "2026-06-24T04:51:35+03:00",
+          "reaction": "\ud83d\udc4d",
+          "subject": "at://did:plc:irs2tcoeuvuwj3m4yampbuco/sh.tangled.repo.issue/3lljw77te2p22"
+        },
+        "time_us": 1782266929533571
+      }
+    ]
+  },
+  "did:plc:nhlqb25lxuqovznalcgbj5qd": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "update",
+        "rkey": "3mgyzdiy5lv22",
+        "uri": "at://did:plc:nhlqb25lxuqovznalcgbj5qd/sh.tangled.repo/3mgyzdiy5lv22",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-03-14T08:32:19Z",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "name": "BluecastSongBook",
+          "repoDid": "did:plc:5zd665v7254bzebe4q5x7tak"
+        },
+        "time_us": 1782266912267478
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "update",
+        "rkey": "3mgenxm5xgz22",
+        "uri": "at://did:plc:nhlqb25lxuqovznalcgbj5qd/sh.tangled.repo/3mgenxm5xgz22",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-03-06T06:15:34Z",
+          "description": "Rust\u7df4\u7fd2\u5e33",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "name": "rust-hello-world",
+          "repoDid": "did:plc:z5sehdrljzsn4hnodcsxgetp"
+        },
+        "time_us": 1782266912499341
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "ex-wschat1",
+        "uri": "at://did:plc:nhlqb25lxuqovznalcgbj5qd/sh.tangled.repo/ex-wschat1",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T05:41:07+03:00",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:sd5knuh7wbvc26sutvk2wmqw"
+        },
+        "time_us": 1782268868015490
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "delete",
+        "rkey": "3mgepdq3rld22",
+        "uri": "at://did:plc:nhlqb25lxuqovznalcgbj5qd/sh.tangled.publicKey/3mgepdq3rld22",
+        "record": null,
+        "time_us": 1782270188992639
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "create",
+        "rkey": "3moywkc264e22",
+        "uri": "at://did:plc:nhlqb25lxuqovznalcgbj5qd/sh.tangled.publicKey/3moywkc264e22",
+        "record": {
+          "$type": "sh.tangled.publicKey",
+          "createdAt": "2026-06-24T06:03:59+03:00",
+          "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAb6SCHka+/4XMReIsS7XrteIDomRxgR+886FUhK4MLz",
+          "name": "macbook-180824"
+        },
+        "time_us": 1782270239666297
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "delete",
+        "rkey": "3moywkc264e22",
+        "uri": "at://did:plc:nhlqb25lxuqovznalcgbj5qd/sh.tangled.publicKey/3moywkc264e22",
+        "record": null,
+        "time_us": 1782270786369863
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "create",
+        "rkey": "3moyx323hfk22",
+        "uri": "at://did:plc:nhlqb25lxuqovznalcgbj5qd/sh.tangled.publicKey/3moyx323hfk22",
+        "record": {
+          "$type": "sh.tangled.publicKey",
+          "createdAt": "2026-06-24T06:13:21+03:00",
+          "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID08r/KyWRhJXfqfuy7Cd43dCRvCcjouPg42BRmlHR83",
+          "name": "mamemo-260306"
+        },
+        "time_us": 1782270801731665
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3mozfwf5qdn22",
+        "uri": "at://did:plc:nhlqb25lxuqovznalcgbj5qd/sh.tangled.graph.follow/3mozfwf5qdn22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T10:39:11+03:00",
+          "subject": "did:plc:5e44ypvdatwje5jxjwgnde66"
+        },
+        "time_us": 1782286753113408
+      }
+    ]
+  },
+  "did:plc:6ayddqghxhciedbaofoxkcbs": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.reaction",
+        "operation": "create",
+        "rkey": "3moysm2zfju22",
+        "uri": "at://did:plc:6ayddqghxhciedbaofoxkcbs/sh.tangled.feed.reaction/3moysm2zfju22",
+        "record": {
+          "$type": "sh.tangled.feed.reaction",
+          "createdAt": "2026-06-24T04:53:23+03:00",
+          "reaction": "\u2764\ufe0f",
+          "subject": "at://did:plc:jjsc5rflv3cpv6hgtqhn2dcm/sh.tangled.feed.comment/3motek3smhj22"
+        },
+        "time_us": 1782266999126392
+      }
+    ]
+  },
+  "did:plc:6ikdlkw64mrjygj6cea62kn4": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3moytbej2gx22",
+        "uri": "at://did:plc:6ikdlkw64mrjygj6cea62kn4/sh.tangled.feed.star/3moytbej2gx22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T05:05:18+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:hqak3ymv7okbokkssydumsrq"
+          }
+        },
+        "time_us": 1782267444823784
+      }
+    ]
+  },
+  "did:plc:ds34d7navj6bkch53it5yjkc": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:ds34d7navj6bkch53it5yjkc/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false,
+          "description": "\u262f Neurodivergent & Mental Health Advocate\n\u262f Austin Hackers (AHA!) Babysitter\n\u262f K\u00d8MVH (Ham Radio)\n\u262f DEF CON Goon (DevOps & SOC)\n\u262f Red Team Village Core Staff\n\u262f Attrition.org Staff",
+          "links": [
+            "https://mauvehed.com",
+            "https://social.mauve.haus/@mauvehed",
+            "https://rant.mvh.dev",
+            "",
+            ""
+          ],
+          "location": "",
+          "preferredHandle": "",
+          "pronouns": "he/him",
+          "stats": [
+            "star-count",
+            "merged-pull-request-count"
+          ]
+        },
+        "time_us": 1782267532108119
+      },
+      {
+        "collection": "sh.tangled.knot",
+        "operation": "delete",
+        "rkey": "gitfed.mauve.haus",
+        "uri": "at://did:plc:ds34d7navj6bkch53it5yjkc/sh.tangled.knot/gitfed.mauve.haus",
+        "record": null,
+        "time_us": 1782268316623965
+      },
+      {
+        "collection": "sh.tangled.spindle",
+        "operation": "delete",
+        "rkey": "ci.mauve.haus",
+        "uri": "at://did:plc:ds34d7navj6bkch53it5yjkc/sh.tangled.spindle/ci.mauve.haus",
+        "record": null,
+        "time_us": 1782268321263289
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "delete",
+        "rkey": "3mgkqrehmvy22",
+        "uri": "at://did:plc:ds34d7navj6bkch53it5yjkc/sh.tangled.publicKey/3mgkqrehmvy22",
+        "record": null,
+        "time_us": 1782268333848847
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "delete",
+        "rkey": "3mgkqrrx5pd22",
+        "uri": "at://did:plc:ds34d7navj6bkch53it5yjkc/sh.tangled.publicKey/3mgkqrrx5pd22",
+        "record": null,
+        "time_us": 1782268335550645
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "delete",
+        "rkey": "3mgej3ajgdm22",
+        "uri": "at://did:plc:ds34d7navj6bkch53it5yjkc/sh.tangled.publicKey/3mgej3ajgdm22",
+        "record": null,
+        "time_us": 1782268336608272
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "delete",
+        "rkey": "3mmzqhixyhw22",
+        "uri": "at://did:plc:ds34d7navj6bkch53it5yjkc/sh.tangled.publicKey/3mmzqhixyhw22",
+        "record": null,
+        "time_us": 1782268337184894
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "delete",
+        "rkey": "3mgkqqu43v222",
+        "uri": "at://did:plc:ds34d7navj6bkch53it5yjkc/sh.tangled.publicKey/3mgkqqu43v222",
+        "record": null,
+        "time_us": 1782268338257764
+      },
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:ds34d7navj6bkch53it5yjkc/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false,
+          "description": "",
+          "links": [
+            "https://git.mauve.haus",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "location": "",
+          "preferredHandle": "",
+          "pronouns": "",
+          "stats": [
+            "",
+            ""
+          ]
+        },
+        "time_us": 1782268382850351
+      }
+    ]
+  },
+  "did:web:malpercio.dev": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo.pull",
+        "operation": "update",
+        "rkey": "3moxur7ihqe22",
+        "uri": "at://did:web:malpercio.dev/sh.tangled.repo.pull/3moxur7ihqe22",
+        "record": {
+          "$type": "sh.tangled.repo.pull",
+          "body": "## Summary\n\n Implement the `createRecord` XRPC endpoint for creating new records in a user's repository.\n\n ## Changes\n\n - `POST /xrpc/com.atproto.repo.createRecord`\n - Accepts `repo` (DID), `collection` (NSID), optional `rkey`, and `record` data in body\n - Auto-generates TID (13-char base32-sortable timestamp identifier) when `rkey` not provided\n - Validates collection/rkey format before touching repo\n - Authenticated: requires Bearer token matching repo DID\n - Returns AT URI and record CID per spec\n - Optimistic concurrency via `repo_root_cid` CAS (compare-and-swap)\n - Best-effort post-commit block GC (reclaims superseded blocks)\n\n ## TID Generation\n\n Implements ATProto Timestamp Identifiers:\n - 64-bit integer: 0 | microseconds-since-epoch (52 bits) | random-clock-id (10 bits)\n - Encoded as 13-char base32-sortable string (`234567abcdefghijklmnopqrstuvwxyz`)\n - Monotonically increasing, collision-resistant\n\n ## Acceptance Criteria\n\n - [x] Authenticated POST creates record and returns AT URI + CID\n - [x] Record retrievable via getRecord after creation\n - [x] Repo head advances to new commit\n - [x] Unauthorized repo access returns 403\n\n ## Tests\n\n 10 new tests covering:\n - Auth: 401 without token, 403 for wrong DID\n - Explicit rkey: returns correct URI and CID\n - Auto-generated TID: 13-char base32-sortable format\n - Validation: invalid collection, floats rejected\n - Not found: nonexistent account returns 404\n - Roundtrip: created record retrievable via getRecord\n - TID unit tests: valid format, monotonicity",
+          "createdAt": "2026-06-23T16:59:26Z",
+          "rounds": [
+            {
+              "createdAt": "2026-06-23T16:59:26Z",
+              "patchBlob": {
+                "$type": "blob",
+                "ref": {
+                  "$link": "bafkreicdlljvdeow5d5eyf6j2s5fencvstvgmwn44rpg4vkjvpywgzuzyq"
+                },
+                "mimeType": "application/gzip",
+                "size": 5616
+              }
+            },
+            {
+              "createdAt": "2026-06-23T19:03:27Z",
+              "patchBlob": {
+                "$type": "blob",
+                "ref": {
+                  "$link": "bafkreifxvtibqllvye2fndkrui3lgn3zlkczqx2fw6bogfhlpgokbby3ua"
+                },
+                "mimeType": "application/gzip",
+                "size": 15043
+              }
+            },
+            {
+              "createdAt": "2026-06-24T05:08:56+03:00",
+              "patchBlob": {
+                "$type": "blob",
+                "ref": {
+                  "$link": "bafkreia7vgpyathqxh6r77bslfl4752m6jym5reoidwvhu3bflk3npci7m"
+                },
+                "mimeType": "application/gzip",
+                "size": 16951
+              }
+            }
+          ],
+          "source": {
+            "branch": "feat/create-record"
+          },
+          "target": {
+            "branch": "main",
+            "repo": "did:plc:7gp7jpvbb6fnplhwz55kyt6k",
+            "repoDid": "did:plc:7gp7jpvbb6fnplhwz55kyt6k"
+          },
+          "title": "relay: add com.atproto.repo.createRecord (MM-100)"
+        },
+        "time_us": 1782267578189703
+      }
+    ]
+  },
+  "did:plc:5aeagkpy2ch5eencyi2elahk": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo.issue",
+        "operation": "create",
+        "rkey": "3moyu6g4fgi22",
+        "uri": "at://did:plc:5aeagkpy2ch5eencyi2elahk/sh.tangled.repo.issue/3moyu6g4fgi22",
+        "record": {
+          "$type": "sh.tangled.repo.issue",
+          "body": "I reported this bug previously by email in April, and it was fixed, but somehow, it has now regressed.\n\nWhen non-browser agents (e.g. web crawlers and headless fetchers) access posts via my custom domain they are getting a 401 error, while the same post loads fine via the leaflet.pub subdomain URL.\n\nAdding ?auth_completed=true to the end of the URL makes it accessible, but that doesn't really help since ?auth_completed=true is not in the canonical URL. A non-browser agent (or even a browser agent) should not need to be authenticated to access public content. Also, if simply adding that to the end of the URL makes it work, then whatever this auth_completed thing is, it is not actually an authentication flow.\n\nThis is particularly problematic because a custom domain becomes the canonical URL, even for the leaflet.pub subdomain version. Therefore, at this point, adding a custom domain, rather than enhancing a Leaflet publication, completely breaks SEO and anything else that requires fetching through anything other than a browser. It's paradoxical that adding an enhancement degrades the functionality.\n\nI have tested this with other Leaflet publications that use custom domains and the behaviour is the same, so it's not an issue with my own DNS setup. Ultimately, request handling should transparently be the same for both the custom domain and the leaflet.pub subdomain.",
+          "createdAt": "2026-06-24T05:21:33+03:00",
+          "repo": "did:plc:yi7nkbbrbjsmpnn252szsdiz",
+          "title": "Regression: Discrepancy in request handling for custom domains with non-browser agents"
+        },
+        "time_us": 1782268104392396
+      },
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:5aeagkpy2ch5eencyi2elahk/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": true,
+          "description": "Online vulpine.",
+          "links": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "location": "",
+          "preferredHandle": "",
+          "pronouns": "he/him",
+          "stats": [
+            "",
+            ""
+          ]
+        },
+        "time_us": 1782268900812995
+      },
+      {
+        "collection": "sh.tangled.feed.reaction",
+        "operation": "create",
+        "rkey": "3moyvcrxftj22",
+        "uri": "at://did:plc:5aeagkpy2ch5eencyi2elahk/sh.tangled.feed.reaction/3moyvcrxftj22",
+        "record": {
+          "$type": "sh.tangled.feed.reaction",
+          "createdAt": "2026-06-24T05:41:53+03:00",
+          "reaction": "\ud83d\udc4d",
+          "subject": "at://did:plc:ysfpz7426pwdvjylsmcvmzzj/sh.tangled.repo.issue/3mdjwv3yg4v22"
+        },
+        "time_us": 1782268914259170
+      },
+      {
+        "collection": "sh.tangled.repo.issue",
+        "operation": "update",
+        "rkey": "3moyu6g4fgi22",
+        "uri": "at://did:plc:5aeagkpy2ch5eencyi2elahk/sh.tangled.repo.issue/3moyu6g4fgi22",
+        "record": {
+          "$type": "sh.tangled.repo.issue",
+          "body": "I reported this bug previously by email in April, and it was fixed, but somehow, it has now regressed.\n\nWhen non-browser agents (e.g. web crawlers and headless fetchers) access posts via my custom domain they are getting a 401 error, while the same post loads fine via the leaflet.pub subdomain URL.\n\nAdding ?auth_completed=true to the end of the URL makes it accessible, but that doesn't really help since ?auth_completed=true is not in the canonical URL. A non-browser agent (or even a browser agent) should not need to be authenticated to access public content. Also, if simply adding that to the end of the URL makes it work, then whatever this auth_completed thing is, it is not actually an authentication flow.\n\nThis is particularly problematic because a custom domain becomes the canonical URL, even for the leaflet.pub subdomain version. Therefore, at this point, adding a custom domain, rather than enhancing a Leaflet publication, completely breaks SEO and anything else that requires fetching through anything other than a browser. It's paradoxical that adding an enhancement degrades the functionality.\n\nI have tested this with other Leaflet publications that use custom domains and the behaviour is the same, so it's not an issue with my own DNS setup. Ultimately, request handling should transparently be the same for both the custom domain and the leaflet.pub subdomain.\n\nHere is the commit where this was fixed the first time:\nhttps://tangled.org/leaflet.pub/leaflet/commit/3ebf9823d5c995b8e2bc8240b3a11ec8cf7abbe7\n\nThough to be honest, I think this patch was treating the symptom rather than the problem, so it's no wonder that it has regressed.\n\nYou shouldn't need an exception that lets bots through, because there shouldn't even be a thing that they need to be given an exception to. A public page shouldn't just be straight up broken for anything that can't load Javascript or cookies. They should at least get something.",
+          "createdAt": "2026-06-24T02:21:33Z",
+          "repo": "did:plc:yi7nkbbrbjsmpnn252szsdiz",
+          "title": "Regression: Discrepancy in request handling for custom domains with non-browser agents"
+        },
+        "time_us": 1782271135031213
+      },
+      {
+        "collection": "sh.tangled.repo.issue",
+        "operation": "update",
+        "rkey": "3moyu6g4fgi22",
+        "uri": "at://did:plc:5aeagkpy2ch5eencyi2elahk/sh.tangled.repo.issue/3moyu6g4fgi22",
+        "record": {
+          "$type": "sh.tangled.repo.issue",
+          "body": "I reported this bug previously by email in April, and the fix that was applied has not quite addressed the issue.\n\nWhen non-browser agents (e.g. web crawlers and headless fetchers) access posts via my custom domain they are getting a 401 error, while the same post loads fine via the leaflet.pub subdomain URL. The fix added a regex for specific bot useragents, but that's a rather fragile fix that doesn't really address the underlying issue.\n\nAdding ?auth_completed=true to the end of the URL makes it accessible, but that doesn't really help since ?auth_completed=true is not in the canonical URL. A non-browser agent (or even a browser agent) should not need to be authenticated to access public content. Also, if simply adding that to the end of the URL makes it work, then whatever this auth_completed thing is, it is not actually an authentication flow.\n\nThis is particularly problematic because a custom domain becomes the canonical URL, even for the leaflet.pub subdomain version. Therefore, at this point, adding a custom domain, rather than enhancing a Leaflet publication, completely breaks SEO and anything else that requires fetching through anything other than a browser. It's paradoxical that adding an enhancement degrades the functionality.\n\nI have tested this with other Leaflet publications that use custom domains and the behaviour is the same, so it's not an issue with my own DNS setup. Ultimately, request handling should transparently be the same for both the custom domain and the leaflet.pub subdomain.\n\nHere is the commit where this was addressed the first time around:\nhttps://tangled.org/leaflet.pub/leaflet/commit/3ebf9823d5c995b8e2bc8240b3a11ec8cf7abbe7\n\nI think this patch was treating the symptom rather than the problem.\n\nYou shouldn't need an exception that lets bots through, because there shouldn't even be a thing that they need to be given an exception to. A public page shouldn't just be straight up broken for anything that can't load Javascript or cookies. They should at least get something.",
+          "createdAt": "2026-06-24T02:21:33Z",
+          "repo": "did:plc:yi7nkbbrbjsmpnn252szsdiz",
+          "title": "Discrepancy in request handling for custom domains with non-browser agents"
+        },
+        "time_us": 1782272113490518
+      }
+    ]
+  },
+  "did:plc:hntzm2xgnm6phxual5u3gefm": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:hntzm2xgnm6phxual5u3gefm/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "avatar": {
+            "$type": "blob",
+            "ref": {
+              "$link": "bafkreifpsbo3p7mccgn7x4oy54knaufsnkd5nrhge3jw5jvg6hw4umlrde"
+            },
+            "mimeType": "image/png",
+            "size": 688503
+          },
+          "bluesky": false
+        },
+        "time_us": 1782268121558534
+      },
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:hntzm2xgnm6phxual5u3gefm/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "avatar": {
+            "$type": "blob",
+            "ref": {
+              "$link": "bafkreifpsbo3p7mccgn7x4oy54knaufsnkd5nrhge3jw5jvg6hw4umlrde"
+            },
+            "mimeType": "image/png",
+            "size": 688503
+          },
+          "bluesky": false,
+          "description": "",
+          "links": [
+            "https://aesth.lol",
+            "https://npmx.dev/profile/scoopala7.tngl.sh",
+            "https://aesth-blog.leaflet.pub/",
+            "",
+            ""
+          ],
+          "location": "Somewhere",
+          "preferredHandle": "",
+          "pronouns": "any/all (except it/its)",
+          "stats": [
+            "star-count",
+            "repository-count"
+          ]
+        },
+        "time_us": 1782268223082747
+      },
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:hntzm2xgnm6phxual5u3gefm/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "avatar": {
+            "$type": "blob",
+            "ref": {
+              "$link": "bafkreifpsbo3p7mccgn7x4oy54knaufsnkd5nrhge3jw5jvg6hw4umlrde"
+            },
+            "mimeType": "image/png",
+            "size": 688503
+          },
+          "bluesky": false,
+          "description": "Hi! I'm Aesthetic and I make stuff sometimes.",
+          "links": [
+            "https://aesth.lol",
+            "https://npmx.dev/profile/scoopala7.tngl.sh",
+            "https://aesth-blog.leaflet.pub/",
+            "",
+            ""
+          ],
+          "location": "Somewhere",
+          "preferredHandle": "",
+          "pronouns": "any/all (not it/its)",
+          "stats": [
+            "star-count",
+            "repository-count"
+          ]
+        },
+        "time_us": 1782268273390405
+      },
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:hntzm2xgnm6phxual5u3gefm/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "avatar": {
+            "$type": "blob",
+            "ref": {
+              "$link": "bafkreifpsbo3p7mccgn7x4oy54knaufsnkd5nrhge3jw5jvg6hw4umlrde"
+            },
+            "mimeType": "image/png",
+            "size": 688503
+          },
+          "bluesky": false,
+          "description": "Hi! I'm Aesthetic and I make stuff sometimes.",
+          "links": [
+            "https://aesth.lol",
+            "",
+            "https://aesth-blog.leaflet.pub/",
+            "",
+            ""
+          ],
+          "location": "Somewhere",
+          "preferredHandle": "",
+          "pronouns": "any/all (not it/its)",
+          "stats": [
+            "star-count",
+            "repository-count"
+          ]
+        },
+        "time_us": 1782273848398477
+      },
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:hntzm2xgnm6phxual5u3gefm/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "avatar": {
+            "$type": "blob",
+            "ref": {
+              "$link": "bafkreifpsbo3p7mccgn7x4oy54knaufsnkd5nrhge3jw5jvg6hw4umlrde"
+            },
+            "mimeType": "image/png",
+            "size": 688503
+          },
+          "bluesky": false,
+          "description": "Hi! I'm Aesthetic and I make stuff sometimes.",
+          "links": [
+            "https://aesth.lol",
+            "https://aesth-blog.leaflet.pub/",
+            "",
+            "",
+            ""
+          ],
+          "location": "Somewhere",
+          "preferredHandle": "",
+          "pronouns": "any/all (not it/its)",
+          "stats": [
+            "star-count",
+            "repository-count"
+          ]
+        },
+        "time_us": 1782273852071271
+      }
+    ]
+  },
+  "did:plc:qfpnj4og54vl56wngdriaxug": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.reaction",
+        "operation": "create",
+        "rkey": "3moyukxp26z22",
+        "uri": "at://did:plc:qfpnj4og54vl56wngdriaxug/sh.tangled.feed.reaction/3moyukxp26z22",
+        "record": {
+          "$type": "sh.tangled.feed.reaction",
+          "createdAt": "2026-06-24T05:28:34+03:00",
+          "reaction": "\ud83d\udc4d",
+          "subject": "at://did:plc:dadhhalkfcq3gucaq25hjqon/sh.tangled.feed.comment/3moxcmoyjon22"
+        },
+        "time_us": 1782268360077342
+      },
+      {
+        "collection": "sh.tangled.feed.reaction",
+        "operation": "create",
+        "rkey": "3moyul5f3z722",
+        "uri": "at://did:plc:qfpnj4og54vl56wngdriaxug/sh.tangled.feed.reaction/3moyul5f3z722",
+        "record": {
+          "$type": "sh.tangled.feed.reaction",
+          "createdAt": "2026-06-24T05:28:40+03:00",
+          "reaction": "\u2764\ufe0f",
+          "subject": "at://did:plc:dadhhalkfcq3gucaq25hjqon/sh.tangled.feed.comment/3moxcmoyjon22"
+        },
+        "time_us": 1782268362280455
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3moyy66d7z722",
+        "uri": "at://did:plc:qfpnj4og54vl56wngdriaxug/sh.tangled.feed.star/3moyy66d7z722",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T06:33:00+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:ll2i6qch5mjqm4ymiaycar6n"
+          }
+        },
+        "time_us": 1782271982303790
+      }
+    ]
+  },
+  "did:plc:nhqx5lt4twhrlfaoayzox3gf": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "update",
+        "rkey": "3mgcgp4gezn22",
+        "uri": "at://did:plc:nhqx5lt4twhrlfaoayzox3gf/sh.tangled.repo/3mgcgp4gezn22",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-03-05T09:00:13Z",
+          "description": "\u3053\u3093\u306b\u3061\u306f\u4e16\u754c\uff01",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "name": "hello-world",
+          "repoDid": "did:plc:673palbaxd37c4pi6nkf44vs"
+        },
+        "time_us": 1782270174962756
+      }
+    ]
+  },
+  "did:plc:fboziknqps5gzsz7nweicsvo": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.knot",
+        "operation": "create",
+        "rkey": "knot.coreitpro.com",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.knot/knot.coreitpro.com",
+        "record": {
+          "$type": "sh.tangled.knot",
+          "createdAt": "2026-06-24T06:39:21+03:00"
+        },
+        "time_us": 1782272362520032
+      },
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "create",
+        "rkey": "3moyyyoxmqp22",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.publicKey/3moyyyoxmqp22",
+        "record": {
+          "$type": "sh.tangled.publicKey",
+          "createdAt": "2026-06-24T06:47:49+03:00",
+          "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCi3nWuy3grCiCLqCsszQ/zGa1IU1mlIwFB4/TOryMiDYMj764Bvn0O4C2wDKpjS5t17CKg24kxSxKob6cYiVnxQtIByyH1r3w0TWjDh+p3/A9YdZNXnY/SIBU5fiq3HNB+Vt12hz+107yzhJMWGc79MYIkCGKEAvnvQgTsv7AKHlvSPkd4lI1hEZnT6GxUQ8SFzFcnrQClumrjS/VxpNS1P/J958KNsGRe/lS1CPJGr3dh4GhVSMLX2x8qIifvEgHzipk+tmPmIJQCnvlvTZ4gUzGZBp65BLZrDBgzEv5tSY331bBF40iDJi/h8Y2a1IesYsXVnUwysGp1HrotybeWDtUDK4VkT8lbZSclhiIRXwwStPwXCRg7aTtb8oUZq2+hpAhqllV9M8HQ4faXKvOxmOB+RI3cHfLhBbKtpgksZAoPu4tERiobUKXqr7zwIHzdBzuFCZp87t2Iyzlc4r1J1ydfu0AgqX2h4S7D4mZHHiz8kVYFX4Ynp5CPHPQkbS8= scollins@thor",
+          "name": "scollins@thor"
+        },
+        "time_us": 1782272870898941
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "knot-test",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.repo/knot-test",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T07:04:10+03:00",
+          "description": "testing self hosted pds",
+          "knot": "knot.coreitpro.com",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:ebpwwiy4k74izgwcaxli5ybd"
+        },
+        "time_us": 1782273852148240
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "delete",
+        "rkey": "knot-test",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.repo/knot-test",
+        "record": null,
+        "time_us": 1782274484200078
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "knot-test",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.repo/knot-test",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T07:15:18+03:00",
+          "description": "testing self hosted pds",
+          "knot": "knot.coreitpro.com",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:yzv34uvbmdssxwoxcz473izt"
+        },
+        "time_us": 1782274519458212
+      },
+      {
+        "collection": "sh.tangled.feed.reaction",
+        "operation": "delete",
+        "rkey": "3monxg63r7i22",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.feed.reaction/3monxg63r7i22",
+        "record": null,
+        "time_us": 1782274799438258
+      },
+      {
+        "collection": "sh.tangled.feed.reaction",
+        "operation": "create",
+        "rkey": "3moz2s76ixz22",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.feed.reaction/3moz2s76ixz22",
+        "record": {
+          "$type": "sh.tangled.feed.reaction",
+          "createdAt": "2026-06-24T07:19:59+03:00",
+          "reaction": "\u2764\ufe0f",
+          "subject": "at://did:web:tristanjodsalz.bekanntefreunde.de/sh.tangled.repo.issue/3mkdge2wokm22"
+        },
+        "time_us": 1782274799895680
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "delete",
+        "rkey": "knot-test",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.repo/knot-test",
+        "record": null,
+        "time_us": 1782275444316181
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "knot-test",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.repo/knot-test",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T07:31:24+03:00",
+          "description": "testing self hosted pds",
+          "knot": "knot.coreitpro.com",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:ilxr4krhs4lrrp63mqxaspep"
+        },
+        "time_us": 1782275485335583
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "knot-docker",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.repo/knot-docker",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T07:43:00+03:00",
+          "description": "Community maintained Docker config for the knot server ",
+          "knot": "knot.coreitpro.com",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:46ozwdunqeok4yrhgspwsyjw",
+          "source": "did:plc:f5s5la5wlofsxidb3zemdune"
+        },
+        "time_us": 1782276181912666
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "delete",
+        "rkey": "knot-test",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.repo/knot-test",
+        "record": null,
+        "time_us": 1782276892414886
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "knot-test",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.repo/knot-test",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T07:55:11+03:00",
+          "knot": "knot.coreitpro.com",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:wzolcxsmgaungvsum5yonzds"
+        },
+        "time_us": 1782276911401265
+      },
+      {
+        "collection": "sh.tangled.feed.comment",
+        "operation": "create",
+        "rkey": "3moz4xhdbut22",
+        "uri": "at://did:plc:fboziknqps5gzsz7nweicsvo/sh.tangled.feed.comment/3moz4xhdbut22",
+        "record": {
+          "$type": "sh.tangled.feed.comment",
+          "body": {
+            "$type": "sh.tangled.markup.markdown",
+            "original": "I think instead of using bind mounts, the docker compose file should use volumes. ",
+            "text": "I think instead of using bind mounts, the docker compose file should use volumes. "
+          },
+          "createdAt": "2026-06-24T07:58:43+03:00",
+          "subject": {
+            "cid": "bafyreiciq5kf4nqyuyrzb7risocpqhf56izagjupymglwygslboftkftjm",
+            "uri": "at://did:plc:h3ogy4c4ljm7iumhga2uplae/sh.tangled.repo.issue/3luk3si7o2v22"
+          }
+        },
+        "time_us": 1782277124524266
+      }
+    ]
+  },
+  "did:plc:big6e357j2bbrlkyms5vjkgf": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "skywipe",
+        "uri": "at://did:plc:big6e357j2bbrlkyms5vjkgf/sh.tangled.repo/skywipe",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T06:56:54+03:00",
+          "description": "A minimal tool for deleting lingering Bluesky accounts after a PDS migration.",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:n4eh7ddz6fiaqkmdo7zgwen7"
+        },
+        "time_us": 1782273414593990
+      }
+    ]
+  },
+  "did:plc:g2cv2aanm64kfjsnl67bjlkc": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "create",
+        "rkey": "self",
+        "uri": "at://did:plc:g2cv2aanm64kfjsnl67bjlkc/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false
+        },
+        "time_us": 1782274410992713
+      },
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:g2cv2aanm64kfjsnl67bjlkc/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false,
+          "description": "",
+          "links": [
+            "https://wongmjane.com",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "location": "",
+          "preferredHandle": "",
+          "pronouns": "",
+          "stats": [
+            "",
+            ""
+          ]
+        },
+        "time_us": 1782274484130534
+      },
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:g2cv2aanm64kfjsnl67bjlkc/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "avatar": {
+            "$type": "blob",
+            "ref": {
+              "$link": "bafkreife7xzjwrr6q2cg46mkmh34amyudcdbvorgjbgrlbnbxcyszdsn4u"
+            },
+            "mimeType": "image/png",
+            "size": 449573
+          },
+          "bluesky": false,
+          "description": "",
+          "links": [
+            "https://wongmjane.com",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "location": "",
+          "preferredHandle": "",
+          "pronouns": "",
+          "stats": [
+            "",
+            ""
+          ]
+        },
+        "time_us": 1782274616102918
+      }
+    ]
+  },
+  "did:plc:hwevmowznbiukdf6uk5dwrrq": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3moz2kicaal22",
+        "uri": "at://did:plc:hwevmowznbiukdf6uk5dwrrq/sh.tangled.feed.star/3moz2kicaal22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T07:15:40+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:nfdkrbanuijrnz2j4indxjro"
+          }
+        },
+        "time_us": 1782274541403649
+      }
+    ]
+  },
+  "did:plc:iuxoim42p7vdkremfa3ozmku": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo.pull",
+        "operation": "create",
+        "rkey": "3moz2q45mgi22",
+        "uri": "at://did:plc:iuxoim42p7vdkremfa3ozmku/sh.tangled.repo.pull/3moz2q45mgi22",
+        "record": {
+          "$type": "sh.tangled.repo.pull",
+          "body": "",
+          "createdAt": "2026-06-24T07:18:51+03:00",
+          "rounds": [
+            {
+              "createdAt": "2026-06-24T07:18:51+03:00",
+              "patchBlob": {
+                "$type": "blob",
+                "ref": {
+                  "$link": "bafkreiey4rcbp7zkmrwqf7zkx4cxovgmfqfjqr2i2n4e2k766vt67bx64u"
+                },
+                "mimeType": "application/gzip",
+                "size": 34040
+              }
+            }
+          ],
+          "source": {
+            "branch": "alpine"
+          },
+          "target": {
+            "branch": "main",
+            "repo": "did:plc:7p3hj7gifwhz6ht5bcczswnx",
+            "repoDid": "did:plc:7p3hj7gifwhz6ht5bcczswnx"
+          },
+          "title": "Migrate to alpine"
+        },
+        "time_us": 1782274732297480
+      }
+    ]
+  },
+  "did:plc:ph6k7qawqv7tbo3r3mnokvgv": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "teste",
+        "uri": "at://did:plc:ph6k7qawqv7tbo3r3mnokvgv/sh.tangled.repo/teste",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T07:22:28+03:00",
+          "description": "Nada demais",
+          "knot": "knot1.tangled.sh",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:y6ka7vgkbiv7yvhsocrymiz6"
+        },
+        "time_us": 1782274948597259
+      }
+    ]
+  },
+  "did:plc:qq45syuglxc5pmjobjhlzpog": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "update",
+        "rkey": "self",
+        "uri": "at://did:plc:qq45syuglxc5pmjobjhlzpog/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": true,
+          "description": "",
+          "links": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "location": "United States",
+          "preferredHandle": "",
+          "pronouns": "she/her",
+          "stats": [
+            "",
+            ""
+          ]
+        },
+        "time_us": 1782276578420689
+      }
+    ]
+  },
+  "did:plc:tft77e5qkblxtneeib4lp3zk": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "create",
+        "rkey": "3moz6ndu5cz22",
+        "uri": "at://did:plc:tft77e5qkblxtneeib4lp3zk/sh.tangled.publicKey/3moz6ndu5cz22",
+        "record": {
+          "$type": "sh.tangled.publicKey",
+          "createdAt": "2026-06-24T08:28:51+03:00",
+          "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID31YVILARKBkUMJomBse6mZNMLd9Py3QRLCXWFWYr4G",
+          "name": "Primary Git SSH key"
+        },
+        "time_us": 1782278932822185
+      }
+    ]
+  },
+  "did:plc:xasnlahkri4ewmbuzly2rlc5": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo.issue",
+        "operation": "create",
+        "rkey": "3moz7s4tav622",
+        "uri": "at://did:plc:xasnlahkri4ewmbuzly2rlc5/sh.tangled.repo.issue/3moz7s4tav622",
+        "record": {
+          "$type": "sh.tangled.repo.issue",
+          "body": "`repo.Did` should be a DID of repository itself. Git repos are not tied to their current owner, so using `.Did` field for owner DID is not correct.\n\nSame goes to `repo.Rkey`. Git repos are not a record, they are standalone identity and the source of truth is git repository DID, not record in someone's PDS.\n\n| old | new |\n|-|-|\n| `repo.RepoDid` | `repo.Did` |\n| `repo.Did` | `repo.Owner` |\n| `repo.Rkey` | `repo.Slug` or `repo.Name` |\n\nFor xrpc method or record definition,\n\nWhen we _reference_ a git repository (e.g. `sh.tangled.feed.star`) -> name field as `repo` with type string, DID format.\n\nWhen we _represent_ a git repository (e.g. `sh.tangled.sync.listRepos`) -> name field as `did` since the object itself is already a \"repo\". It should be `.repo.did` instead of `.repo.repo`.",
+          "createdAt": "2026-06-24T08:49:25+03:00",
+          "repo": "did:plc:j5hmlfdrwkvtxm7cjmu7j2is",
+          "title": "rename `repo.Did` to `repo.Owner`"
+        },
+        "time_us": 1782280168628597
+      },
+      {
+        "collection": "sh.tangled.label.op",
+        "operation": "create",
+        "rkey": "3moz7tg7knt22",
+        "uri": "at://did:plc:xasnlahkri4ewmbuzly2rlc5/sh.tangled.label.op/3moz7tg7knt22",
+        "record": {
+          "$type": "sh.tangled.label.op",
+          "add": [
+            {
+              "key": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/3lzmajxaipo22",
+              "value": "appview"
+            },
+            {
+              "key": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/3lzmajxaipo22",
+              "value": "knot"
+            },
+            {
+              "key": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/3lzmajxaipo22",
+              "value": "spindle"
+            },
+            {
+              "key": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee",
+              "value": "did:plc:xasnlahkri4ewmbuzly2rlc5"
+            },
+            {
+              "key": "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee",
+              "value": "did:plc:3fwecdnvtcscjnrx2p4n7alz"
+            }
+          ],
+          "delete": null,
+          "performedAt": "2026-06-24T08:50:09+03:00",
+          "subject": "at://did:plc:xasnlahkri4ewmbuzly2rlc5/sh.tangled.repo.issue/3moz7s4tav622"
+        },
+        "time_us": 1782280210296658
+      },
+      {
+        "collection": "sh.tangled.repo.issue",
+        "operation": "update",
+        "rkey": "3moz7s4tav622",
+        "uri": "at://did:plc:xasnlahkri4ewmbuzly2rlc5/sh.tangled.repo.issue/3moz7s4tav622",
+        "record": {
+          "$type": "sh.tangled.repo.issue",
+          "body": "`repo.Did` should be a DID of repository itself. Git repos are not tied to their current owner, so using `.Did` field for owner DID is not correct.\n\nSame goes to `repo.Rkey`. Git repos are not a record, they are standalone identity and the source of truth is git repository DID, not record in someone's PDS.\n\n| old | new |\n|-|-|\n| `repo.RepoDid` | `repo.Did` |\n| `repo.Did` | `repo.Owner` |\n| `repo.Rkey` | `repo.Slug` or `repo.Name` |\n\nFor xrpc method or record definition,\n\nWhen we _reference_ a git repository (e.g. `sh.tangled.feed.star`) -> name the field as `repo` with type string, DID format.\n\nWhen we _represent_ a git repository (e.g. `sh.tangled.sync.listRepos`) -> name the field as `did` since the object itself is already a \"repo\". It should be `.repo.did` instead of `.repo.repo`.",
+          "createdAt": "2026-06-24T05:49:27Z",
+          "repo": "did:plc:j5hmlfdrwkvtxm7cjmu7j2is",
+          "title": "rename `repo.Did` to `repo.Owner`"
+        },
+        "time_us": 1782280257996917
+      }
+    ]
+  },
+  "did:plc:pw3smigfoipermltmsuc4224": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "create",
+        "rkey": "self",
+        "uri": "at://did:plc:pw3smigfoipermltmsuc4224/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false
+        },
+        "time_us": 1782280243926278
+      }
+    ]
+  },
+  "did:plc:6zcuxcrtktpgmb2pazbykbdb": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "delete",
+        "rkey": "site",
+        "uri": "at://did:plc:6zcuxcrtktpgmb2pazbykbdb/sh.tangled.repo/site",
+        "record": null,
+        "time_us": 1782281215606599
+      }
+    ]
+  },
+  "did:plc:lmdkqemqrqnfiix72pyjhfey": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "update",
+        "rkey": "3lymnvwybqc22",
+        "uri": "at://did:plc:lmdkqemqrqnfiix72pyjhfey/sh.tangled.feed.star/3lymnvwybqc22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2025-09-12T06:43:13Z",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:gmozkl3upzfshwtxjyuejia2"
+          }
+        },
+        "time_us": 1782281769701015
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "update",
+        "rkey": "3lymnvmqieu22",
+        "uri": "at://did:plc:lmdkqemqrqnfiix72pyjhfey/sh.tangled.feed.star/3lymnvmqieu22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2025-09-12T06:43:03Z",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:34h5udrnmjwa5lgvc3owqfyp"
+          }
+        },
+        "time_us": 1782281769706749
+      }
+    ]
+  },
+  "did:plc:rl7veq6ixcxbvxskltypdcpa": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.reaction",
+        "operation": "create",
+        "rkey": "3mozblp2orr22",
+        "uri": "at://did:plc:rl7veq6ixcxbvxskltypdcpa/sh.tangled.feed.reaction/3mozblp2orr22",
+        "record": {
+          "$type": "sh.tangled.feed.reaction",
+          "createdAt": "2026-06-24T09:21:37+03:00",
+          "reaction": "\ud83d\udc4d",
+          "subject": "at://did:plc:n46r6vgvovddymp4esuhyu63/sh.tangled.repo.issue/3moymxn7u7d22"
+        },
+        "time_us": 1782282099718687
+      }
+    ]
+  },
+  "did:plc:cc5bxncei6t5mcuxfyar3ieh": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "create",
+        "rkey": "self",
+        "uri": "at://did:plc:cc5bxncei6t5mcuxfyar3ieh/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false
+        },
+        "time_us": 1782282136932704
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3mozbne4ocn22",
+        "uri": "at://did:plc:cc5bxncei6t5mcuxfyar3ieh/sh.tangled.graph.follow/3mozbne4ocn22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T09:22:33+03:00",
+          "subject": "did:plc:fpruhuo22xkm5o7ttr2ktxdo"
+        },
+        "time_us": 1782282154008582
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3mozbnfnf5522",
+        "uri": "at://did:plc:cc5bxncei6t5mcuxfyar3ieh/sh.tangled.graph.follow/3mozbnfnf5522",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T09:22:34+03:00",
+          "subject": "did:plc:onu3oqfahfubgbetlr4giknc"
+        },
+        "time_us": 1782282155024271
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3mozbnhog2i22",
+        "uri": "at://did:plc:cc5bxncei6t5mcuxfyar3ieh/sh.tangled.graph.follow/3mozbnhog2i22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T09:22:36+03:00",
+          "subject": "did:plc:fpruhuo22xkm5o7ttr2ktxdo"
+        },
+        "time_us": 1782282158047948
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3mozbns7qzv22",
+        "uri": "at://did:plc:cc5bxncei6t5mcuxfyar3ieh/sh.tangled.feed.star/3mozbns7qzv22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T09:22:47+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:wzolcxsmgaungvsum5yonzds"
+          }
+        },
+        "time_us": 1782282169105756
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3mozbnum3od22",
+        "uri": "at://did:plc:cc5bxncei6t5mcuxfyar3ieh/sh.tangled.feed.star/3mozbnum3od22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T09:22:50+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:46ozwdunqeok4yrhgspwsyjw"
+          }
+        },
+        "time_us": 1782282171136847
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3mozbnvz4j422",
+        "uri": "at://did:plc:cc5bxncei6t5mcuxfyar3ieh/sh.tangled.feed.star/3mozbnvz4j422",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T09:22:51+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:y6ka7vgkbiv7yvhsocrymiz6"
+          }
+        },
+        "time_us": 1782282172115045
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3mozbnxs7nf22",
+        "uri": "at://did:plc:cc5bxncei6t5mcuxfyar3ieh/sh.tangled.feed.star/3mozbnxs7nf22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T09:22:53+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:nfdkrbanuijrnz2j4indxjro"
+          }
+        },
+        "time_us": 1782282174210484
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3mozbnyryng22",
+        "uri": "at://did:plc:cc5bxncei6t5mcuxfyar3ieh/sh.tangled.feed.star/3mozbnyryng22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T09:22:54+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:n4eh7ddz6fiaqkmdo7zgwen7"
+          }
+        },
+        "time_us": 1782282175221260
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3mozbnzt2wz22",
+        "uri": "at://did:plc:cc5bxncei6t5mcuxfyar3ieh/sh.tangled.feed.star/3mozbnzt2wz22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T09:22:55+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:ashwqrjf7whw2ihwvnanio5q"
+          }
+        },
+        "time_us": 1782282176248649
+      }
+    ]
+  },
+  "did:plc:hmetpai64zqmou3mirll5rit": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3mozci6cyjh22",
+        "uri": "at://did:plc:hmetpai64zqmou3mirll5rit/sh.tangled.graph.follow/3mozci6cyjh22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T09:37:33+03:00",
+          "subject": "did:plc:onu3oqfahfubgbetlr4giknc"
+        },
+        "time_us": 1782283053812438
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3mozciamdaj22",
+        "uri": "at://did:plc:hmetpai64zqmou3mirll5rit/sh.tangled.graph.follow/3mozciamdaj22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T09:37:35+03:00",
+          "subject": "did:plc:fpruhuo22xkm5o7ttr2ktxdo"
+        },
+        "time_us": 1782283055716247
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3mozcjkbhfh22",
+        "uri": "at://did:plc:hmetpai64zqmou3mirll5rit/sh.tangled.graph.follow/3mozcjkbhfh22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T09:38:19+03:00",
+          "subject": "did:plc:x5leeami62gbmjekf7ro6sqo"
+        },
+        "time_us": 1782283099953671
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3mozcjqy4ix22",
+        "uri": "at://did:plc:hmetpai64zqmou3mirll5rit/sh.tangled.graph.follow/3mozcjqy4ix22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T09:38:26+03:00",
+          "subject": "did:plc:3danwc67lo7obz2fmdg6jxcr"
+        },
+        "time_us": 1782283106438616
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3mozck5cm6s22",
+        "uri": "at://did:plc:hmetpai64zqmou3mirll5rit/sh.tangled.graph.follow/3mozck5cm6s22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T09:38:39+03:00",
+          "subject": "did:plc:i2r4fkz7ge35u5tbcj2ntasf"
+        },
+        "time_us": 1782283119690569
+      },
+      {
+        "collection": "sh.tangled.graph.follow",
+        "operation": "create",
+        "rkey": "3mozckmfuus22",
+        "uri": "at://did:plc:hmetpai64zqmou3mirll5rit/sh.tangled.graph.follow/3mozckmfuus22",
+        "record": {
+          "$type": "sh.tangled.graph.follow",
+          "createdAt": "2026-06-24T09:38:54+03:00",
+          "subject": "did:plc:bxmukjuf2e6z6tvpmklbbern"
+        },
+        "time_us": 1782283135529062
+      }
+    ]
+  },
+  "did:plc:xgk2jvxnaijo7btcpndgyrye": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "object-identity",
+        "uri": "at://did:plc:xgk2jvxnaijo7btcpndgyrye/sh.tangled.repo/object-identity",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T09:39:01+03:00",
+          "description": "mirror: A fast canonicalisation utility for stable object equality",
+          "knot": "git.local.to",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:doulxtjknvg7e5ngws5scb4y"
+        },
+        "time_us": 1782283142203252
+      }
+    ]
+  },
+  "did:plc:erqwpimsmwnzohwoiojsy22z": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.string",
+        "operation": "update",
+        "rkey": "3mn454avrbq22",
+        "uri": "at://did:plc:erqwpimsmwnzohwoiojsy22z/sh.tangled.string/3mn454avrbq22",
+        "record": {
+          "$type": "sh.tangled.string",
+          "contents": "#!/usr/bin/env python3\n# Copyright (c) Maxine S. Fritz 2026\n#\n# Permission to use, copy, modify, and/or distribute this software for any\n# purpose with or without fee is hereby granted.\n#\n# THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH\n# REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY\n# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,\n# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM\n# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR\n# OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR\n# PERFORMANCE OF THIS SOFTWARE.\n\nfrom blake3 import blake3\nfrom collections.abc import Iterator\nfrom copy import copy, deepcopy\nfrom typing import Any, Final, Optional\n\nLANES: Final[int] = 1024\nLANE_BYTES: Final[int] = 2\nLANE_MODULUS: Final[int] = 2 ** (LANE_BYTES * 8)\nPREVIEW_BYTES: Final[int] = 8\nSTATE_BYTES: Final[int] = LANES * LANE_BYTES\n\nclass LtLane:\n\tdef __init__(self, value: Optional[int] = None):\n\t\tvalue = value if value is not None else 0\n\t\tself.__value: Final[int] = value % LANE_MODULUS\n\n\t@staticmethod\n\tdef from_bytes(value: bytes) -> 'LtLane':\n\t\tif len(value) != LANE_BYTES:\n\t\t\traise ValueError(f'Expected {LANE_BYTES} bytes, got {len(value)}')\n\t\treturn LtLane(int.from_bytes(value, byteorder='little'))\n\n\tdef to_bytes(self) -> bytes:\n\t\treturn self.__value.to_bytes(LANE_BYTES, byteorder='little')\n\n\tdef __add__(self, other: Any) -> 'LtLane':\n\t\tif isinstance(other, LtLane):\n\t\t\treturn LtLane(self.__value + other.__value)\n\t\telif isinstance(other, int):\n\t\t\treturn LtLane(self.__value + other)\n\t\telse:\n\t\t\traise TypeError(f'Expected type `LtLane | int`, got `{type(other)}`')\n\tdef __sub__(self, other: Any) -> 'LtLane':\n\t\tif isinstance(other, LtLane):\n\t\t\treturn LtLane(self.__value - other.__value)\n\t\telif isinstance(other, int):\n\t\t\treturn LtLane(self.__value - other)\n\t\telse:\n\t\t\traise TypeError(f'Expected type `LtLane | int`, got `{type(other)}`')\n\tdef __iadd__(self, other: Any):\n\t\treturn NotImplemented\n\tdef __isub__(self, other: Any):\n\t\treturn NotImplemented\n\n\tdef __bytes__(self) -> bytes:\n\t\treturn self.to_bytes()\n\tdef __copy__(self) -> 'LtLane':\n\t\treturn LtLane(self.__value)\n\tdef __deepcopy__(self, memo: dict) -> 'LtLane':\n\t\treturn LtLane(self.__value)\n\tdef __eq__(self, other: Any) -> bool:\n\t\tif isinstance(other, LtLane):\n\t\t\treturn self.__value == other.__value\n\t\telif isinstance(other, int):\n\t\t\treturn self.__value == other\n\t\telse:\n\t\t\treturn NotImplemented\n\tdef __hash__(self) -> int:\n\t\treturn hash(self.__value)\n\tdef __repr__(self) -> str:\n\t\treturn str(self)\n\tdef __str__(self) -> str:\n\t\tpreview = self.to_bytes().hex()\n\t\treturn f'LtLane({preview})'\n\nclass LtHash:\n\t__hash__ = None\n\n\tdef __init__(self, state: Optional[list[LtLane]] = None):\n\t\tstate = state if state is not None else [LtLane()] * LANES\n\t\tif len(state) != LANES:\n\t\t\traise ValueError(f'Expected {LANES} lanes, got {len(state)}')\n\n\t\tself.__state = state\n\n\t@property\n\tdef state(self) -> list[LtLane]:\n\t\treturn copy(self.__state)\n\n\t@staticmethod\n\tdef from_bytes(state: bytes) -> 'LtHash':\n\t\tif len(state) != STATE_BYTES:\n\t\t\traise ValueError(f'Expected {STATE_BYTES} bytes, got {len(state)}')\n\n\t\tls = [LtLane.from_bytes(state[i * LANE_BYTES : (i + 1) * LANE_BYTES]) for i in range(LANES)]\n\t\treturn LtHash(ls)\n\n\tdef to_bytes(self) -> bytes:\n\t\treturn b''.join(lane.to_bytes() for lane in self.__state)\n\n\tdef add(self, other: bytes):\n\t\tdigest = blake3(other).digest(length=STATE_BYTES)\n\t\tfor i in range(LANES):\n\t\t\tself.__state[i] += LtLane.from_bytes(digest[i * LANE_BYTES : (i + 1) * LANE_BYTES])\n\tdef clear(self):\n\t\tself.__state = [LtLane()] * LANES\n\tdef remove(self, other: bytes):\n\t\tdigest = blake3(other).digest(length=STATE_BYTES)\n\t\tfor i in range(LANES):\n\t\t\tself.__state[i] -= LtLane.from_bytes(digest[i * LANE_BYTES : (i + 1) * LANE_BYTES])\n\n\tdef __bytes__(self) -> bytes:\n\t\treturn self.to_bytes()\n\tdef __copy__(self) -> 'LtHash':\n\t\treturn LtHash(list(self.__state))\n\tdef __deepcopy__(self, memo: dict) -> 'LtHash':\n\t\treturn LtHash([deepcopy(lane, memo) for lane in self.__state])\n\tdef __eq__(self, other: Any) -> bool:\n\t\tif isinstance(other, LtHash):\n\t\t\treturn self.__state == other.__state\n\t\telse:\n\t\t\treturn NotImplemented\n\tdef __repr__(self) -> str:\n\t\treturn str(self)\n\tdef __str__(self) -> str:\n\t\tpreview = self.to_bytes()[:PREVIEW_BYTES].hex()\n\t\treturn f'LtHash({preview}...)'\n\nclass LtSet:\n\t__hash__ = None\n\n\tdef __init__(self, *args: bytes):\n\t\tself.__hash = LtHash()\n\t\tself.__hashMemoized = None\n\t\tself.__set: set[bytes] = set()\n\t\tself.__setMemoized = None\n\n\t\tfor argument in args:\n\t\t\tself.__hash.add(argument)\n\t\t\tself.__set.add(argument)\n\n\t@property\n\tdef hash(self) -> LtHash:\n\t\tif self.__hashMemoized is None:\n\t\t\tself.__hashMemoized = copy(self.__hash)\n\t\treturn self.__hashMemoized\n\t@property\n\tdef set(self) -> frozenset[bytes]:\n\t\tif self.__setMemoized is None:\n\t\t\tself.__setMemoized = frozenset(self.__set)\n\t\treturn self.__setMemoized\n\n\tdef add(self, item: bytes):\n\t\tif item not in self.__set:\n\t\t\tself.__set.add(item)\n\t\t\tself.__setMemoized = None\n\t\t\tself.__hash.add(item)\n\t\t\tself.__hashMemoized = None\n\tdef clear(self):\n\t\tself.__set.clear()\n\t\tself.__setMemoized = None\n\t\tself.__hash.clear()\n\t\tself.__hashMemoized = None\n\tdef discard(self, item: bytes):\n\t\tif item in self.__set:\n\t\t\tself.__set.remove(item)\n\t\t\tself.__setMemoized = None\n\t\t\tself.__hash.remove(item)\n\t\t\tself.__hashMemoized = None\n\n\tdef __bytes__(self) -> bytes:\n\t\treturn self.__hash.to_bytes()\n\tdef __contains__(self, item: Any) -> bool:\n\t\treturn item in self.__set\n\tdef __copy__(self) -> 'LtSet':\n\t\tnew = LtSet.__new__(LtSet)\n\t\tnew.__hash = copy(self.__hash)\n\t\tnew.__hashMemoized = None\n\t\tnew.__set = copy(self.__set)\n\t\tnew.__setMemoized = None\n\t\treturn new\n\tdef __deepcopy__(self, memo: dict) -> 'LtSet':\n\t\tnew = LtSet.__new__(LtSet)\n\t\tnew.__hash = deepcopy(self.__hash, memo)\n\t\tnew.__hashMemoized = None\n\t\tnew.__set = deepcopy(self.__set, memo)\n\t\tnew.__setMemoized = None\n\t\treturn new\n\tdef __eq__(self, other: Any) -> bool:\n\t\tif isinstance(other, LtSet):\n\t\t\treturn self.__hash == other.__hash\n\t\telif isinstance(other, LtHash):\n\t\t\treturn self.__hash == other\n\t\telse:\n\t\t\treturn NotImplemented\n\tdef __iter__(self) -> Iterator:\n\t\tif self.__setMemoized is None:\n\t\t\tself.__setMemoized = frozenset(self.__set)\n\t\treturn iter(self.__setMemoized)\n\tdef __len__(self) -> int:\n\t\treturn len(self.__set)\n\tdef __repr__(self) -> str:\n\t\treturn str(self)\n\tdef __str__(self) -> str:\n\t\tpreview = self.__hash.to_bytes()[:PREVIEW_BYTES].hex()\n\t\treturn f'LtSet({preview}...)'\n",
+          "createdAt": "2026-05-31T01:49:00+03:00",
+          "description": "very basic LtHash/Set implementation in ~200 lines",
+          "filename": "ltset.py"
+        },
+        "time_us": 1782283415031807
+      }
+    ]
+  },
+  "did:plc:dyrmgkxlwinjywt72ud56kp2": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.knot",
+        "operation": "update",
+        "rkey": "knot.h14h.com",
+        "uri": "at://did:plc:dyrmgkxlwinjywt72ud56kp2/sh.tangled.knot/knot.h14h.com",
+        "record": {
+          "$type": "sh.tangled.knot",
+          "createdAt": "2026-06-24T10:01:24+03:00"
+        },
+        "time_us": 1782284485731400
+      },
+      {
+        "collection": "sh.tangled.repo",
+        "operation": "create",
+        "rkey": "glide",
+        "uri": "at://did:plc:dyrmgkxlwinjywt72ud56kp2/sh.tangled.repo/glide",
+        "record": {
+          "$type": "sh.tangled.repo",
+          "createdAt": "2026-06-24T10:02:02+03:00",
+          "description": "Effortlessly glide through your todos",
+          "knot": "knot.h14h.com",
+          "labels": [
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/wontfix",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/good-first-issue",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/duplicate",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/documentation",
+            "at://did:plc:wshs7t2adsemcrrd4snkeqli/sh.tangled.label.definition/assignee"
+          ],
+          "repoDid": "did:plc:zl5fkkyfqfjdyulmsoqitkmc"
+        },
+        "time_us": 1782284522600692
+      }
+    ]
+  },
+  "did:plc:5e44ypvdatwje5jxjwgnde66": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.actor.profile",
+        "operation": "create",
+        "rkey": "self",
+        "uri": "at://did:plc:5e44ypvdatwje5jxjwgnde66/sh.tangled.actor.profile/self",
+        "record": {
+          "$type": "sh.tangled.actor.profile",
+          "bluesky": false
+        },
+        "time_us": 1782285285014528
+      },
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3mozekvfds622",
+        "uri": "at://did:plc:5e44ypvdatwje5jxjwgnde66/sh.tangled.feed.star/3mozekvfds622",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T10:14:51+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:sd5knuh7wbvc26sutvk2wmqw"
+          }
+        },
+        "time_us": 1782285292101876
+      }
+    ]
+  },
+  "did:plc:cezmtk5bb4zipkps3abnjjl6": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3mozf7gqcrn22",
+        "uri": "at://did:plc:cezmtk5bb4zipkps3abnjjl6/sh.tangled.feed.star/3mozf7gqcrn22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T10:26:21+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:hzbaphtvytr46ai324txenau"
+          }
+        },
+        "time_us": 1782285982534665
+      }
+    ]
+  },
+  "did:plc:new3lfu434qmoh6bjh2mboyo": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.publicKey",
+        "operation": "create",
+        "rkey": "3mozfbgfy2322",
+        "uri": "at://did:plc:new3lfu434qmoh6bjh2mboyo/sh.tangled.publicKey/3mozfbgfy2322",
+        "record": {
+          "$type": "sh.tangled.publicKey",
+          "createdAt": "2026-06-24T10:27:27+03:00",
+          "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII6OMLQXpAId5TWGcnRrtlaJLXBiYMgH+o1cru5WJAD5 picaro-deploy@mp3-plus-one",
+          "name": "picaro (dialup-deploy)"
+        },
+        "time_us": 1782286048219957
+      }
+    ]
+  },
+  "did:plc:5w7ori6fpgfwznkaiwb5d3qg": {
+    "handle": null,
+    "events": [
+      {
+        "collection": "sh.tangled.feed.star",
+        "operation": "create",
+        "rkey": "3mozfqdkdcp22",
+        "uri": "at://did:plc:5w7ori6fpgfwznkaiwb5d3qg/sh.tangled.feed.star/3mozfqdkdcp22",
+        "record": {
+          "$type": "sh.tangled.feed.star",
+          "createdAt": "2026-06-24T10:35:48+03:00",
+          "subject": {
+            "$type": "sh.tangled.feed.star#repo",
+            "did": "did:plc:hzbaphtvytr46ai324txenau"
+          }
+        },
+        "time_us": 1782286548961749
+      }
+    ]
+  },
+  "did:plc:257wekqxg4hyapkq6k47igmp": {
+    "handle": "flo-bit.dev",
+    "events": []
+  },
+  "did:plc:25z6ogppprfvijcnqo2fsfce": {
+    "handle": "moth11.net",
+    "events": []
+  },
+  "did:plc:26hjus73n2qhbfv7qotenn7z": {
+    "handle": "quietengineer.fyi",
+    "events": []
+  },
+  "did:plc:2cxgdrgtsmrbqnjkwyplmp43": {
+    "handle": "bmann.ca",
+    "events": []
+  },
+  "did:plc:2f7mndshqqlmdmjypop4p6oy": {
+    "handle": "m17e.co",
+    "events": []
+  },
+  "did:plc:2gkh62xvzokhlf6li4ol3b3d": {
+    "handle": "patak.cat",
+    "events": []
+  },
+  "did:plc:2hgmrwevidwsxundvejdeam5": {
+    "handle": "tylerjfisher.com",
+    "events": []
+  },
+  "did:plc:2innmkza7bd6wjippxep42ma": {
+    "handle": "slipnote.app",
+    "events": []
+  },
+  "did:plc:2jreyxjktaqqizn7ezvkvdhc": {
+    "handle": "daudix.one",
+    "events": []
+  },
+  "did:plc:2lyulz5o63to3boaerwqafxj": {
+    "handle": "autumn.town",
+    "events": []
+  },
+  "did:plc:2sqok7oqqrhtmmmb5sulkrw2": {
+    "handle": "veryroundbird.house",
+    "events": []
+  },
+  "did:plc:2tqqxubv2lu4ahj35ysjer2r": {
+    "handle": "kira.pds.witchcraft.systems",
+    "events": []
+  },
+  "did:plc:2uoarm26m6b24zqbq7h2kpqs": {
+    "handle": "encode42.dev",
+    "events": []
+  },
+  "did:plc:2vueglf2njr5gvdbaf75ih6a": {
+    "handle": "socksthewolf.com",
+    "events": []
+  },
+  "did:plc:2wvtcmz73tcngr7a4urltc46": {
+    "handle": "avalanche.moe",
+    "events": []
+  },
+  "did:plc:2xau7wbgdq4phuou2ypwuen7": {
+    "handle": "tom.sherman.is",
+    "events": []
+  },
+  "did:plc:2zmxikig2sj7gqaezl5gntae": {
+    "handle": "iame.li",
+    "events": []
+  },
+  "did:plc:3272gdrjsuikiff7qsgokgas": {
+    "handle": "cuducos.me",
+    "events": []
+  },
+  "did:plc:35kdk2ntcs626zs6cm62i7ih": {
+    "handle": "jolheiser.com",
+    "events": []
+  },
+  "did:plc:3c6vkaq7xf5kz3va3muptjh5": {
+    "handle": "partially.dead.aylac.top",
+    "events": []
+  },
+  "did:plc:3danwc67lo7obz2fmdg6jxcr": {
+    "handle": "steveklabnik.com",
+    "events": []
+  },
+  "did:plc:3dk7at6chlxrvmiduw4cf7cp": {
+    "handle": "tombl.dev",
+    "events": []
+  },
+  "did:plc:3dr23xsom4xvpxsuwuhj7b7q": {
+    "handle": "gbl08ma.com",
+    "events": []
+  },
+  "did:plc:3fwecdnvtcscjnrx2p4n7alz": {
+    "handle": "oyster.cafe",
+    "events": []
+  },
+  "did:plc:3i6uzuatdyk7rwfkrybynf5j": {
+    "handle": "scanash.com",
+    "events": []
+  },
+  "did:plc:3ib4dejq4z3anh67pijhsqtt": {
+    "handle": "summerti.me",
+    "events": []
+  },
+  "did:plc:3jlwhyhbzhtrbuadqaew4ba4": {
+    "handle": "karlseguin.tngl.sh",
+    "events": []
+  },
+  "did:plc:3jpt2mvvsumj2r7eqk4gzzjz": {
+    "handle": "esb.lol",
+    "events": []
+  },
+  "did:plc:3lfhu6ehlynzjgehef6alnvg": {
+    "handle": "ryan.freumh.org",
+    "events": []
+  },
+  "did:plc:3nogfd4smhmbrv4wo6kl7zg2": {
+    "handle": "notplants.bsky.social",
+    "events": []
+  },
+  "did:plc:3rwz3xfw2crswgifqgc3g7zh": {
+    "handle": "okami.mom",
+    "events": []
+  },
+  "did:plc:3s4gla4b3ggbfjg2yv6lxmf4": {
+    "handle": "ezequias2d.dev",
+    "events": []
+  },
+  "did:plc:3sdo5wodzmtltyysmeynifk3": {
+    "handle": "dynamicalsystem.com",
+    "events": []
+  },
+  "did:plc:3sk3ef72ac36w44kvr3ki5q7": {
+    "handle": "yemou.pink",
+    "events": []
+  },
+  "did:plc:3ufvm6a2mvlgdqspwwah2eso": {
+    "handle": "qeaml.bsky.social",
+    "events": []
+  },
+  "did:plc:3xpaniu6rs7fygzthgmtuv7c": {
+    "handle": "devins.page",
+    "events": []
+  },
+  "did:plc:43dw3zb6rtu5hs32zlel42ry": {
+    "handle": "hanna.lol",
+    "events": []
+  },
+  "did:plc:4464wqkri7auvrmso5cqukgf": {
+    "handle": "ejri.dev",
+    "events": []
+  },
+  "did:plc:44ybard66vv44zksje25o7dz": {
+    "handle": "bnewbold.net",
+    "events": []
+  },
+  "did:plc:45uheisi25szrjvjurfpritx": {
+    "handle": "gui.do",
+    "events": []
+  },
+  "did:plc:47xikhagipnglqtsu7eetkbf": {
+    "handle": "tim.gadanidis.ca",
+    "events": []
+  },
+  "did:plc:4actthyflihbfcgwkudrbsi2": {
+    "handle": "roost.moe",
+    "events": []
+  },
+  "did:plc:4esgdrsggwphtk34fot6irag": {
+    "handle": "accidental.cc",
+    "events": []
+  },
+  "did:plc:4g2sat6knpgprlwghlgifefu": {
+    "handle": "jennings.io",
+    "events": []
+  },
+  "did:plc:4gt3dbmp4pydjiemob4konzm": {
+    "handle": "tyler.fun",
+    "events": []
+  },
+  "did:plc:4hawmtgzjx3vclfyphbhfn7v": {
+    "handle": "j4ck.xyz",
+    "events": []
+  },
+  "did:plc:4ixa2cidlfpbdluoi3cys6xr": {
+    "handle": "ian-h-chamberlain.com",
+    "events": []
+  },
+  "did:plc:4lcmichto5rbajrmhdkylm6g": {
+    "handle": "petersimonsson.bsky.social",
+    "events": []
+  },
+  "did:plc:4mj54vc4ha3lh32ksxwunnbh": {
+    "handle": "brookjeynes.dev",
+    "events": []
+  },
+  "did:plc:4nsduwlpivpuur4mqkbfvm6a": {
+    "handle": "edavis.dev",
+    "events": []
+  },
+  "did:plc:4pb3ctkfjsh6hmtl4mxuezrh": {
+    "handle": "djara.dev",
+    "events": []
+  },
+  "did:plc:4rdxklrlcig4fvtoohr76trx": {
+    "handle": "jkarni.bsky.social",
+    "events": []
+  },
+  "did:plc:4uz2445cjiw7w4nobfgnu35f": {
+    "handle": "calabro.io",
+    "events": []
+  },
+  "did:plc:4v27cxtc5wjkqegjqfvtyvib": {
+    "handle": "fintohaps.bsky.social",
+    "events": []
+  },
+  "did:plc:4z5i7njrld66ew36htufcwry": {
+    "handle": "davidgasquez.com",
+    "events": []
+  },
+  "did:plc:54ythkdehyiprvumgqy2nypr": {
+    "handle": "bitquabit.com",
+    "events": []
+  },
+  "did:plc:57od6g2ic3e3b3kauctjmo3k": {
+    "handle": "graham.systems",
+    "events": []
+  },
+  "did:plc:5bzztbxvhii56ryi3az7lvzh": {
+    "handle": "haileys.quest",
+    "events": []
+  },
+  "did:plc:5fzwpxt3rctfetyqpbigvgic": {
+    "handle": "backups.kittens.fyi",
+    "events": []
+  },
+  "did:plc:5gudyjb63ixsaxuuyj4vkc6m": {
+    "handle": "isaac.tngl.sh",
+    "events": []
+  },
+  "did:plc:5rms2ebhdngu24hgsu3s2hqd": {
+    "handle": "angrydutchman.peedee.es",
+    "events": []
+  },
+  "did:plc:63y3oh7iakdueqhlj6trojbq": {
+    "handle": "mia.omg.lol",
+    "events": []
+  },
+  "did:plc:64mf2to6hscuaw2ac2ynau7y": {
+    "handle": "shinolabs.com",
+    "events": []
+  },
+  "did:plc:65gha4t3avpfpzmvpbwovss7": {
+    "handle": "tjh.dev",
+    "events": []
+  },
+  "did:plc:6ashubrd3ihfmnrpsatviswa": {
+    "handle": "jcs.org",
+    "events": []
+  },
+  "did:plc:6hbqm2oftpotwuw7gvvrui3i": {
+    "handle": "knotbin.com",
+    "events": []
+  },
+  "did:plc:6i6n57nrkq6xavqbdo6bvkqr": {
+    "handle": "byarielm.fyi",
+    "events": []
+  },
+  "did:plc:6if5m2yo6kroprmmency3gt5": {
+    "handle": "olaren.dev",
+    "events": []
+  },
+  "did:plc:6ll5xi67lyuyovt6fiv4fnjo": {
+    "handle": "geesawra.industries",
+    "events": []
+  },
+  "did:plc:6psaz6n5fuurrfet67zs4ljf": {
+    "handle": "hauleth.dev",
+    "events": []
+  },
+  "did:plc:6q5daed5gutiyerimlrnojnz": {
+    "handle": "pds.ls",
+    "events": []
+  },
+  "did:plc:726afsuwa5x6qaytybar3bfs": {
+    "handle": "kitten.sh",
+    "events": []
+  },
+  "did:plc:7ewx3bksukdk6a4vycoykhhw": {
+    "handle": "atprotofans.com",
+    "events": []
+  },
+  "did:plc:7exy3k53z33dvghn6edyayxt": {
+    "handle": "madoka.systems",
+    "events": []
+  },
+  "did:plc:7mx2jwbmpnvzwzjid7jjtbqp": {
+    "handle": "upcloud.com",
+    "events": []
+  },
+  "did:plc:7r5c5jhtphcpkg3y55xu2y64": {
+    "handle": "burrito.space",
+    "events": []
+  },
+  "did:plc:7vdlgi2bflelz7mmuxoqjfcr": {
+    "handle": "tsiry-sandratraina.com",
+    "events": []
+  },
+  "did:plc:7x6wc6fbj464biqdarmhxucv": {
+    "handle": "gearsco.de",
+    "events": []
+  },
+  "did:plc:afrbolfpncwuewe4sccm6iws": {
+    "handle": "lpil.uk",
+    "events": []
+  },
+  "did:plc:anvvmj5rdxhzo26gmhkgshnn": {
+    "handle": "rich-harris.dev",
+    "events": []
+  },
+  "did:plc:aturpi2ls3yvsmhc6wybomun": {
+    "handle": "pocketenv.io",
+    "events": []
+  },
+  "did:plc:b26ewgkrnx3yvsp2cdao3ntu": {
+    "handle": "koi.rip",
+    "events": []
+  },
+  "did:plc:b2mcbcamkwyznc5fkplwlxbf": {
+    "handle": "markbennett.ca",
+    "events": []
+  },
+  "did:plc:b2p6rujcgpenbtcjposmjuc3": {
+    "handle": "cosmik.network",
+    "events": []
+  },
+  "did:plc:b4wthggvovz2uwoet47bstfp": {
+    "handle": "daniellemaywood.uk",
+    "events": []
+  },
+  "did:plc:bcgltzqazw5tb6k2g3ttenbj": {
+    "handle": "chadtmiller.com",
+    "events": []
+  },
+  "did:plc:bdg6jvq7itzfrph6sxvlhn5m": {
+    "handle": "emmeline.girlkisser.top",
+    "events": []
+  },
+  "did:plc:btxrwcaeyodrap5mnjw2fvmz": {
+    "handle": "leaflet.pub",
+    "events": []
+  },
+  "did:plc:bxmukjuf2e6z6tvpmklbbern": {
+    "handle": "macwright.com",
+    "events": []
+  },
+  "did:plc:by3jhwdqgbtrcc7q4tkkv3cf": {
+    "handle": "alice.mosphere.at",
+    "events": []
+  },
+  "did:plc:cbkjy5n7bk3ax2wplmtjofq2": {
+    "handle": "ngerakines.me",
+    "events": []
+  },
+  "did:plc:cefqintdky2zxmxxwsrjt6iu": {
+    "handle": "ligo.at",
+    "events": []
+  },
+  "did:plc:chqc2ockzmyvlrasfb66x64a": {
+    "handle": "arabica.social",
+    "events": []
+  },
+  "did:plc:chtmspftdja7rswxr537sddg": {
+    "handle": "yoten.app",
+    "events": []
+  },
+  "did:plc:cubsxuhbqmciedx55kmkwmey": {
+    "handle": "mp9.ca",
+    "events": []
+  },
+  "did:plc:cveom2iroj3mt747sd4qqnr2": {
+    "handle": "sprk.so",
+    "events": []
+  },
+  "did:plc:d4f2eymfzitonxespadbr43y": {
+    "handle": "googleballs.com",
+    "events": []
+  },
+  "did:plc:dadhhalkfcq3gucaq25hjqon": {
+    "handle": "willdot.net",
+    "events": []
+  },
+  "did:plc:dfl62fgb7wtjj3fcbb72naae": {
+    "handle": "ptr.pet",
+    "events": []
+  },
+  "did:plc:dp7v5b5kejmmzzpwmqyf5wj6": {
+    "handle": "chris.pardy.family",
+    "events": []
+  },
+  "did:plc:dvyyslcz7bicxdumlccviqyv": {
+    "handle": "kacaii.dev",
+    "events": []
+  },
+  "did:plc:dy6ekftqerqu5bcz76kgy6ux": {
+    "handle": "hyl.st",
+    "events": []
+  },
+  "did:plc:dzmqinfp7efnofbqg5npjmth": {
+    "handle": "slices.network",
+    "events": []
+  },
+  "did:plc:e5nncb3dr5thdkjir5cfaqfe": {
+    "handle": "xeiaso.net",
+    "events": []
+  },
+  "did:plc:e7rftrdyz5e2rw4y6ocszew2": {
+    "handle": "grain.social",
+    "events": []
+  },
+  "did:plc:en5jj33ysodueahwok2tlyac": {
+    "handle": "wiskiy.dev",
+    "events": []
+  },
+  "did:plc:eob75vcjtmbaef2tn4evc4sl": {
+    "handle": "aka.dad",
+    "events": []
+  },
+  "did:plc:f25qr3njhaoeolu46vylylju": {
+    "handle": "me.webbeef.org",
+    "events": []
+  },
+  "did:plc:f4w2l3ceqeu7fggr2s5hw3wm": {
+    "handle": "theoparis.com",
+    "events": []
+  },
+  "did:plc:foxemuxgrwgjfj4v75tjeynd": {
+    "handle": "wish.pds.witchcraft.systems",
+    "events": []
+  },
+  "did:plc:fpruhuo22xkm5o7ttr2ktxdo": {
+    "handle": "danabra.mov",
+    "events": []
+  },
+  "did:plc:ft3tl5dxjn4psdk6asenqn3r": {
+    "handle": "atscan.net",
+    "events": []
+  },
+  "did:plc:g2dztq6aggnn3tvimpebanu3": {
+    "handle": "checkmate.blue",
+    "events": []
+  },
+  "did:plc:gfrmhdmjvxn2sjedzboeudef": {
+    "handle": "cameron.stream",
+    "events": []
+  },
+  "did:plc:ghmhveudel6es5chzycsi2hi": {
+    "handle": "l4.pm",
+    "events": []
+  },
+  "did:plc:gotnvwkr56ibs33l4hwgfoet": {
+    "handle": "zeu.dev",
+    "events": []
+  },
+  "did:plc:gq4fo3u6tqzzdkjlwzpb23tj": {
+    "handle": "dame.is",
+    "events": []
+  },
+  "did:plc:h5wsnqetncv6lu2weom35lg2": {
+    "handle": "nel.pet",
+    "events": []
+  },
+  "did:plc:hdhoaan3xa3jiuq4fg4mefid": {
+    "handle": "bad-example.com",
+    "events": []
+  },
+  "did:plc:hs3aly5l26pozymy4b6hz7ae": {
+    "handle": "juliet.paris",
+    "events": []
+  },
+  "did:plc:hsqwcidfez66lwm3gxhfv5in": {
+    "handle": "goose.art",
+    "events": []
+  },
+  "did:plc:hwsujd5zpdkyle26zur77vok": {
+    "handle": "hongminhee.org",
+    "events": []
+  },
+  "did:plc:i2r4fkz7ge35u5tbcj2ntasf": {
+    "handle": "natemoo.re",
+    "events": []
+  },
+  "did:plc:i5bdzkbmq5vnoyqiilwulmuq": {
+    "handle": "sheetr.app",
+    "events": []
+  },
+  "did:plc:ia2zdnhjaokf5lazhxrmj6eu": {
+    "handle": "stevedylan.dev",
+    "events": []
+  },
+  "did:plc:ia76kvnndjutgedggx2ibrem": {
+    "handle": "mary.my.id",
+    "events": []
+  },
+  "did:plc:ibwpi5rsdkmwaq6d7zuac2vm": {
+    "handle": "jenchan.biz",
+    "events": []
+  },
+  "did:plc:iny5qr4bzmkcex5vxrxz6sks": {
+    "handle": "marcomaroni.it",
+    "events": []
+  },
+  "did:plc:iqfxgva35cxmcjsso3u6b4mz": {
+    "handle": "squi.dev",
+    "events": []
+  },
+  "did:plc:ir2qabq56znbbinhktehjmc6": {
+    "handle": "deniz.blue",
+    "events": []
+  },
+  "did:plc:irs2tcoeuvuwj3m4yampbuco": {
+    "handle": "shi.gg",
+    "events": []
+  },
+  "did:plc:irx36xprktslecsbopbwnh5w": {
+    "handle": "sharpmars.nekoweb.org",
+    "events": []
+  },
+  "did:plc:iwhuynr6mm6xxuh25o4do2tx": {
+    "handle": "teal.fm",
+    "events": []
+  },
+  "did:plc:jbeaa5kdaladzwq3r7f5xgwe": {
+    "handle": "danielroe.dev",
+    "events": []
+  },
+  "did:plc:jgtfsmv25thfs4zmydtbccnn": {
+    "handle": "strawmelonjuice.com",
+    "events": []
+  },
+  "did:plc:jhift2vwcxhou52p3sewcrpx": {
+    "handle": "gazagnaire.org",
+    "events": []
+  },
+  "did:plc:jjsc5rflv3cpv6hgtqhn2dcm": {
+    "handle": "schlage.town",
+    "events": []
+  },
+  "did:plc:jl5dgp7xb34xfqlpywt7kcp5": {
+    "handle": "katproto.girlonthemoon.xyz",
+    "events": []
+  },
+  "did:plc:jlplwn5pi4dqrls7i6dx2me7": {
+    "handle": "hotsocket.fyi",
+    "events": []
+  },
+  "did:plc:jrtgsidnmxaen4offglr5lsh": {
+    "handle": "quilling.dev",
+    "events": []
+  },
+  "did:plc:jwgnraovgs3eeenh23tlllyk": {
+    "handle": "okk.moe",
+    "events": []
+  },
+  "did:plc:k23ujfuppr3hr4pxvtaz7jro": {
+    "handle": "bkb.arcnode.xyz",
+    "events": []
+  },
+  "did:plc:k644h4rq5bjfzcetgsa6tuby": {
+    "handle": "natalie.sh",
+    "events": []
+  },
+  "did:plc:khzb5upklnupwpxllpbmrv5a": {
+    "handle": "robinwobin.dev",
+    "events": []
+  },
+  "did:plc:klmr76mpewpv7rtm3xgpzd7x": {
+    "handle": "frontpage.fyi",
+    "events": []
+  },
+  "did:plc:krxbvxvis5skq7jj6eot23ul": {
+    "handle": "dunkirk.sh",
+    "events": []
+  },
+  "did:plc:l5yz32nydpebjlcdfgycmf3x": {
+    "handle": "knowtheory.net",
+    "events": []
+  },
+  "did:plc:lehcqqkwzcwvjvw66uthu5oq": {
+    "handle": "atmosphere.community",
+    "events": []
+  },
+  "did:plc:lodnbyykegrixszz3v2wvaaj": {
+    "handle": "lilac.ooo",
+    "events": []
+  },
+  "did:plc:lulmyldiq4sb2ikags5sfb25": {
+    "handle": "microcosm.blue",
+    "events": []
+  },
+  "did:plc:lwckcyzhyrufq4ytg2abji7d": {
+    "handle": "jollywhoppers.com",
+    "events": []
+  },
+  "did:plc:lysqukqdu6hsrhet5v2brjgo": {
+    "handle": "jimray.bsky.team",
+    "events": []
+  },
+  "did:plc:ml6hwrktvr7r5nhxs7f7eoz4": {
+    "handle": "alex.mcroberts.me",
+    "events": []
+  },
+  "did:plc:mn45tewwnse5btfftvd3powc": {
+    "handle": "whey.party",
+    "events": []
+  },
+  "did:plc:nhyitepp3u4u6fcfboegzcjw": {
+    "handle": "anil.recoil.org",
+    "events": []
+  },
+  "did:plc:ofrbh253gwicbkc5nktqepol": {
+    "handle": "ewancroft.uk",
+    "events": []
+  },
+  "did:plc:oio4hkxaop4ao4wz2pp3f4cr": {
+    "handle": "mackuba.eu",
+    "events": []
+  },
+  "did:plc:oisofpd7lj26yvgiivf3lxsi": {
+    "handle": "hailey.at",
+    "events": []
+  },
+  "did:plc:onu3oqfahfubgbetlr4giknc": {
+    "handle": "mitchellh.com",
+    "events": []
+  },
+  "did:plc:ooawnspa3j4o7cinoryhglqv": {
+    "handle": "keii.dev",
+    "events": []
+  },
+  "did:plc:p2cp5gopk7mgjegy6wadk3ep": {
+    "handle": "samuel.fm",
+    "events": []
+  },
+  "did:plc:p572wxnsuoogcrhlfrlizlrb": {
+    "handle": "gracekind.net",
+    "events": []
+  },
+  "did:plc:p5yjdr64h7mk5l3kh6oszryk": {
+    "handle": "blooym.dev",
+    "events": []
+  },
+  "did:plc:pddp4xt5lgnv2qsegbzzs4xg": {
+    "handle": "evan.jarrett.net",
+    "events": []
+  },
+  "did:plc:q7suwaz53ztc4mbiqyygbn43": {
+    "handle": "xan.lol",
+    "events": []
+  },
+  "did:plc:qntsxa2i4sb24noi45fx4np2": {
+    "handle": "atpota.to",
+    "events": []
+  },
+  "did:plc:qwfrxx4xe4sxjjx3hdkohkqn": {
+    "handle": "marko.tech",
+    "events": []
+  },
+  "did:plc:rbvrr34edl5ddpuwcubjiost": {
+    "handle": "stream.place",
+    "events": []
+  },
+  "did:plc:re3ebnp5v7ffagz6rb6xfei4": {
+    "handle": "standard.site",
+    "events": []
+  },
+  "did:plc:rjhjcb3rgdsmdr6ykywuh63z": {
+    "handle": "zenfyr.dev",
+    "events": []
+  },
+  "did:plc:rjqn3agdb74cszhqcpii4sne": {
+    "handle": "margin.at",
+    "events": []
+  },
+  "did:plc:rnpkyqnmsw4ipey6eotbdnnf": {
+    "handle": "pds.dad",
+    "events": []
+  },
+  "did:plc:s2rczyxit2v5vzedxqs326ri": {
+    "handle": "renderg.host",
+    "events": []
+  },
+  "did:plc:sfjxpxxyvewb2zlxwoz2vduw": {
+    "handle": "indexx.dev",
+    "events": []
+  },
+  "did:plc:sppiplftd2sxt3hbw7htj3b5": {
+    "handle": "treethought.xyz",
+    "events": []
+  },
+  "did:plc:tas6hj2xjrqben5653v5kohk": {
+    "handle": "matt.evil.gay",
+    "events": []
+  },
+  "did:plc:tgudj2fjm77pzkuawquqhsxm": {
+    "handle": "smokesignal.events",
+    "events": []
+  },
+  "did:plc:ttdrpj45ibqunmfhdsb4zdwq": {
+    "handle": "nekomimi.pet",
+    "events": []
+  },
+  "did:plc:u2grpouz5553mrn4x772pyfa": {
+    "handle": "bunware.org",
+    "events": []
+  },
+  "did:plc:udgxgv72u6qheiwgwfahqylp": {
+    "handle": "constellation.zenfyr.dev",
+    "events": []
+  },
+  "did:plc:uu5axsmbm2or2dngy4gwchec": {
+    "handle": "futur.blue",
+    "events": []
+  },
+  "did:plc:v3lpbvpa4s5yxincntuvtwtm": {
+    "handle": "jon.recoil.org",
+    "events": []
+  },
+  "did:plc:vbqt7s7rrltkvlvwavk5ypkf": {
+    "handle": "patrick.sirref.org",
+    "events": []
+  },
+  "did:plc:vegqomyce4ssoqs7zwqvgqty": {
+    "handle": "rocksky.app",
+    "events": []
+  },
+  "did:plc:vk2bemsr3uxaw4fdzno3chsh": {
+    "handle": "rockorager.dev",
+    "events": []
+  },
+  "did:plc:vrrdgcidwpvn4omvn7uuufoo": {
+    "handle": "jakelazaroff.com",
+    "events": []
+  },
+  "did:plc:vzaxc2idqnxovkqscsa3tvvi": {
+    "handle": "giacomocavalieri.me",
+    "events": []
+  },
+  "did:plc:w4xbfzo7kqfes5zb7r6qv3rw": {
+    "handle": "rude1.blacksky.team",
+    "events": []
+  },
+  "did:plc:x5leeami62gbmjekf7ro6sqo": {
+    "handle": "jennschiffer.com",
+    "events": []
+  },
+  "did:plc:xbtmt2zjwlrfegqvch7fboei": {
+    "handle": "zzstoatzz.io",
+    "events": []
+  },
+  "did:plc:xgvzy7ni6ig6ievcbls5jaxe": {
+    "handle": "quillmatiq.com",
+    "events": []
+  },
+  "did:plc:y3lae7hmqiwyq7w2v3bcb2c2": {
+    "handle": "charlebois.info",
+    "events": []
+  },
+  "did:plc:yfvwmnlztr4dwkb7hwz55r2g": {
+    "handle": "nonbinary.computer",
+    "events": []
+  },
+  "did:plc:zviscnpwyvj6y32agi5davn5": {
+    "handle": "isaaccorbrey.com",
+    "events": []
+  },
+  "did:web:comet.sh": {
+    "handle": "comet.sh",
+    "events": []
+  },
+  "did:web:kopper.d.on-t.work": {
+    "handle": "w.on-t.work",
+    "events": []
+  },
+  "did:web:tranquil.tranquil.farm": {
+    "handle": "tranquil.farm",
+    "events": []
+  }
 }

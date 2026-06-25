@@ -5,6 +5,7 @@ import { CenterColumn } from "./CenterColumn"
 import { RightColumn } from "./RightColumn"
 import { CursorGlow } from "./CursorGlow"
 import { Globe } from "./Globe"
+import { useSavedCount } from "../saved"
 
 /* The main page. The center repo feed is still static; the right column is live,
    driven by /recommend for the onboarded DID. Shown after login. */
@@ -13,11 +14,15 @@ export function Dashboard({
   handle,
   did,
   onOpenFeed,
+  onOpenSaved,
 }: {
   handle: string
   did: string
   onOpenFeed: () => void
+  onOpenSaved: () => void
 }) {
+  const savedCount = useSavedCount(did)
+
   useEffect(() => {
     // Respect users who ask for less motion — keep native scrolling for them.
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -48,7 +53,13 @@ export function Dashboard({
     <>
       <CursorGlow />
       <Globe />
-      <TopNav handle={handle} onOpenFeed={onOpenFeed} />
+      <TopNav
+        handle={handle}
+        onOpenFeed={onOpenFeed}
+        onOpenSaved={onOpenSaved}
+        savedCount={savedCount}
+        active="home"
+      />
       <main className="layout">
         <CenterColumn />
         <RightColumn did={did} />
