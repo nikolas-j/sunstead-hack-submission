@@ -296,6 +296,9 @@ input {
   border-color: transparent;
 }
 
+.user-menu {
+  position: relative;
+}
 .user {
   display: flex;
   align-items: center;
@@ -303,6 +306,10 @@ input {
   padding: 4px 10px 4px 4px;
   border-radius: var(--r-pill);
   border: 1px solid transparent;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 .user:hover {
@@ -312,6 +319,53 @@ input {
 .user__handle {
   font-size: 13px;
   color: var(--ink-muted);
+}
+
+/* Account info card — popover anchored to the user chip. */
+.user-card {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 50;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-sm);
+  padding: var(--s-md);
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+.user-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-sm);
+}
+.user-card__id {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.user-card__handle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.user-card__did {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-subtle);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.user-card__link {
+  width: 100%;
 }
 
 /* ============================================================================

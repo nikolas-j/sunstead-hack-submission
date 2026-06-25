@@ -61,6 +61,7 @@ export function Dashboard({
       <Globe />
       <TopNav
         handle={handle}
+        did={did}
         onOpenFeed={onOpenFeed}
         onOpenSaved={onOpenSaved}
         onLogout={onLogout}
