@@ -29,6 +29,17 @@ export function formatCount(n: number): string {
   return String(n)
 }
 
+/** Order a tag list so highlighted items (the active feed filter / match reason)
+ *  come first, each group keeping its original order. Compare is case-insensitive.
+ *  Lets a "Haskell" feed lead its cards with Haskell instead of the owner's other
+ *  inherited languages. */
+export function orderByHighlight(items: string[], highlight: Set<string>): string[] {
+  const hi: string[] = []
+  const rest: string[] = []
+  for (const it of items) (highlight.has(it.toLowerCase()) ? hi : rest).push(it)
+  return [...hi, ...rest]
+}
+
 /** Compact "time since" label from an ISO timestamp, e.g. "2d ago", "3mo ago".
  *  Returns null for missing or unparseable input so callers can hide the field. */
 export function relativeTime(iso: string | null | undefined): string | null {

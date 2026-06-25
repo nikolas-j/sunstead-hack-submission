@@ -1,6 +1,6 @@
 import { Star, FolderGit2, Clock, Sparkles } from "lucide-react"
 import type { RepoCard } from "../api"
-import { formatCount, tangledRepoUrl } from "../lib"
+import { formatCount, tangledRepoUrl, orderByHighlight } from "../lib"
 
 /* Renders one live RepoCard (from /feeds/{slug}/generate?kind=repos) using the
    shared .rec card styling, driven by the real repos pool + feed generator. */
@@ -42,21 +42,33 @@ export function RepoRecCard({
   card,
   starred,
   onToggle,
+  filterLanguages = [],
+  filterTopics = [],
 }: {
   card: RepoCard
   starred: boolean
   onToggle: () => void
+  filterLanguages?: string[]
+  filterTopics?: string[]
 }) {
-  const lang = card.languages[0]
   const stars = card.stats.owner_total_stars ?? 0
   const age = ageLabel(card.repo_age_days)
   // Real Tangled repo link (built from the owner handle, like the backend does).
   // Null when the handle is unknown — then the title is plain text, never a dead "#".
   const repoUrl = tangledRepoUrl(card.owner_handle, card.name)
 
-  // Match tags first (the highlighted "why"), then fill from topics.
-  const matchTags = card.shared.slice(0, 3)
-  const moreTags = card.topics.filter((t) => !matchTags.includes(t)).slice(0, 4)
+  // Highlight = the active feed's filter plus the viewer-overlap match reason.
+  // Matching languages/topics sort first and are emphasized, so a "Haskell" feed
+  // leads with Haskell rather than the owner's other inherited languages.
+  const highlight = new Set(
+    [...filterLanguages, ...filterTopics, ...card.shared].map((s) => s.toLowerCase()),
+  )
+  const isHi = (t: string) => highlight.has(t.toLowerCase())
+  // Show ALL of the repo's languages (filter first), the primary one as the dot.
+  const langs = orderByHighlight(card.languages, highlight)
+  const primary = langs[0]
+  const moreLangs = langs.slice(1)
+  const topics = orderByHighlight(card.topics, highlight).slice(0, 5)
 
   return (
     <article className="rec">
@@ -94,10 +106,10 @@ export function RepoRecCard({
       {card.description ? <p className="rec__desc">{card.description}</p> : null}
 
       <div className="rec__meta">
-        {lang ? (
+        {primary ? (
           <span className="lang">
-            <span className="lang__dot" style={{ background: langColor(lang) }} />
-            {lang}
+            <span className="lang__dot" style={{ background: langColor(primary) }} />
+            {primary}
           </span>
         ) : null}
         {age ? (
@@ -108,15 +120,15 @@ export function RepoRecCard({
         {card.level ? <span className="meta-item">{card.level}</span> : null}
       </div>
 
-      {matchTags.length || moreTags.length ? (
+      {moreLangs.length || topics.length ? (
         <div className="tags">
-          {matchTags.map((t) => (
-            <span className="tag tag--match" key={t}>
+          {moreLangs.map((t) => (
+            <span className={"tag" + (isHi(t) ? " tag--match" : "")} key={"l-" + t}>
               {t}
             </span>
           ))}
-          {moreTags.map((t) => (
-            <span className="tag" key={t}>
+          {topics.map((t) => (
+            <span className={"tag" + (isHi(t) ? " tag--match" : "")} key={"t-" + t}>
               {t}
             </span>
           ))}

@@ -5,6 +5,7 @@ import {
   generateReposByUri,
   previewRepos,
   type FeedDefinitionInput,
+  type FeedFilters,
   type FeedRef,
   type RepoCard,
 } from "../api"
@@ -61,6 +62,10 @@ export function CenterColumn({
   const reqId = useRef(0)
 
   const previewing = genOpen && genDef !== null
+  // The filter currently driving the list — the live generator preview when open,
+  // otherwise the selected feed. Passed to the cards so matching languages/topics
+  // sort first ("filters first").
+  const activeFilters: FeedFilters | undefined = previewing ? genDef?.filters : active?.filters
 
   async function load(initial: boolean) {
     if (!previewing && !active) return
@@ -167,6 +172,8 @@ export function CenterColumn({
                 <RepoRecCard
                   key={c.repo_key}
                   card={c}
+                  filterLanguages={activeFilters?.languages ?? []}
+                  filterTopics={activeFilters?.topics ?? []}
                   starred={!!starred[c.repo_key]}
                   onToggle={() =>
                     setStarred((s) => ({ ...s, [c.repo_key]: !s[c.repo_key] }))

@@ -24,7 +24,7 @@ import {
   type IssuePeek,
 } from "../api"
 import { Avatar } from "./Avatar"
-import { formatCount, gradientFor, tangledProfileUrl } from "../lib"
+import { formatCount, gradientFor, orderByHighlight, tangledProfileUrl } from "../lib"
 import { useIsSaved, toggleSaved } from "../saved"
 
 /* Subscribed/external feeds run via their AT-URI; built-ins/own via slug. */
@@ -264,7 +264,17 @@ function CodePeek({ card }: { card: IssueCard }) {
 }
 
 // ---- one issue card ----------------------------------------------------------
-function IssueReel({ card, identifier }: { card: IssueCard; identifier: string }) {
+function IssueReel({
+  card,
+  identifier,
+  filterLanguages = [],
+  filterTopics = [],
+}: {
+  card: IssueCard
+  identifier: string
+  filterLanguages?: string[]
+  filterTopics?: string[]
+}) {
   const [liked, setLiked] = useState(false)
   // Saved state lives in the shared bookmark store (persisted, per-user) so it
   // shows up in the top-bar count and the Saved page, and survives reloads.
@@ -285,11 +295,15 @@ function IssueReel({ card, identifier }: { card: IssueCard; identifier: string }
   const age = ageLabel(card.issue_age_days)
   const goodFirst = isGoodFirst(card.labels)
 
-  // Match tags first (highlighted "why"), then fill with languages/topics.
-  const matchTags = card.shared.slice(0, 3)
-  const moreTags = [...card.languages, ...card.topics]
-    .filter((t) => !matchTags.includes(t))
-    .slice(0, 4)
+  // Highlight = the active feed's filter plus the viewer-overlap match reason.
+  // Matching languages/topics sort first and are emphasized, so a filtered feed
+  // leads with that language instead of the author's other inherited languages.
+  const highlight = new Set(
+    [...filterLanguages, ...filterTopics, ...card.shared].map((s) => s.toLowerCase()),
+  )
+  const isHi = (t: string) => highlight.has(t.toLowerCase())
+  const langs = orderByHighlight(card.languages, highlight) // show ALL languages
+  const topics = orderByHighlight(card.topics, highlight).slice(0, 5)
 
   function share() {
     navigator.clipboard?.writeText(card.issue_key).then(
@@ -355,15 +369,15 @@ function IssueReel({ card, identifier }: { card: IssueCard; identifier: string }
               ) : null}
             </div>
 
-            {matchTags.length || moreTags.length ? (
+            {langs.length || topics.length ? (
               <div className="reel__tags">
-                {matchTags.map((t) => (
-                  <span className="tag tag--match" key={t}>
+                {langs.map((t) => (
+                  <span className={"tag" + (isHi(t) ? " tag--match" : "")} key={"l-" + t}>
                     {t}
                   </span>
                 ))}
-                {moreTags.map((t) => (
-                  <span className="tag" key={t}>
+                {topics.map((t) => (
+                  <span className={"tag" + (isHi(t) ? " tag--match" : "")} key={"t-" + t}>
                     {t}
                   </span>
                 ))}
@@ -641,7 +655,13 @@ export function Feed({
         ) : (
           <>
             {cards.map((c) => (
-              <IssueReel key={c.issue_key} card={c} identifier={identifier} />
+              <IssueReel
+                key={c.issue_key}
+                card={c}
+                identifier={identifier}
+                filterLanguages={active?.filters.languages ?? []}
+                filterTopics={active?.filters.topics ?? []}
+              />
             ))}
 
             {/* Sentinel + end-of-feed state. Always rendered so the observer has a
