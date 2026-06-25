@@ -993,6 +993,18 @@ input {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.profile__active {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--ink-subtle);
+}
+.profile__active svg {
+  color: var(--ink-tertiary);
+  flex-shrink: 0;
+}
 .profile__stack {
   display: flex;
   flex-wrap: wrap;
