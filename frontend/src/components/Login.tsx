@@ -6,7 +6,7 @@ import { login, type SessionInfo } from "../api"
 /* Hero landing / login. Real app-password auth: the backend resolves the handle
    to its PDS, calls com.atproto.server.createSession, and returns an opaque
    session id (+ the user's feature profile). Use an APP PASSWORD from
-   Tangled/Bluesky settings — never the main account password. */
+   Tangled/Bluesky settings - never the main account password. */
 
 /** Light client-side guard: accept a handle (tngl.sh or bsky.social), not a DID. */
 function validateHandle(value: string): string | null {
@@ -15,7 +15,7 @@ function validateHandle(value: string): string | null {
   }
   if (/\s/.test(value)) return "Handles can't contain spaces."
   if (!value.includes(".")) {
-    return "That doesn't look like a handle — try something like alice.tngl.sh."
+    return "That doesn't look like a handle - try something like alice.tngl.sh."
   }
   return null
 }
@@ -60,11 +60,11 @@ export function Login({ onSuccess }: { onSuccess: (session: SessionInfo) => void
         </span>
 
         <h1 className="hero__headline">
-          GitTok — For-You feed for open source.
+          GitTok - For You feed for open source.
         </h1>
         <p className="hero__sub">
           Sign in with your Tangled or Bluesky handle and an app password. We'll
-          match you with the repositories and builders that fit how you work — and
+          match you with the repositories and builders that fit how you work - and
           let you build and publish your own feeds to your PDS.
         </p>
 
@@ -75,7 +75,7 @@ export function Login({ onSuccess }: { onSuccess: (session: SessionInfo) => void
               type="text"
               autoComplete="username"
               autoFocus
-              placeholder="Your handle — alice.tngl.sh"
+              placeholder="Your handle - alice.tngl.sh"
               value={identifier}
               onChange={(e) => {
                 setIdentifier(e.target.value)
