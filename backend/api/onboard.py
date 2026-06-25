@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 from models.profile import Profile
 from services.atproto.resolver import resolve_handle_or_did
-from services.create_feature_profiles.create_profiles import onboard_did
+from services.create_feature_profiles.create_profiles import load_profiles, onboard_did
 
 router = APIRouter()
 
@@ -23,6 +23,12 @@ async def onboard(body: OnboardRequest, request: Request) -> Profile:
         did = await resolve_handle_or_did(identifier, client)
     except Exception as exc:
         raise HTTPException(status_code=422, detail=f"Could not resolve '{identifier}': {exc}")
+
+    # Already onboarded: accept the user as-is and return their stored profile.
+    # We don't re-fetch from the PDS or overwrite the existing entry.
+    existing = load_profiles()
+    if did in existing:
+        return Profile(**existing[did])
 
     handle = None if identifier.startswith("did:") else identifier
 

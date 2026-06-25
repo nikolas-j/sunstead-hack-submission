@@ -872,6 +872,99 @@ input {
   font-weight: 600;
 }
 
+/* Load more — full-width row under the suggested profiles */
+.profile__more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: var(--s-xs);
+  padding: var(--s-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--hairline-tertiary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.profile__more:hover:not(:disabled) {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+.profile__more:disabled {
+  cursor: default;
+  color: var(--ink-subtle);
+}
+
+/* Inline message / retry for empty + error states */
+.panel__msg {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-xs);
+  padding: var(--s-md);
+  font-size: 13px;
+  color: var(--ink-subtle);
+}
+.panel__retry {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.panel__retry:hover {
+  color: var(--accent-hover);
+}
+
+/* Skeleton placeholders while a query is running */
+.skel {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--surface-2) 0%,
+    var(--surface-3) 50%,
+    var(--surface-2) 100%
+  );
+  background-size: 200% 100%;
+  animation: skel-shimmer 1.2s ease-in-out infinite;
+  border-radius: var(--r-sm);
+}
+.skel--avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex: none;
+}
+.skel--line {
+  height: 11px;
+  margin: 5px 0;
+}
+.skel--sm {
+  height: 8px;
+}
+@keyframes skel-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+.auth__spinner--ghost {
+  border-color: color-mix(in srgb, var(--ink-subtle) 35%, transparent);
+  border-top-color: var(--ink-muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  .skel {
+    animation: none;
+  }
+}
+
 /* Small "web of trust" promo card to echo Tangled's announcements slot */
 .promo {
   padding: var(--s-lg);
@@ -904,6 +997,165 @@ input {
 }
 .promo__link:hover {
   color: var(--accent-hover);
+}
+
+/* ============================================================================
+   Hero landing / login page — centered, no card, floating logo
+   ========================================================================== */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* Sit the block a touch above dead-center ("mid/top") */
+  padding: 12vh var(--s-lg) 18vh;
+}
+
+.hero__inner {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: hero-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* Large floating mark with a soft teal glow behind it */
+.hero__logo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  margin-bottom: var(--s-xl);
+  animation: hero-float 6s ease-in-out infinite;
+}
+.hero__logo::before {
+  content: "";
+  position: absolute;
+  inset: -60% -60%;
+  background: radial-gradient(
+    circle,
+    rgba(31, 184, 166, 0.22) 0%,
+    rgba(31, 184, 166, 0.08) 35%,
+    rgba(31, 184, 166, 0) 70%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+@keyframes hero-float {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.hero__headline {
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+  color: var(--ink);
+  max-width: 22ch;
+}
+
+.hero__sub {
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-subtle);
+  margin-top: var(--s-md);
+  max-width: 52ch;
+}
+
+.hero__form {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-sm);
+  margin-top: var(--s-xl);
+}
+
+.hero__field {
+  width: 100%;
+  display: flex;
+  gap: var(--s-xs);
+  padding: 6px;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.hero__field:focus-within {
+  border-color: var(--accent-tint-border);
+  box-shadow: 0 0 0 4px var(--accent-tint);
+}
+.hero__field[data-error="true"] {
+  border-color: color-mix(in srgb, #e5484d 55%, var(--hairline));
+}
+
+.hero__input {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  padding: 0 var(--s-md);
+  font-size: 15px;
+  text-align: left;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.hero__input::placeholder {
+  color: var(--ink-tertiary);
+}
+
+.hero__submit {
+  height: 48px;
+  flex-shrink: 0;
+  padding: 0 var(--s-lg);
+  border-radius: var(--r-md);
+}
+
+.hero__hint {
+  font-size: 13px;
+  color: var(--ink-tertiary);
+}
+.hero__error {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #f0888c;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__inner,
+  .hero__logo {
+    animation: none;
+  }
+}
+
+/* Button spinner for the connecting state */
+.auth__spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--on-accent) 35%, transparent);
+  border-top-color: var(--on-accent);
+  animation: auth-spin 0.6s linear infinite;
+}
+@keyframes auth-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ============================================================================
@@ -954,5 +1206,14 @@ input {
   .user__handle,
   .kbd {
     display: none;
+  }
+  .hero {
+    padding: 10vh var(--s-md) 14vh;
+  }
+  .hero__field {
+    flex-direction: column;
+  }
+  .hero__submit {
+    width: 100%;
   }
 }

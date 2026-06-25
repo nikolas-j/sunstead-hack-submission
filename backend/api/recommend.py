@@ -1,6 +1,6 @@
 # GET /recommend/{identifier} — ranks the profiles in profile_output/profiles.json
 # by similarity to the requesting user and returns the top matches.
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Query, Request
 
 from models.recommendation import RecommendationResponse
 from services.atproto.resolver import resolve_handle_or_did
@@ -11,7 +11,12 @@ router = APIRouter()
 
 
 @router.get("/recommend/{identifier:path}", response_model=RecommendationResponse)
-async def recommend(identifier: str, request: Request, limit: int = 5) -> RecommendationResponse:
+async def recommend(
+    identifier: str,
+    request: Request,
+    limit: int = 5,
+    exclude: list[str] = Query(default=[]),  # already-seen DIDs to skip (pagination)
+) -> RecommendationResponse:
     client = request.app.state.http_client
     identifier = identifier.strip()
 
@@ -34,5 +39,5 @@ async def recommend(identifier: str, request: Request, limit: int = 5) -> Recomm
     if did not in profiles:
         raise HTTPException(status_code=422, detail=f"No profileable content found for {did}")
 
-    matches = rank_profiles(did, profiles, limit)
+    matches = rank_profiles(did, profiles, limit, exclude=exclude)
     return RecommendationResponse(for_did=did, matches=matches)

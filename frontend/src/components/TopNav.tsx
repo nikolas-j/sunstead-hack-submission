@@ -1,9 +1,9 @@
 import { Search, Plus, Bell } from "lucide-react"
 import { Avatar } from "./Avatar"
 import { TangledLogo } from "./TangledLogo"
-import { USER } from "../data"
+import { gradientFor } from "../lib"
 
-export function TopNav() {
+export function TopNav({ handle }: { handle: string }) {
   return (
     <header className="topnav">
       <div className="topnav__inner">
@@ -28,8 +28,8 @@ export function TopNav() {
             <Bell size={18} />
           </button>
           <a className="user" href="#">
-            <Avatar name={USER.handle} gradient={USER.avatar} size="sm" />
-            <span className="user__handle">{USER.handle}</span>
+            <Avatar name={handle} gradient={gradientFor(handle)} size="sm" />
+            <span className="user__handle">{handle}</span>
           </a>
         </div>
       </div>

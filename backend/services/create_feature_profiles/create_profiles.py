@@ -9,12 +9,16 @@ purpose — keyword matching + a documented level heuristic, no embeddings / LLM
     # from backend/
     uv run python -m services.pipeline.create_profiles
 
-We pull ONLY two collections per DID: `sh.tangled.repo` (repos) and
-`app.bsky.feed.post` (posts). No issues, PRs, knots, or stars.
+We pull per DID: `sh.tangled.repo` (repos), `app.bsky.feed.post` (posts),
+`sh.tangled.feed.star` (stars), `sh.tangled.graph.follow` (follows), and
+`sh.tangled.actor.profile` (bio / location / links).
 
 Output `profiles.json`:
-    {did: {did, handle, languages, topics, level, tags, text_blob}}
-`text_blob` is what the recommender vectorizes; empty-blob profiles are dropped.
+    {did: {did, handle, languages, topics, level, tags, total_repos,
+           total_posts, total_stars, total_follows, last_active,
+           description, location, links, text_blob}}
+`text_blob` (capped at MAX_TEXT_BLOB_CHARS) is what the recommender vectorizes;
+empty-blob profiles are dropped.
 """
 
 from __future__ import annotations
@@ -36,6 +40,14 @@ PROFILE_OUTPUT = _HERE.parents[2] / "profile_output"
 DEFAULT_IN = PROFILE_OUTPUT / "raw_dids.json"
 DEFAULT_OUT = PROFILE_OUTPUT / "profiles.json"
 
+# Collections fetched per DID beyond repos + posts (see config for those two).
+COLLECTION_TANGLED_STAR = "sh.tangled.feed.star"
+COLLECTION_TANGLED_FOLLOW = "sh.tangled.graph.follow"
+COLLECTION_TANGLED_ACTOR = "sh.tangled.actor.profile"
+
+# Cap on stored text_blob length (chars) so a prolific poster can't bloat a profile.
+MAX_TEXT_BLOB_CHARS = 50_000
+
 
 # --------------------------------------------------------------------------- #
 # Phase A: fetch raw repos + posts from each DID's PDS
@@ -52,18 +64,32 @@ def _extract_post(record: dict) -> dict | None:
     return {"text": text, "createdAt": v.get("createdAt")} if text else None
 
 
+def _extract_actor(records: list[dict]) -> dict:
+    if not records:
+        return {}
+    v = records[0].get("value", records[0])
+    return {"description": v.get("description"), "location": v.get("location"),
+            "links": v.get("links", [])}
+
+
 async def fetch_raw(did: str, handle: str | None, client: httpx.AsyncClient) -> dict:
-    """Resolve PDS, pull repos + posts. Returns {did, handle, repos, posts}."""
+    """Resolve PDS, pull repos, posts, stars, follows, and actor profile."""
     pds_url = await pds_mod.resolve_pds(did, client)
-    repo_records = await pds_mod.list_records(
-        pds_url, did, config.COLLECTION_TANGLED_REPO, client)
-    post_records = await pds_mod.list_records(
-        pds_url, did, config.COLLECTION_BSKY_POST, client)
+    repos, posts, stars, follows, actor = await asyncio.gather(
+        pds_mod.list_records(pds_url, did, config.COLLECTION_TANGLED_REPO, client),
+        pds_mod.list_records(pds_url, did, config.COLLECTION_BSKY_POST, client),
+        pds_mod.list_records(pds_url, did, COLLECTION_TANGLED_STAR, client),
+        pds_mod.list_records(pds_url, did, COLLECTION_TANGLED_FOLLOW, client),
+        pds_mod.list_records(pds_url, did, COLLECTION_TANGLED_ACTOR, client),
+    )
     return {
         "did": did,
         "handle": handle,
-        "repos": [_extract_repo(r) for r in repo_records],
-        "posts": [p for r in post_records if (p := _extract_post(r))],
+        "repos": [_extract_repo(r) for r in repos],
+        "posts": [p for r in posts if (p := _extract_post(r))],
+        "stars": len(stars),
+        "follows": len(follows),
+        "actor": _extract_actor(actor),
     }
 
 
@@ -105,7 +131,7 @@ def build_text_blob(raw: dict) -> str:
         if post.get("text"):
             parts.append(str(post["text"]))
     blob = _CLEAN_RE.sub(" ", " ".join(parts).lower())
-    return _WS_RE.sub(" ", blob).strip()
+    return _WS_RE.sub(" ", blob).strip()[:MAX_TEXT_BLOB_CHARS]
 
 
 def _word_set(blob: str) -> set[str]:
@@ -137,8 +163,16 @@ def derive_level(raw: dict, topics: list[str], blob_words: set[str]) -> str:
     return "intermediate"
 
 
+def _last_active(raw: dict) -> str | None:
+    """Most recent createdAt across repos + posts (ISO 8601 strings sort chronologically)."""
+    times = [r.get("createdAt") for r in raw.get("repos", [])]
+    times += [p.get("createdAt") for p in raw.get("posts", [])]
+    times = [t for t in times if t]
+    return max(times) if times else None
+
+
 def build_profile(did: str, raw: dict) -> dict | None:
-    """One raw {repos, posts} -> one feature vector, or None if nothing to match."""
+    """One raw user blob -> one feature profile, or None if nothing to match."""
     blob = build_text_blob(raw)
     if not blob:
         return None
@@ -146,6 +180,7 @@ def build_profile(did: str, raw: dict) -> dict | None:
     languages = _match(blob, words, taxonomy.LANGUAGES)
     topics = _match(blob, words, taxonomy.TOPICS)
     level = derive_level(raw, topics, words)
+    actor = raw.get("actor", {})
     return {
         "did": did,
         "handle": raw.get("handle"),
@@ -153,6 +188,14 @@ def build_profile(did: str, raw: dict) -> dict | None:
         "topics": topics,
         "level": level,
         "tags": languages + topics + [level],
+        "total_repos": len(raw.get("repos", [])),
+        "total_posts": len(raw.get("posts", [])),
+        "total_stars": raw.get("stars", 0),
+        "total_follows": raw.get("follows", 0),
+        "last_active": _last_active(raw),
+        "description": actor.get("description"),
+        "location": actor.get("location"),
+        "links": actor.get("links", []),
         "text_blob": blob,
     }
 

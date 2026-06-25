@@ -1,47 +1,21 @@
-import { useEffect } from "react"
-import Lenis from "lenis"
-import { TopNav } from "./components/TopNav"
-import { CenterColumn } from "./components/CenterColumn"
-import { RightColumn } from "./components/RightColumn"
-import { CursorGlow } from "./components/CursorGlow"
-import { Globe } from "./components/Globe"
+import { useState } from "react"
+import { Login } from "./components/Login"
+import { Dashboard } from "./components/Dashboard"
+import type { Profile } from "./api"
+
+type Session = { profile: Profile; handle: string }
 
 export default function App() {
-  useEffect(() => {
-    // Respect users who ask for less motion — keep native scrolling for them.
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    if (reduce) return
+  // The onboarded user. null => show the login page. We keep the handle the
+  // user signed in with (the backend resolves it to a DID) so the main page
+  // can show it; the profile is held ready for the /recommend wiring next.
+  const [session, setSession] = useState<Session | null>(null)
 
-    const lenis = new Lenis({
-      // duration + easeOutExpo gives the soft, relaxing deceleration
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-    })
+  if (!session) {
+    return (
+      <Login onSuccess={(profile, handle) => setSession({ profile, handle })} />
+    )
+  }
 
-    let raf = 0
-    const loop = (time: number) => {
-      lenis.raf(time)
-      raf = requestAnimationFrame(loop)
-    }
-    raf = requestAnimationFrame(loop)
-
-    return () => {
-      cancelAnimationFrame(raf)
-      lenis.destroy()
-    }
-  }, [])
-
-  return (
-    <>
-      <CursorGlow />
-      <Globe />
-      <TopNav />
-      <main className="layout">
-        <CenterColumn />
-        <RightColumn />
-      </main>
-    </>
-  )
+  return <Dashboard handle={session.handle} did={session.profile.did} />
 }
