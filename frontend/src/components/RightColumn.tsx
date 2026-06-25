@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { Users, ShieldCheck, ArrowRight, Plus, Clock } from "lucide-react"
+import { Users, Plus, Clock } from "lucide-react"
 import {
   recommend,
   follow as followApi,
@@ -259,19 +259,6 @@ export function RightColumn({ did }: { did: string }) {
             </>
           )}
         </div>
-      </section>
-
-      <section className="panel promo">
-        <div className="promo__title">
-          <ShieldCheck size={16} /> Build a web of trust
-        </div>
-        <p className="promo__text">
-          Vouch for trustworthy builders to make open source safer. Visit a
-          profile to vouch for them.
-        </p>
-        <a className="promo__link" href="#">
-          Read more <ArrowRight size={13} />
-        </a>
       </section>
     </aside>
   )

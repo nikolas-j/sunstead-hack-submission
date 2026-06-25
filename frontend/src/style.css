@@ -1169,40 +1169,6 @@ input {
   }
 }
 
-/* Small "web of trust" promo card to echo Tangled's announcements slot */
-.promo {
-  padding: var(--s-lg);
-}
-.promo__title {
-  display: flex;
-  align-items: center;
-  gap: var(--s-xs);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: var(--s-xs);
-}
-.promo__title svg {
-  color: var(--accent);
-}
-.promo__text {
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--ink-subtle);
-  margin-bottom: var(--s-md);
-}
-.promo__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--accent);
-}
-.promo__link:hover {
-  color: var(--accent-hover);
-}
-
 /* ============================================================================
    Hero landing / login page — centered, no card, floating logo
    ========================================================================== */

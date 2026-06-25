@@ -18,12 +18,12 @@ import {
   generateIssues,
   generateIssuesByUri,
   issuePeek,
+  listFeeds,
   type FeedRef,
   type IssueCard,
   type IssuePeek,
 } from "../api"
 import { Avatar } from "./Avatar"
-import { FeedSelector } from "./FeedSelector"
 import { formatCount, gradientFor, tangledProfileUrl } from "../lib"
 import { useIsSaved, toggleSaved } from "../saved"
 
@@ -464,10 +464,25 @@ export function Feed({
   const scrollRef = useRef<HTMLDivElement>(null)
   const sentinelRef = useRef<HTMLDivElement>(null)
 
-  // Which feed (built-in / own / subscribed) is active. The seen-cache is
-  // namespaced per feed so switching feeds paginates independently.
+  // GitTok always runs the personalized "For you" issues feed — the feed-picker
+  // tabs (For you / Trending / New / topics / Generator) belong to the main Feeds
+  // view, not here. We resolve that one built-in feed and stick with it.
   const [active, setActive] = useState<FeedRef | null>(null)
   const cacheKey = active ? `${identifier}:${active.uri ?? active.slug}` : null
+
+  useEffect(() => {
+    let cancelled = false
+    listFeeds("issues")
+      .then((res) => {
+        if (cancelled) return
+        const f = res.builtins.find((b) => b.slug === "for-you") ?? res.builtins[0]
+        if (f) setActive(f)
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [identifier])
 
   const [cards, setCards] = useState<IssueCard[]>([])
   const [loading, setLoading] = useState(true)
@@ -588,12 +603,6 @@ export function Feed({
         >
           <ArrowLeft size={18} /> Back
         </button>
-        <FeedSelector
-          kind="issues"
-          identifier={identifier}
-          value={active}
-          onChange={setActive}
-        />
         <div className="feed__actions">
           <span className="feed__hint">↑ ↓ to scroll</span>
           <button
